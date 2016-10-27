@@ -153,11 +153,12 @@
 <p>&#x5BF9;&#x4E8E;Regression&#xFF0C;&#x901A;&#x5E38;&#x4F7F;&#x7528;&#x5E73;&#x65B9;&#x9519;&#x8BEF;&#xFF0C;&#x5219;&#xFF1A;</p>
 <p>$$<br>err(\hat{y},y)=(\hat{y}-y)^2<br>$$</p>
 <p>&#x635F;&#x5931;&#x51FD;&#x6570;&#x4E3A;&#xFF1A;</p>
-<p>$$<br>E_{in}(\mathbf{W})=\frac{1}{N} \sum_{i=1}^N (\mathbf{W^T}x_n-y_n)^2<br>$$<br>&#x6211;&#x4EEC;&#x6240;&#x8981;&#x505A;&#x7684;&#x5C31;&#x662F;&#x8BA9;&#x635F;&#x5931;&#x8FBE;&#x5230;&#x6700;&#x5C0F;&#xFF0C;&#x5373;&#x6C42;&#x89E3;&#x8FD9;&#x6837;&#x7684;&#x6700;&#x4F18;&#x5316;&#x95EE;&#x9898;</p>
+<p>$$<br>E_{in}(\mathbf{W})=\frac{1}{N} \sum_{i=1}^N (\mathbf{W^T}x_n-y_n)^2<br>$$<br>&#x6211;&#x4EEC;&#x6240;&#x8981;&#x505A;&#x7684;&#x5C31;&#x662F;&#x8BA9;&#x635F;&#x5931;&#x8FBE;&#x5230;&#x6700;&#x5C0F;&#xFF0C;&#x5373;&#x6C42;&#x89E3;&#x8FD9;&#x6837;&#x7684;&#x6700;&#x4F18;&#x5316;&#x95EE;&#x9898;&#xFF08;&#x7B80;&#x5316;&#x4E3A;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x7684;&#x5185;&#x79EF;&#xFF09;</p>
 <p>$$<br>\min \limits_{\mathbf{W}} E_{in}(\mathbf{w})=\frac{1}{N} \sum_{i=1}^N (\mathbf{W^T}x_n-y_n)^2 = \frac{1}{N} \| \mathbf{XW}-\mathbf{y} \| ^2<br>$$</p>
-<p>&#x4E0A;&#x5F0F;&#x53EF;&#x4EE5;&#x7B80;&#x5316;&#x4E3A;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x7684;&#x5185;&#x79EF;</p>
+<p>&#x901A;&#x8FC7;&#x77E9;&#x9635;&#x7684;&#x7EBF;&#x6027;&#x4EE3;&#x6570;&#x7684;&#x8BA1;&#x7B97;&#xFF0C;&#x68AF;&#x5EA6;&#x4E3A;&#xFF1A;<br>$$<br>\bigtriangledown E_{in}(\mathbf{w}) = \frac{2}{N} (\mathbf{X^T X W}-\mathbf{X^T y})<br>$$</p>
 <p>&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#x6700;&#x4F18;&#x5316;&#xFF0C;&#x5206;&#x522B;&#x4E3A;<strong>&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;</strong>&#x548C;<strong>&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x6CD5;</strong>&#x3002;</p>
-<h5 id="&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;"><a href="#&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;" class="headerlink" title="&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;"></a>&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;</h5>
+<h5 id="&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;"><a href="#&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;" class="headerlink" title="&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;"></a>&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;</h5><p>$$<br>\mathbf{W_{LIN}}=(\mathbf{X^T X})^{-1} \mathbf{X^T} \mathbf{y}<br>$$</p>
+
       
     </div>
     <div class="article-info article-info-index">
