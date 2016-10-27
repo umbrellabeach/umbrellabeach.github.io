@@ -14,7 +14,7 @@ $$\m">
 <meta property="og:site_name" content="The heart of the machine">
 <meta property="og:description" content="&amp;#x63A8;&amp;#x5BFC;&amp;#x5047;&amp;#x8BBE;y(label)&amp;#x4E3A;&amp;#x5B9E;&amp;#x6570;&amp;#xFF0C;&amp;#x4E14;&amp;#x53EF;&amp;#x4EE5;&amp;#x7528;x(features)&amp;#x7684;&amp;#x7EBF;&amp;#x6027;&amp;#x7EC4;&amp;#x5408;&amp;#x8868;&amp;#x793A;&amp;#xFF0C;&amp;#x5373;&amp;#xFF1A;
 $$\m">
-<meta property="og:updated_time" content="2016-10-27T04:53:26.000Z">
+<meta property="og:updated_time" content="2016-10-27T04:58:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linear Regression原理及实现">
 <meta name="twitter:description" content="&amp;#x63A8;&amp;#x5BFC;&amp;#x5047;&amp;#x8BBE;y(label)&amp;#x4E3A;&amp;#x5B9E;&amp;#x6570;&amp;#xFF0C;&amp;#x4E14;&amp;#x53EF;&amp;#x4EE5;&amp;#x7528;x(features)&amp;#x7684;&amp;#x7EBF;&amp;#x6027;&amp;#x7EC4;&amp;#x5408;&amp;#x8868;&amp;#x793A;&amp;#xFF0C;&amp;#x5373;&amp;#xFF1A;
@@ -159,7 +159,8 @@ $$\m">
 <p>$$<br>err(\hat{y},y)=(\hat{y}-y)^2<br>$$</p>
 <p>&#x635F;&#x5931;&#x51FD;&#x6570;&#x4E3A;&#xFF1A;</p>
 <p>$$<br>E_{in}(\mathbf{W})=\frac{1}{N} \sum_{i=1}^N (\mathbf{W^T}x_n-y_n)^2<br>$$<br>&#x6211;&#x4EEC;&#x6240;&#x8981;&#x505A;&#x7684;&#x5C31;&#x662F;&#x8BA9;&#x635F;&#x5931;&#x8FBE;&#x5230;&#x6700;&#x5C0F;&#xFF0C;&#x5373;&#x6C42;&#x89E3;&#x8FD9;&#x6837;&#x7684;&#x6700;&#x4F18;&#x5316;&#x95EE;&#x9898;</p>
-<p>$$<br>\min \limits_{\mathbf{W}} E_{in}(\mathbf{w})=\frac{1}{N} \sum_{i=1}^N (\mathbf{W^T}x_n-y_n)^2<br>$$</p>
+<p>$$<br>\min \limits_{\mathbf{W}} E_{in}(\mathbf{w})=\frac{1}{N} \sum_{i=1}^N (\mathbf{W^T}x_n-y_n)^2 = \frac{1}{N} \Vert{\mathbf{XW}-y}^2<br>$$</p>
+<p>&#x4E0A;&#x5F0F;&#x53EF;&#x4EE5;&#x7B80;&#x5316;&#x4E3A;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x7684;&#x5185;&#x79EF;</p>
 <p>&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#x6700;&#x4F18;&#x5316;&#xFF0C;&#x5206;&#x522B;&#x4E3A;<strong>&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;</strong>&#x548C;<strong>&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x6CD5;</strong>&#x3002;</p>
 <h5 id="&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;"><a href="#&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;" class="headerlink" title="&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;"></a>&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;</h5>
       
