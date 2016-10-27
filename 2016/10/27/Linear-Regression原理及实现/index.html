@@ -4,14 +4,21 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016/10 | The heart of the machine</title>
+  <title>Linear Regression原理及实现 | The heart of the machine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="The heart of the machine">
-<meta property="og:url" content="http://yoursite.com/archives/2016/10/index.html">
+  <meta name="description" content="&amp;#x63A8;&amp;#x5BFC;&amp;#x5047;&amp;#x8BBE;label&amp;#x4E3A;&amp;#x5B9E;&amp;#x6570;&amp;#xFF0C;&amp;#x4E14;&amp;#x53EF;&amp;#x4EE5;&amp;#x7528;features&amp;#x7684;&amp;#x7EBF;&amp;#x6027;&amp;#x7EC4;&amp;#x5408;&amp;#x8868;&amp;#x793A;&amp;#xFF0C;&amp;#x5373;&amp;#xFF1A;
+$$\mathbf{">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linear Regression原理及实现">
+<meta property="og:url" content="http://yoursite.com/2016/10/27/Linear-Regression原理及实现/index.html">
 <meta property="og:site_name" content="The heart of the machine">
+<meta property="og:description" content="&amp;#x63A8;&amp;#x5BFC;&amp;#x5047;&amp;#x8BBE;label&amp;#x4E3A;&amp;#x5B9E;&amp;#x6570;&amp;#xFF0C;&amp;#x4E14;&amp;#x53EF;&amp;#x4EE5;&amp;#x7528;features&amp;#x7684;&amp;#x7EBF;&amp;#x6027;&amp;#x7EC4;&amp;#x5408;&amp;#x8868;&amp;#x793A;&amp;#xFF0C;&amp;#x5373;&amp;#xFF1A;
+$$\mathbf{">
+<meta property="og:updated_time" content="2016-10-27T02:48:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The heart of the machine">
+<meta name="twitter:title" content="Linear Regression原理及实现">
+<meta name="twitter:description" content="&amp;#x63A8;&amp;#x5BFC;&amp;#x5047;&amp;#x8BBE;label&amp;#x4E3A;&amp;#x5B9E;&amp;#x6570;&amp;#xFF0C;&amp;#x4E14;&amp;#x53EF;&amp;#x4EE5;&amp;#x7528;features&amp;#x7684;&amp;#x7EBF;&amp;#x6027;&amp;#x7EC4;&amp;#x5408;&amp;#x8868;&amp;#x793A;&amp;#xFF0C;&amp;#x5373;&amp;#xFF1A;
+$$\mathbf{">
   
     <link rel="alternative" href="/atom.xml" title="The heart of the machine" type="application/atom+xml">
   
@@ -126,145 +133,80 @@
 </nav>
 
       <div class="body-wrap">
+        <article id="post-Linear-Regression原理及实现" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
   
+    <h1 class="article-title" itemprop="name">
+      Linear Regression原理及实现
+    </h1>
   
+
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
       
+        <h4 id="&#x63A8;&#x5BFC;"><a href="#&#x63A8;&#x5BFC;" class="headerlink" title="&#x63A8;&#x5BFC;"></a>&#x63A8;&#x5BFC;</h4><p>&#x5047;&#x8BBE;label&#x4E3A;&#x5B9E;&#x6570;&#xFF0C;&#x4E14;&#x53EF;&#x4EE5;&#x7528;features&#x7684;&#x7EBF;&#x6027;&#x7EC4;&#x5408;&#x8868;&#x793A;&#xFF0C;&#x5373;&#xFF1A;</p>
+<p>$$<br>\mathbf{y} = \sum_{i=0}^d w<em>\i x</em>\i<br>$$</p>
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/10/27/Linear-Regression原理及实现/" class="archive-article-date">
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/10/27/Linear-Regression原理及实现/" class="archive-article-date">
   	<time datetime="2016-10-27T02:40:58.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-27</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/10/27/Linear-Regression原理及实现/">Linear Regression原理及实现</a>
-    </h1>
-  
+      
+      
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/10/23/Leetcode-4-Median-of-Two-Sorted-Arrays/" class="archive-article-date">
-  	<time datetime="2016-10-23T05:01:57.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/10/23/Leetcode-4-Median-of-Two-Sorted-Arrays/">Leetcode 4: Median of Two Sorted Arrays</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/10/23/Leetcode-4-Median-of-Two-Sorted-Arrays/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Leetcode 4: Median of Two Sorted Arrays</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/10/23/Index-of-Leetcode-Solution/" class="archive-article-date">
-  	<time datetime="2016-10-23T02:31:10.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/10/23/Index-of-Leetcode-Solution/">Index of Leetcode Solution</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/10/12/PLA算法实现(Python)/" class="archive-article-date">
-  	<time datetime="2016-10-12T11:04:40.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/10/12/PLA算法实现(Python)/">PLA算法实现(Python)</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
       </div>
@@ -287,8 +229,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
