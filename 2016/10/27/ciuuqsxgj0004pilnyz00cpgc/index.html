@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Linear Regression原理及实现 | The heart of the machine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;#x63A8;&amp;#x5BFC;&amp;#x5047;&amp;#x8BBE;y(label)&amp;#x4E3A;&amp;#x5B9E;&amp;#x6570;&amp;#xFF0C;&amp;#x4E14;&amp;#x53EF;&amp;#x4EE5;&amp;#x7528;x(features)&amp;#x7684;&amp;#x7EBF;&amp;#x6027;&amp;#x7EC4;&amp;#x5408;&amp;#x8868;&amp;#x793A;&amp;#xFF0C;&amp;#x5373;&amp;#xFF1A;
+$$\m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linear Regression原理及实现">
+<meta property="og:url" content="http://yoursite.com/2016/10/27/ciuuqsxgj0004pilnyz00cpgc/index.html">
+<meta property="og:site_name" content="The heart of the machine">
+<meta property="og:description" content="&amp;#x63A8;&amp;#x5BFC;&amp;#x5047;&amp;#x8BBE;y(label)&amp;#x4E3A;&amp;#x5B9E;&amp;#x6570;&amp;#xFF0C;&amp;#x4E14;&amp;#x53EF;&amp;#x4EE5;&amp;#x7528;x(features)&amp;#x7684;&amp;#x7EBF;&amp;#x6027;&amp;#x7EC4;&amp;#x5408;&amp;#x8868;&amp;#x793A;&amp;#xFF0C;&amp;#x5373;&amp;#xFF1A;
+$$\m">
+<meta property="og:updated_time" content="2016-10-28T06:23:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linear Regression原理及实现">
+<meta name="twitter:description" content="&amp;#x63A8;&amp;#x5BFC;&amp;#x5047;&amp;#x8BBE;y(label)&amp;#x4E3A;&amp;#x5B9E;&amp;#x6570;&amp;#xFF0C;&amp;#x4E14;&amp;#x53EF;&amp;#x4EE5;&amp;#x7528;x(features)&amp;#x7684;&amp;#x7EBF;&amp;#x6027;&amp;#x7EC4;&amp;#x5408;&amp;#x8868;&amp;#x793A;&amp;#xFF0C;&amp;#x5373;&amp;#xFF1A;
+$$\m">
+  
+    <link rel="alternative" href="/atom.xml" title="The heart of the machine" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://oe0136353.bkt.clouddn.com/head.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jiaqi Fu</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">home</a></li>
+	        
+				<li><a href="/archives">archives</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">archives</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">tags</a>
+    			
+    			
+            
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">aboutme</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/umbrellabeach" title="github">github</a>
+		        
+					<a class="mail" target="_blank" href="mailto:fujiaqi@zju.edu.cn" title="mail">mail</a>
+		        
+					<a class="linkedin" target="_blank" href="https://cn.linkedin.com/in/jiaqi-fu-013a27104" title="linkedin">linkedin</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jiaqi Fu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://oe0136353.bkt.clouddn.com/head.jpeg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jiaqi Fu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">home</a></li>
+		        
+					<li><a href="/archives">archives</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/umbrellabeach" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:fujiaqi@zju.edu.cn" title="mail">mail</a>
+			        
+						<a class="linkedin" target="_blank" href="https://cn.linkedin.com/in/jiaqi-fu-013a27104" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Linear-Regression原理及实现" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linear Regression原理及实现
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="&#x63A8;&#x5BFC;"><a href="#&#x63A8;&#x5BFC;" class="headerlink" title="&#x63A8;&#x5BFC;"></a>&#x63A8;&#x5BFC;</h4><p>&#x5047;&#x8BBE;y(label)&#x4E3A;&#x5B9E;&#x6570;&#xFF0C;&#x4E14;&#x53EF;&#x4EE5;&#x7528;x(features)&#x7684;&#x7EBF;&#x6027;&#x7EC4;&#x5408;&#x8868;&#x793A;&#xFF0C;&#x5373;&#xFF1A;</p>
+<p>$$<br>\mathbf{y} = \sum_{i=0}^d w_i x_i<br>$$</p>
+<p>&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x8BE5;hypothesis&#x7684;&#x8868;&#x8FBE;&#x5F62;&#x5F0F;&#xFF1A;</p>
+<p>$$<br>h(\mathbf{X})=\mathbf{W^T X}<br>$$</p>
+<h5 id="&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;"><a href="#&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;" class="headerlink" title="&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;"></a>&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;</h5><blockquote>
+<p>&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;&#x53EF;&#x4EE5;&#x4ECE;Cost/Loss function&#x89D2;&#x5EA6;&#x53BB;&#x60F3;&#xFF0C;&#x8FD9;&#x662F;&#x7EDF;&#x8BA1;&#xFF08;&#x673A;&#x5668;&#xFF09;&#x5B66;&#x4E60;&#x91CC;&#x9762;&#x4E00;&#x4E2A;&#x91CD;&#x8981;&#x6982;&#x5FF5;&#xFF0C;&#x4E00;&#x822C;&#x5EFA;&#x7ACB;&#x6A21;&#x578B;&#x5C31;&#x662F;&#x8BA9;loss function&#x6700;&#x5C0F;&#xFF0C;&#x800C;&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;&#x53EF;&#x4EE5;&#x8BA4;&#x4E3A;&#x662F; loss function = &#xFF08;y_hat -y )^2&#x7684;&#x4E00;&#x4E2A;&#x7279;&#x4F8B;&#xFF0C;&#x7C7B;&#x4F3C;&#x7684;&#x60F3;&#x5404;&#x4F4D;&#x8BF4;&#x7684;&#x8FD8;&#x53EF;&#x4EE5;&#x7528;&#x5404;&#x79CD;&#x8DDD;&#x79BB;&#x5EA6;&#x91CF;&#x6765;&#x4F5C;&#x4E3A;loss function&#x800C;&#x4E0D;&#x4EC5;&#x4EC5;&#x662F;&#x6B27;&#x6C0F;&#x8DDD;&#x79BB;&#x3002;&#x6240;&#x4EE5;loss function&#x53EF;&#x4EE5;&#x8BF4;&#x662F;&#x4E00;&#x79CD;&#x66F4;&#x4E00;&#x822C;&#x5316;&#x7684;&#x8BF4;&#x6CD5;&#x3002;</p>
+</blockquote>
+<p>&#x5F15;&#x81EA; <a href="https://www.zhihu.com/question/20447622/answer/36744589" target="_blank" rel="external">&#x77E5;&#x4E4E;-&#x6700;&#x5927;&#x4F3C;&#x7136;&#x4F30;&#x8BA1;&#x548C;&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;&#x600E;&#x4E48;&#x7406;&#x89E3;&#xFF1F;</a></p>
+<p>&#x5BF9;&#x4E8E;Regression&#xFF0C;&#x901A;&#x5E38;&#x4F7F;&#x7528;&#x5E73;&#x65B9;&#x9519;&#x8BEF;&#xFF0C;&#x5219;&#xFF1A;</p>
+<p>$$<br>err(\hat{y},y)=(\hat{y}-y)^2<br>$$</p>
+<p>Cost Function&#x6216;&#x8005; Loss Function&#x4E3A;&#xFF1A;</p>
+<p>$$<br>E_{in}(\mathbf{W})=\frac{1}{N} \sum_{i=1}^N (\mathbf{W^T}x_n-y_n)^2<br>$$<br>&#x6211;&#x4EEC;&#x6240;&#x8981;&#x505A;&#x7684;&#x5C31;&#x662F;&#x8BA9;&#x635F;&#x5931;&#x8FBE;&#x5230;&#x6700;&#x5C0F;&#xFF0C;&#x5373;&#x6C42;&#x89E3;&#x8FD9;&#x6837;&#x7684;&#x6700;&#x4F18;&#x5316;&#x95EE;&#x9898;&#xFF08;&#x7B80;&#x5316;&#x4E3A;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x7684;&#x5185;&#x79EF;&#xFF09;</p>
+<p>$$<br>\min \limits_{\mathbf{W}} E_{in}(\mathbf{w})=\frac{1}{N} \sum_{i=1}^N (\mathbf{W^T}x_n-y_n)^2 = \frac{1}{N} \| \mathbf{XW}-\mathbf{y} \| ^2<br>$$</p>
+<p>&#x901A;&#x8FC7;&#x77E9;&#x9635;&#x7684;&#x7EBF;&#x6027;&#x4EE3;&#x6570;&#x7684;&#x8BA1;&#x7B97;&#xFF0C;&#x68AF;&#x5EA6;&#x4E3A;&#xFF1A;<br>$$<br>\nabla E_{in}(\mathbf{w}) = \frac{2}{N} (\mathbf{X^T X W}-\mathbf{X^T y})<br>$$</p>
+<p>&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#x6700;&#x4F18;&#x5316;&#xFF0C;&#x5206;&#x522B;&#x4E3A;<strong>&#x6B63;&#x89C4;&#x65B9;&#x7A0B;</strong>&#x548C;<strong>&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x6CD5;</strong>&#x3002;</p>
+<h5 id="&#x6B63;&#x89C4;&#x65B9;&#x7A0B;"><a href="#&#x6B63;&#x89C4;&#x65B9;&#x7A0B;" class="headerlink" title="&#x6B63;&#x89C4;&#x65B9;&#x7A0B;"></a>&#x6B63;&#x89C4;&#x65B9;&#x7A0B;</h5><p>&#x4F7F;$\nabla E_{in}(\mathbf{w})=0$&#xFF0C;&#x53EF;&#x5F97;&#x4EE5;&#x4E0B;&#x89E3;&#xFF1A;</p>
+<p>$$<br>\mathbf{W_{LIN}}=(\mathbf{X^T X})^{-1} \mathbf{X^T} \mathbf{y}<br>$$</p>
+<p>&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x6CD5;&#x4F7F;&#x7528;&#x7684;&#x6761;&#x4EF6;&#x662F;$\mathbf{X^T X}$&#x7684;&#x9006;&#x77E9;&#x9635;&#x5B58;&#x5728;&#xFF0C;&#x5219;$\mathbf{X}$&#x8981;&#x4E3A;&#x6EE1;&#x79E9;&#x77E9;&#x9635;&#x3002;</p>
+<h5 id="&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x6CD5;"><a href="#&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x6CD5;" class="headerlink" title="&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x6CD5;"></a>&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x6CD5;</h5><p>&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x7684;&#x7B97;&#x6CD5;&#x4E3B;&#x8981;&#x8FC7;&#x7A0B;&#xFF1A;</p>
+<ol>
+<li>&#x8BA1;&#x7B97; $\nabla E_{in}(\mathbf{w_t})$</li>
+<li>&#x66F4;&#x65B0; $\mathbf{w_{t+1}} \longleftarrow \nabla E_{in}(\mathbf{w_t})$</li>
+</ol>
+<p>&#x4E0D;&#x65AD;&#x8BA1;&#x7B97;&#x4E0A;&#x4E24;&#x6B65;&#xFF0C;&#x76F4;&#x5230;$\nabla E_{in}(\mathbf{w_{t+1}})=0$&#x6216;&#x8005;&#x8DB3;&#x591F;&#x7684;&#x8FED;&#x4EE3;&#x6B21;&#x6570;&#x3002;</p>
+<p>&#x800C;linear regression&#x7684;&#x68AF;&#x5EA6;&#x4E0A;&#x9762;&#x5DF2;&#x7ECF;&#x5F97;&#x51FA;</p>
+<p>$$<br>\nabla E_{in}(\mathbf{w}) = \frac{2}{N} (\mathbf{X^T X W}-\mathbf{X^T y})<br>$$</p>
+<p>&#x5728;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#x65F6;&#x5019;&#xFF0C;&#x7531;&#x4E8E;learning rate $\eta $&#x8BBE;&#x7F6E;&#x4E3A;0.1&#xFF0C;&#x76F8;&#x5BF9;&#x8F83;&#x5927;&#xFF0C;&#x5BFC;&#x81F4;&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x5931;&#x8D25;&#xFF0C;&#x6700;&#x540E;&#x751A;&#x81F3;&#x4E0A;&#x5347;&#x5230;e32&#xFF01;&#x6700;&#x540E;$\eta$&#x8BBE;&#x4E3A;0.0001&#xFF0C;&#x8FED;&#x4EE3;1000&#x6B21;&#x4E4B;&#x540E;&#x5F97;&#x5230;&#x5408;&#x9002;&#x7684;&#x89E3;&#x3002;</p>
+<h4 id="&#x5B9E;&#x73B0;"><a href="#&#x5B9E;&#x73B0;" class="headerlink" title="&#x5B9E;&#x73B0;"></a>&#x5B9E;&#x73B0;</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding=utf-8 -*-</span></div><div class="line"><span class="comment"># Author: fujiaqi@zju.edu.cn</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinearRegression</span>:</span></div><div class="line"></div><div class="line">    MAX_ITER = <span class="number">1000</span></div><div class="line">    LEARNING_RATE = <span class="number">0.0001</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.X_train = np.array([])</div><div class="line">        self.X_test = np.array([])</div><div class="line">        self.y_train = np.array([])</div><div class="line">        self.y_test = np.array([])</div><div class="line">        self.w_ = np.array([])</div><div class="line">        self.mse_ = <span class="number">0.0</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X_train, y_train, gradient_descent=True)</span>:</span></div><div class="line">        self.X_train = X_train</div><div class="line">        self.y_train = y_train</div><div class="line">        <span class="keyword">if</span> gradient_descent:</div><div class="line">            w = np.array([[<span class="number">0.0</span>]] * X_train.shape[<span class="number">1</span>])</div><div class="line"></div><div class="line">            <span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">0</span>, self.MAX_ITER):</div><div class="line">                <span class="comment"># print &apos;iter &apos;,t</span></div><div class="line">                gradient = self.gradient_val(w)</div><div class="line">                w = w - self.LEARNING_RATE * gradient</div><div class="line">                <span class="comment"># Ein = self.cost_val(w)</span></div><div class="line">                <span class="comment"># print Ein</span></div><div class="line"></div><div class="line">            self.w_ = w</div><div class="line"></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            pseudo_inv = np.dot(np.linalg.inv(np.dot(self.X_train.T, self.X_train)), self.X_train.T)</div><div class="line">            self.w_ = np.dot(pseudo_inv, self.y_train)</div><div class="line">        <span class="keyword">return</span> self</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self, X_test)</span>:</span></div><div class="line">        <span class="keyword">return</span> np.dot(X_test, self.w_)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">gradient_val</span><span class="params">(self, w)</span>:</span></div><div class="line">        tmp1 = np.dot(np.dot(self.X_train.T, self.X_train), w)</div><div class="line">        tmp2 = np.dot(self.X_train.T, self.y_train)</div><div class="line">        <span class="keyword">return</span> (tmp1 - tmp2) / self.X_train.shape[<span class="number">0</span>] * <span class="number">2</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cost_val</span><span class="params">(self, w)</span>:</span></div><div class="line">        tmp1 = np.dot(w.T, self.X_train.T)</div><div class="line">        tmp2 = np.dot(tmp1, self.X_train)</div><div class="line">        a = np.dot(tmp2, w)</div><div class="line">        b = <span class="number">2</span> * np.dot(np.dot(w.T, self.X_train.T), self.y_train)</div><div class="line">        c = np.dot(self.y_train.T, self.y_train)</div><div class="line">        <span class="keyword">return</span> (a - b + c) / self.X_train.shape[<span class="number">0</span>]</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/umbrellabeach/linear_regression" target="_blank" rel="external">&#x5B8C;&#x6574;Github&#x4EE3;&#x7801;</a></p>
+<h4 id="&#x9A8C;&#x8BC1;"><a href="#&#x9A8C;&#x8BC1;" class="headerlink" title="&#x9A8C;&#x8BC1;"></a>&#x9A8C;&#x8BC1;</h4><p>&#x4F7F;&#x7528;UCI <a href="https://archive.ics.uci.edu/ml/datasets/Wine+Quality" target="_blank" rel="external">Wine Quality</a>&#x4F5C;&#x4E3A;&#x6D4B;&#x8BD5;&#x96C6;</p>
+<p>&#x5C5E;&#x6027;&#xFF1A;</p>
+<p>Input variables (based on physicochemical tests): </p>
+<ol>
+<li>fixed acidity </li>
+<li>volatile acidity </li>
+<li>citric acid </li>
+<li>residual sugar </li>
+<li>chlorides </li>
+<li>free sulfur dioxide </li>
+<li>total sulfur dioxide </li>
+<li>density </li>
+<li>pH </li>
+<li>sulphates </li>
+<li>alcohol </li>
+</ol>
+<p>Output variable (based on sensory data): </p>
+<ol>
+<li>quality (score between 0 and 10)</li>
+</ol>
+<p>&#x4F7F;&#x7528;&#x5B9E;&#x73B0;&#x7684;&#x65B9;&#x6CD5;&#x548C;sklearn <a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html" target="_blank" rel="external">Linear Regression</a> API<br>&#x9A8C;&#x8BC1;&#x96C6;&#x7684;MSE&#x5206;&#x522B;&#x4E3A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x65B9;&#x6CD5;</th>
+<th>MSE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x6B63;&#x89C4;&#x6CD5;</td>
+<td>0.40692278</td>
+</tr>
+<tr>
+<td>&#x68AF;&#x5EA6;&#x6CD5;</td>
+<td>0.52293456</td>
+</tr>
+<tr>
+<td>sklearn</td>
+<td>0.40630285</td>
+</tr>
+</tbody>
+</table>
+<p>&#x53C2;&#x8003;<br>1.<a href="http://www.csie.ntu.edu.tw/~htlin/mooc/" target="_blank" rel="external">Machine Learning Foundations</a></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/10/27/ciuuqsxgj0004pilnyz00cpgc/" class="archive-article-date">
+  	<time datetime="2016-10-27T02:40:58.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-27</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/10/29/ciuuqsxgm0005piln8zqv0qpf/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Logistic Regression逻辑回归的原理及实现
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/23/ciuuqsxgd0002pilntbd14qg1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Leetcode 4: Median of Two Sorted Arrays</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Linear-Regression原理及实现" data-title="Linear Regression原理及实现" data-url="http://yoursite.com/2016/10/27/ciuuqsxgj0004pilnyz00cpgc/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+  
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-Linear-Regression原理及实现" data-title="Linear Regression原理及实现" data-url="http://yoursite.com/2016/10/27/ciuuqsxgj0004pilnyz00cpgc/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'the_heart_of_machine'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
+      </div>
+      <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Jiaqi Fu
+    	</div>
+      <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span id="busuanzi_container_site_uv">
+        本站访客数<span id="busuanzi_value_site_uv"></span>人次
+      </span>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Algorithm/" style="font-size: 15px;">Algorithm</a> <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/python/" style="font-size: 15px;">python</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
