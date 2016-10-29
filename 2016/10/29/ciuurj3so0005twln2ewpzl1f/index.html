@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Logistic Regression逻辑回归的原理及实现 | The heart of the machine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;#x903B;&amp;#x8F91;&amp;#x56DE;&amp;#x5F52;&amp;#x6982;&amp;#x5FF5;&amp;#xFF08;The concept of logistic regression&amp;#xFF09;&amp;#x5047;&amp;#x8BBE;&amp;#x6837;&amp;#x672C;&amp;#x670D;&amp;#x4ECE;&amp;#x4E8C;&amp;#x9879;&amp;#x5206;&amp;#x5E03;&amp;#xFF0C;$ X \sim B(n,p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Logistic Regression逻辑回归的原理及实现">
+<meta property="og:url" content="http://yoursite.com/2016/10/29/ciuurj3so0005twln2ewpzl1f/index.html">
+<meta property="og:site_name" content="The heart of the machine">
+<meta property="og:description" content="&amp;#x903B;&amp;#x8F91;&amp;#x56DE;&amp;#x5F52;&amp;#x6982;&amp;#x5FF5;&amp;#xFF08;The concept of logistic regression&amp;#xFF09;&amp;#x5047;&amp;#x8BBE;&amp;#x6837;&amp;#x672C;&amp;#x670D;&amp;#x4ECE;&amp;#x4E8C;&amp;#x9879;&amp;#x5206;&amp;#x5E03;&amp;#xFF0C;$ X \sim B(n,p">
+<meta property="og:image" content="http://www.myexception.cn/img/2014/12/14/112214377.png">
+<meta property="og:updated_time" content="2016-10-29T05:24:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Logistic Regression逻辑回归的原理及实现">
+<meta name="twitter:description" content="&amp;#x903B;&amp;#x8F91;&amp;#x56DE;&amp;#x5F52;&amp;#x6982;&amp;#x5FF5;&amp;#xFF08;The concept of logistic regression&amp;#xFF09;&amp;#x5047;&amp;#x8BBE;&amp;#x6837;&amp;#x672C;&amp;#x670D;&amp;#x4ECE;&amp;#x4E8C;&amp;#x9879;&amp;#x5206;&amp;#x5E03;&amp;#xFF0C;$ X \sim B(n,p">
+<meta name="twitter:image" content="http://www.myexception.cn/img/2014/12/14/112214377.png">
+  
+    <link rel="alternative" href="/atom.xml" title="The heart of the machine" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://oe0136353.bkt.clouddn.com/head.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jiaqi Fu</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">home</a></li>
+	        
+				<li><a href="/archives">archives</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">archives</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">tags</a>
+    			
+    			
+            
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">aboutme</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/umbrellabeach" title="github">github</a>
+		        
+					<a class="mail" target="_blank" href="mailto:fujiaqi@zju.edu.cn" title="mail">mail</a>
+		        
+					<a class="linkedin" target="_blank" href="https://cn.linkedin.com/in/jiaqi-fu-013a27104" title="linkedin">linkedin</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jiaqi Fu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://oe0136353.bkt.clouddn.com/head.jpeg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jiaqi Fu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">home</a></li>
+		        
+					<li><a href="/archives">archives</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/umbrellabeach" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:fujiaqi@zju.edu.cn" title="mail">mail</a>
+			        
+						<a class="linkedin" target="_blank" href="https://cn.linkedin.com/in/jiaqi-fu-013a27104" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Logistic-Regression逻辑回归的原理及实现" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Logistic Regression逻辑回归的原理及实现
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x6982;&#x5FF5;&#xFF08;The-concept-of-logistic-regression&#xFF09;"><a href="#&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x6982;&#x5FF5;&#xFF08;The-concept-of-logistic-regression&#xFF09;" class="headerlink" title="&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x6982;&#x5FF5;&#xFF08;The concept of logistic regression&#xFF09;"></a>&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x6982;&#x5FF5;&#xFF08;The concept of logistic regression&#xFF09;</h4><p>&#x5047;&#x8BBE;&#x6837;&#x672C;&#x670D;&#x4ECE;<strong>&#x4E8C;&#x9879;&#x5206;&#x5E03;</strong>&#xFF0C;$ X \sim B(n,p)$&#x3002;&#x5176;&#x4E2D; $X \in \mathbf{R}^d, Y \in \{0,1\}$&#x3002;&#xFF08;&#x53E6;&#x4E00;&#x79CD;&#x53D6;&#x6CD5;&#x662F;$Y\in \{-1,+1\}$&#xFF0C;&#x540E;&#x9762;&#x4F1A;&#x8BB2;&#x5230;&#xFF09;</p>
+<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5C06;$P(Y=1|X)$&#x8868;&#x793A;&#x4E3A;&#x7ED9;&#x5B9A;&#x6837;&#x672C;$X$&#x6761;&#x4EF6;&#x4E0B;$Y=1$&#x7684;&#x6982;&#x7387;&#x3002;&#x540C;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x5F97;&#x5230;</p>
+<p>$P(Y=0|X)=1-P(Y=1|X)$&#x3002;</p>
+<p>&#x5982;&#x4F55;&#x6765;&#x63CF;&#x8FF0;&#x8FD9;&#x4E2A;&#x6982;&#x7387;&#x7684;&#x5206;&#x5E03;&#x5462;&#xFF1F;&#x5728;&#x4E4B;&#x524D;&#x548C;&#x540C;&#x5B66;&#x7684;&#x4E00;&#x6B21;&#x8BA8;&#x8BBA;&#x4E2D;&#xFF0C;<em>&#x5224;&#x65AD;&#x7537;&#x751F;&#x8FD8;&#x662F;&#x5973;&#x751F;</em>&#x7684;&#x95EE;&#x9898;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x4E8C;&#x9879;&#x5206;&#x5E03;&#xFF0C;&#x56E0;&#x4E3A;&#x4E24;&#x79CD;&#x6837;&#x672C;&#x5DEE;&#x5F02;&#x5F88;&#x5927;&#xFF08;&#x867D;&#x7136;&#x6211;&#x4EEC;&#x4E00;&#x6837;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x8BE5;&#x6837;&#x672C;&#x4E3A;&#x7537;&#x751F;&#x8FD8;&#x662F;&#x5973;&#x751F;&#x7684;&#x6982;&#x7387;&#xFF09;&#x3002;&#x8BA9;&#x8D8A;&#x9C9C;&#x660E;&#x7684;&#x6837;&#x672C;&#x7684;&#x6982;&#x7387;&#x8D8A;&#x63A5;&#x8FD1;1&#x6216;&#x8005;0&#x662F;&#x8BE5;&#x5206;&#x5E03;&#x7684;&#x91CD;&#x70B9;&#x3002;</p>
+<h6 id="Logistic-function"><a href="#Logistic-function" class="headerlink" title="Logistic function"></a>Logistic function</h6><p>&#x4E0B;&#x56FE;&#x662F;&#x4E00;&#x4E2A;Logistic&#x5206;&#x5E03;&#xFF0C;&#x5176;&#x51FD;&#x6570;&#x5F62;&#x5F0F;&#x4E3A;&#xFF1A;<br>$$<br>\pi(z)=\frac{1}{1+e^{-z}}<br>$$</p>
+<p><img src="http://www.myexception.cn/img/2014/12/14/112214377.png" alt="Logistic"></p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x662F;&#x4E00;&#x4E2A;s&#x578B;&#x66F2;&#x7EBF;&#xFF0C;&#x56E0;&#x6B64;&#x4E5F;&#x88AB;&#x79F0;&#x4E3A;<strong>sigmoid function</strong></p>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x628A;&#x4E0A;&#x8FF0;&#x7684;&#x6982;&#x7387;&#x901A;&#x8FC7;Logistic&#x5206;&#x5E03;&#x6765;&#x63CF;&#x8FF0;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E8C;&#x9879;&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x6A21;&#x578B;(binomial logistic regression model)&#xFF1A;<br>$$<br>P(Y=1|x)=\frac{\exp{w^T x}}{1+\exp(w^Tx)} \\<br>P(Y=0|x)=\frac{1}{1+\exp(w^Tx)}<br>$$</p>
+<p>&#x5982;&#x679C;&#x4E00;&#x4EF6;&#x4E8B;&#x60C5;&#x53D1;&#x751F;&#x7684;&#x6982;&#x7387;&#x662F;$p$&#xFF0C;&#x6211;&#x4EEC;&#x628A;&#x4E00;&#x4EF6;&#x4E8B;&#x60C5;&#x53D1;&#x751F;&#x548C;&#x4E0D;&#x53D1;&#x751F;&#x6982;&#x7387;&#x7684;&#x6BD4;$\frac{p}{1-p}$&#x79F0;&#x4E4B;&#x4E3A;<strong>&#x51E0;&#x7387;</strong>&#xFF08;odds&#xFF09;&#xFF0C;logit&#x51FD;&#x6570;&#x8868;&#x793A;&#x4E3A;<strong>&#x5BF9;&#x6570;&#x51E0;&#x7387;</strong>&#xFF1A;<br>$$<br>\mathrm{logit}(p)=\ln \frac{p}{1-p}<br>$$<br>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x7ED3;&#x8BBA;&#xFF1A;<br>$$<br>\ln \frac{P(Y=1|x)}{1-P(Y=1|x)}=w^T x<br>$$<br>&#x4ECE;&#x8FD9;&#x4E2A;&#x5F0F;&#x5B50;&#x53EF;&#x4EE5;&#x770B;&#x6210;&#xFF0C;$P(Y=1|x)$&#x548C;$w^T x$&#x662F;&#x5B58;&#x5728;&#x7EBF;&#x6027;&#x5173;&#x7CFB;&#x7684;&#xFF0C;$w^T x$&#x8D8A;&#x5927;&#xFF0C;&#x51E0;&#x7387;&#x8D8A;&#x5927;&#x3002;</p>
+<h4 id="&#x53C2;&#x6570;&#x4F30;&#x8BA1;&#xFF08;parameter-estimation&#xFF09;"><a href="#&#x53C2;&#x6570;&#x4F30;&#x8BA1;&#xFF08;parameter-estimation&#xFF09;" class="headerlink" title="&#x53C2;&#x6570;&#x4F30;&#x8BA1;&#xFF08;parameter estimation&#xFF09;"></a>&#x53C2;&#x6570;&#x4F30;&#x8BA1;&#xFF08;parameter estimation&#xFF09;</h4><p>&#x5047;&#x8BBE;&#x5F97;&#x5230;&#x7684;&#x4F30;&#x8BA1;&#x503C;&#x662F;$y_1,\cdots,y_i,\cdots,y_N$&#xFF0C;&#x4E14;&#x6837;&#x672C;&#x4E3A;&#x72EC;&#x7ACB;&#x540C;&#x5206;&#x5E03;&#xFF0C;&#x90A3;&#x4E48;LR&#x7684;<em>&#x6781;&#x5927;&#x4F3C;&#x7136;&#x4F30;&#x8BA1;&#xFF08;Maximum Likelihood Estimation, MLE&#xFF09;</em>&#x7684;&#x503C;&#x4E3A;&#xFF1A;<br>$$<br>L(w)=\prod_{i=1}^{N} [\pi (x_i)]^{y_i} [1-\pi (x_i)]^{1-y_i}<br>$$</p>
+<p>&#x4ECE;&#x53E6;&#x4E00;&#x4E2A;&#x89D2;&#x5EA6;&#x770B;&#xFF0C;&#x8BE5;&#x503C;&#x5C31;&#x662F;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x7684;&#x6982;&#x7387;&#x4E4B;&#x79EF;&#xFF0C;&#x6211;&#x4EEC;&#x8981;&#x505A;&#x7684;&#x5C31;&#x662F;&#x8BA9;&#x5176;&#x5C3D;&#x53EF;&#x80FD;&#x5927;&#x3002;&#x8FD9;&#x4E00;&#x70B9;&#x548C;&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x5706;&#x7684;&#x505A;&#x6CD5;&#x6709;&#x5F02;&#x66F2;&#x540C;&#x5DE5;&#x4E4B;&#x5904;&#x3002;</p>
+<p>&#x9996;&#x5148;&#xFF0C;&#x6211;&#x4EEC;&#x6C42;&#x5176;&#x5BF9;&#x6570;&#x5F62;&#x5F0F;&#xFF0C;&#x56E0;&#x4E3A;&#x8FDE;&#x52A0;&#x6BD4;&#x8FDE;&#x4E58;&#x597D;&#x89E3;&#x3002;&#x90A3;&#x4E48;&#xFF0C;&#x5BF9;&#x6570;&#x4F3C;&#x7136;&#x51FD;&#x6570;&#x4E3A;&#xFF1A;<br>$$<br>\begin{eqnarray}<br>\ln L(w)&amp;=&amp;\sum_{i=1}^{N} [y_i \ln \pi(x_i)+(1-y_i)\ln (1-\pi(x_i))] \nonumber \\<br>&amp;=&amp;\sum_{i=1}^{N}[y_i \ln{\frac{\pi (x_i)}{1-\pi (x_i)}}+\ln(1-\pi (x_i))] \nonumber \\<br>&amp;=&amp;\sum_{i=1}^{N}[y_i(w^T x_i)-\ln(1+\exp(w^T x_i))]<br>\end{eqnarray}<br>$$</p>
+<p>&#x7136;&#x540E;&#x6211;&#x4EEC;&#x7684;&#x76EE;&#x6807;&#x662F;&#x8BA9;&#x8FD9;&#x4E2A;&#x4F30;&#x8BA1;&#x53D6;&#x6700;&#x5927;&#x503C;&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x5BF9;&#x5176;&#x6C42;&#x504F;&#x5BFC;&#x6570;&#xFF1A;<br>$$<br>\frac{\partial L(w)}{[artial w}=\sum_{i=1}^{N} [y_i x_i-\frac{1}{1+\exp(w^T x_i)} \exp(w^T x_i) x_i] \\<br>=\sum_{i=1}^{N} (y_i-\pi(w^T x_i))x_i<br>$$</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/10/29/ciuurj3so0005twln2ewpzl1f/" class="archive-article-date">
+  	<time datetime="2016-10-29T01:26:23.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-29</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/10/27/ciuurj3sj0004twlnnr4hgv61/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linear Regression原理及实现</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Logistic-Regression逻辑回归的原理及实现" data-title="Logistic Regression逻辑回归的原理及实现" data-url="http://yoursite.com/2016/10/29/ciuurj3so0005twln2ewpzl1f/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+  
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-Logistic-Regression逻辑回归的原理及实现" data-title="Logistic Regression逻辑回归的原理及实现" data-url="http://yoursite.com/2016/10/29/ciuurj3so0005twln2ewpzl1f/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'the_heart_of_machine'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
+      </div>
+      <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Jiaqi Fu
+    	</div>
+      <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span id="busuanzi_container_site_uv">
+        本站访客数<span id="busuanzi_value_site_uv"></span>人次
+      </span>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Algorithm/" style="font-size: 15px;">Algorithm</a> <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/python/" style="font-size: 15px;">python</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
