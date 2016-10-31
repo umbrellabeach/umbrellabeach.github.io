@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Over-fitting and Regularization过拟合与正则化 | The Heart of Machine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;#x975E;&amp;#x7EBF;&amp;#x6027;&amp;#x53D8;&amp;#x6362;&amp;#xFF08;Non-linear Transformation&amp;#xFF09;&amp;#x5047;&amp;#x8BBE;&amp;#x6709;&amp;#x5982;&amp;#x4E0B;&amp;#x56FE;&amp;#x7684;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x6570;&amp;#x636E;&amp;#xFF0C;&amp;#x5708;&amp;#x5708">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Over-fitting and Regularization过拟合与正则化">
+<meta property="og:url" content="http://yoursite.com/2016/10/31/ciuxymqyi0006w5lni1zenpz0/index.html">
+<meta property="og:site_name" content="The Heart of Machine">
+<meta property="og:description" content="&amp;#x975E;&amp;#x7EBF;&amp;#x6027;&amp;#x53D8;&amp;#x6362;&amp;#xFF08;Non-linear Transformation&amp;#xFF09;&amp;#x5047;&amp;#x8BBE;&amp;#x6709;&amp;#x5982;&amp;#x4E0B;&amp;#x56FE;&amp;#x7684;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x6570;&amp;#x636E;&amp;#xFF0C;&amp;#x5708;&amp;#x5708">
+<meta property="og:image" content="http://yoursite.com/2016/10/31/ciuxymqyi0006w5lni1zenpz0/q1.png">
+<meta property="og:image" content="http://yoursite.com/2016/10/31/ciuxymqyi0006w5lni1zenpz0/q2.png">
+<meta property="og:image" content="http://yoursite.com/2016/10/31/ciuxymqyi0006w5lni1zenpz0/c2.png">
+<meta property="og:updated_time" content="2016-10-31T11:04:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Over-fitting and Regularization过拟合与正则化">
+<meta name="twitter:description" content="&amp;#x975E;&amp;#x7EBF;&amp;#x6027;&amp;#x53D8;&amp;#x6362;&amp;#xFF08;Non-linear Transformation&amp;#xFF09;&amp;#x5047;&amp;#x8BBE;&amp;#x6709;&amp;#x5982;&amp;#x4E0B;&amp;#x56FE;&amp;#x7684;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x6570;&amp;#x636E;&amp;#xFF0C;&amp;#x5708;&amp;#x5708">
+<meta name="twitter:image" content="http://yoursite.com/2016/10/31/ciuxymqyi0006w5lni1zenpz0/q1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="The Heart of Machine" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://oe0136353.bkt.clouddn.com/head.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jiaqi Fu</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">home</a></li>
+	        
+				<li><a href="/archives">archives</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">archives</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">tags</a>
+    			
+    			
+            
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">aboutme</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/umbrellabeach" title="github">github</a>
+		        
+					<a class="mail" target="_blank" href="mailto:fujiaqi@zju.edu.cn" title="mail">mail</a>
+		        
+					<a class="linkedin" target="_blank" href="https://cn.linkedin.com/in/jiaqi-fu-013a27104" title="linkedin">linkedin</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jiaqi Fu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://oe0136353.bkt.clouddn.com/head.jpeg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jiaqi Fu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">home</a></li>
+		        
+					<li><a href="/archives">archives</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/umbrellabeach" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:fujiaqi@zju.edu.cn" title="mail">mail</a>
+			        
+						<a class="linkedin" target="_blank" href="https://cn.linkedin.com/in/jiaqi-fu-013a27104" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Over-fitting-and-Regularization过拟合与正则化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Over-fitting and Regularization过拟合与正则化
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear-Transformation&#xFF09;"><a href="#&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear-Transformation&#xFF09;" class="headerlink" title="&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear Transformation&#xFF09;"></a>&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear Transformation&#xFF09;</h4><p>&#x5047;&#x8BBE;&#x6709;&#x5982;&#x4E0B;&#x56FE;&#x7684;&#x7684;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#xFF0C;&#x5708;&#x5708;&#x548C;&#x53C9;&#x53C9;&#x5206;&#x5E03;&#x8868;&#x793A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x4E24;&#x7C7B;&#x3002;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x6570;&#x636E;&#x96C6;&#x4E0D;&#x80FD;&#x88AB;&#x4E00;&#x6761;&#x76F4;&#x7EBF;&#x7EBF;&#x6027;&#x53EF;&#x5206;&#x3002;</p>
+<div align="center"><img src="/2016/10/31/ciuxymqyi0006w5lni1zenpz0/q1.png" alt="q1"></div><br>&#x6B64;&#x65F6;&#x5982;&#x679C;&#x628A;&#x6570;&#x636E;&#x505A;&#x5982;&#x4E0B;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E00;&#x6761;&#x66F2;&#x7EBF;&#x5C06;&#x6570;&#x636E;&#x5207;&#x5206;&#x3002;<br>$$<br>\begin{eqnarray}<br>z_0&amp;=&amp;1 \nonumber \\<br>z_1&amp;=&amp;{x_1}^2 \nonumber \\<br>z_2&amp;=&amp;{x_2}^2 \nonumber<br>\end{eqnarray}<br>$$<br><br><div align="center"><img src="/2016/10/31/ciuxymqyi0006w5lni1zenpz0/q2.png" alt="q2"></div><br>&#x5F97;&#x5230;&#x7684;hypothesis&#x662F;&#xFF1A;<br>$$<br>\begin{eqnarray}<br>h(\mathbf{z}) &amp;=&amp; \mathrm{sign}(w_2\cdot z_2+w_1\cdot z_1+w_0) \nonumber \\<br>&amp;=&amp; \mathrm{sign}(\mathrm{w^T Z})\nonumber<br>\end{eqnarray}<br>$$<br>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x62FF;&#x5230;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5148;&#x5BF9;&#x6570;&#x636E;&#x96C6;&#x8FDB;&#x884C;&#x8FD9;&#x6837;&#x7684;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x81F3;Z&#x7A7A;&#x95F4;&#xFF0C;&#x5728;Z&#x7A7A;&#x95F4;&#x4E0A;&#x4F7F;&#x7528;&#x7EBF;&#x6027;&#x5206;&#x7C7B;&#x5668;&#x5982;Perceptron&#x3001;Linear Regression&#x3001;Logistic Regression&#x7B49;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#x6216;&#x8005;&#x56DE;&#x5F52;&#xFF0C;&#x5C06;&#x7ED3;&#x679C;&#x5BF9;&#x5E94;&#x5230;X&#x7A7A;&#x95F4;&#x4E0A;&#x3002;<br><br>&#x66F4;&#x4E00;&#x822C;&#x5730;&#xFF0C;&#x5F53;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x5176;&#x4E2D;&#x6BCF;&#x4E2A;&#x6837;&#x672C;&#x70B9;$x_i \in \mathbf{R}^d$&#x3002;&#x5BF9;&#x5176;&#x8FDB;&#x884C;$Q$-th&#x53D8;&#x6362;&#x53EF;&#x5F97;&#x5230;<br>$$<br>\begin{eqnarray}<br>\Phi &amp;=&amp; (1, \nonumber \\<br>&amp;&amp; x_{(1)},x_{(2)},\cdots,x_{(d)}, \nonumber \\<br>&amp;&amp; x_{(1)}^2,x_{(1)}x_{(2)},\cdots,x_{(d)}^2, \nonumber \\<br>&amp;&amp; \cdots, \nonumber \\<br>&amp;&amp; x_{(1)}^Q,x_{(1)}^{Q-1}x_{(2)},\cdots,x_{(d)}^{Q}) \nonumber<br>\end{eqnarray}<br>$$<br><br>&#x4E8C;&#x7EF4;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x4EE3;&#x7801;&#xFF08;$Q=2$&#xFF09;:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__feature_transform</span><span class="params">(self, x1, x2)</span>:</span></div><div class="line">    d = self.FEAT_TRANS_DIM</div><div class="line">    res = []</div><div class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>, d + <span class="number">1</span>):</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, k + <span class="number">1</span>):</div><div class="line">            res.append((x1 ** i) * (x2 ** (k - i)))</div><div class="line">    <span class="keyword">return</span> np.array(res)</div></pre></td></tr></table></figure><br><br>&#x5728;&#x4E0A;&#x7BC7;&#x6587;&#x7AE0;<a href="https://umbrellabeach.github.io/2016/10/29/ciuxy81d70002ialnen52maxj/" target="_blank" rel="external">Logistic Regression&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x7684;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x73B0;</a>&#x4E2D;&#x5B9E;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;LR Classifier&#xFF0C;&#x6211;&#x4EEC;&#x628A;LR&#x76F4;&#x63A5;&#x5728;&#x672C;&#x4F8B;&#x6570;&#x636E;&#x539F;&#x7EF4;&#x5EA6;&#x8DD1;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF0C;&#x51C6;&#x786E;&#x7387;&#x53EA;&#x6709;60%&#xFF1A;<br><br><div align="center"><img src="/2016/10/31/ciuxymqyi0006w5lni1zenpz0/c2.png" alt="c2"></div>
+
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/10/31/ciuxymqyi0006w5lni1zenpz0/" class="archive-article-date">
+  	<time datetime="2016-10-31T05:25:26.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-31</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/10/29/ciuxymqy60002w5ln8d4i9l7w/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Logistic Regression逻辑回归的原理及实现</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Over-fitting-and-Regularization过拟合与正则化" data-title="Over-fitting and Regularization过拟合与正则化" data-url="http://yoursite.com/2016/10/31/ciuxymqyi0006w5lni1zenpz0/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+  
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-Over-fitting-and-Regularization过拟合与正则化" data-title="Over-fitting and Regularization过拟合与正则化" data-url="http://yoursite.com/2016/10/31/ciuxymqyi0006w5lni1zenpz0/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'the_heart_of_machine'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
+      </div>
+      <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Jiaqi Fu
+    	</div>
+      <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span id="busuanzi_container_site_uv">
+        本站访客数<span id="busuanzi_value_site_uv"></span>人次
+      </span>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 13.33px;">C++</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
