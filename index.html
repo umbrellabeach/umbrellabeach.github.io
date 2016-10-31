@@ -138,7 +138,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/31/ciuy26z6a0006moln6a2ueby5/">Over-fitting and Regularization过拟合与正则化</a>
+      <a class="article-title" href="/2016/10/31/ciuy2tyv40006onlnrc8zxrrr/">Over-fitting and Regularization过拟合与正则化</a>
     </h1>
   
 
@@ -147,24 +147,35 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear-Transformation&#xFF09;"><a href="#&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear-Transformation&#xFF09;" class="headerlink" title="&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear Transformation&#xFF09;"></a>&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear Transformation&#xFF09;</h4><p>&#x5047;&#x8BBE;&#x6709;&#x5982;&#x4E0B;&#x56FE;&#x7684;&#x7684;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#xFF08;&#x6570;&#x636E;&#x4E3A;&#x81EA;&#x884C;&#x6A21;&#x62DF;&#xFF09;&#xFF0C;&#x5708;&#x5708;&#x548C;&#x53C9;&#x53C9;&#x5206;&#x5E03;&#x8868;&#x793A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x4E24;&#x7C7B;&#x3002;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x6570;&#x636E;&#x96C6;&#x4E0D;&#x80FD;&#x88AB;&#x4E00;&#x6761;&#x76F4;&#x7EBF;&#x7EBF;&#x6027;&#x53EF;&#x5206;&#x3002;</p>
-<div align="center"><img src="/2016/10/31/ciuy26z6a0006moln6a2ueby5/q1.png" alt="q1"></div><br>&#x6B64;&#x65F6;&#x5982;&#x679C;&#x628A;&#x6570;&#x636E;&#x505A;&#x5982;&#x4E0B;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E00;&#x6761;&#x66F2;&#x7EBF;&#x5C06;&#x6570;&#x636E;&#x5207;&#x5206;&#x3002;<br>$$<br>\begin{eqnarray}<br>z_0&amp;=&amp;1 \nonumber \\<br>z_1&amp;=&amp;{x_1}^2 \nonumber \\<br>z_2&amp;=&amp;{x_2}^2 \nonumber<br>\end{eqnarray}<br>$$<br><br><div align="center"><img src="/2016/10/31/ciuy26z6a0006moln6a2ueby5/q2.png" alt="q2"></div><br>&#x5F97;&#x5230;&#x7684;hypothesis&#x662F;&#xFF1A;<br>$$<br>\begin{eqnarray}<br>h(\mathbf{z}) &amp;=&amp; \mathrm{sign}(w_2\cdot z_2+w_1\cdot z_1+w_0) \nonumber \\<br>&amp;=&amp; \mathrm{sign}(\mathrm{w^T Z})\nonumber<br>\end{eqnarray}<br>$$<br>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x62FF;&#x5230;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5148;&#x5BF9;&#x6570;&#x636E;&#x96C6;&#x8FDB;&#x884C;&#x8FD9;&#x6837;&#x7684;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x81F3;Z&#x7A7A;&#x95F4;&#xFF0C;&#x5728;Z&#x7A7A;&#x95F4;&#x4E0A;&#x4F7F;&#x7528;&#x7EBF;&#x6027;&#x5206;&#x7C7B;&#x5668;&#x5982;Perceptron&#x3001;Linear Regression&#x3001;Logistic Regression&#x7B49;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#x6216;&#x8005;&#x56DE;&#x5F52;&#xFF0C;&#x5C06;&#x7ED3;&#x679C;&#x5BF9;&#x5E94;&#x5230;X&#x7A7A;&#x95F4;&#x4E0A;&#x3002;<br><br>&#x66F4;&#x4E00;&#x822C;&#x5730;&#xFF0C;&#x5F53;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x5176;&#x4E2D;&#x6BCF;&#x4E2A;&#x6837;&#x672C;&#x70B9;$x_i \in \mathbf{R}^d$&#x3002;&#x5BF9;&#x5176;&#x8FDB;&#x884C;$Q$-th&#x53D8;&#x6362;&#x53EF;&#x5F97;&#x5230;<br>$$<br>\begin{eqnarray}<br>\Phi &amp;=&amp; (1, \nonumber \\<br>&amp;&amp; x_{(1)},x_{(2)},\cdots,x_{(d)}, \nonumber \\<br>&amp;&amp; x_{(1)}^2,x_{(1)}x_{(2)},\cdots,x_{(d)}^2, \nonumber \\<br>&amp;&amp; \cdots, \nonumber \\<br>&amp;&amp; x_{(1)}^Q,x_{(1)}^{Q-1}x_{(2)},\cdots,x_{(d)}^{Q}) \nonumber<br>\end{eqnarray}<br>$$<br><br>&#x4E8C;&#x7EF4;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x4EE3;&#x7801;&#xFF08;$Q=2$&#xFF09;:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__feature_transform</span><span class="params">(self, x1, x2)</span>:</span></div><div class="line">    d = self.FEAT_TRANS_DIM</div><div class="line">    res = []</div><div class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>, d + <span class="number">1</span>):</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, k + <span class="number">1</span>):</div><div class="line">            res.append((x1 ** i) * (x2 ** (k - i)))</div><div class="line">    <span class="keyword">return</span> np.array(res)</div></pre></td></tr></table></figure><br><br>&#x5728;&#x4E0A;&#x7BC7;&#x6587;&#x7AE0;<a href="https://umbrellabeach.github.io/2016/10/29/ciuxy81d70002ialnen52maxj/" target="_blank" rel="external">Logistic Regression&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x7684;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x73B0;</a>&#x4E2D;&#x5B9E;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;LR Classifier&#xFF0C;&#x6211;&#x4EEC;&#x628A;LR&#x76F4;&#x63A5;&#x5728;&#x672C;&#x4F8B;&#x6570;&#x636E;&#x539F;&#x7EF4;&#x5EA6;&#x8DD1;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF0C;&#x51C6;&#x786E;&#x7387;&#x53EA;&#x6709;60%&#xFF1A;<br><br><div align="center"><img src="/2016/10/31/ciuy26z6a0006moln6a2ueby5/c1.png" alt="c1"></div>
+<div align="center"><img src="/2016/10/31/ciuy2tyv40006onlnrc8zxrrr/q1.png" alt="q1"></div><br>&#x6B64;&#x65F6;&#x5982;&#x679C;&#x628A;&#x6570;&#x636E;&#x505A;&#x5982;&#x4E0B;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E00;&#x6761;&#x66F2;&#x7EBF;&#x5C06;&#x6570;&#x636E;&#x5207;&#x5206;&#x3002;<br>$$<br>\begin{eqnarray}<br>z_0&amp;=&amp;1 \nonumber \\<br>z_1&amp;=&amp;{x_1}^2 \nonumber \\<br>z_2&amp;=&amp;{x_2}^2 \nonumber<br>\end{eqnarray}<br>$$<br><br><div align="center"><img src="/2016/10/31/ciuy2tyv40006onlnrc8zxrrr/q2.png" alt="q2"></div><br>&#x5F97;&#x5230;&#x7684;hypothesis&#x662F;&#xFF1A;<br>$$<br>\begin{eqnarray}<br>h(\mathbf{z}) &amp;=&amp; \mathrm{sign}(w_2\cdot z_2+w_1\cdot z_1+w_0) \nonumber \\<br>&amp;=&amp; \mathrm{sign}(\mathrm{w^T Z})\nonumber<br>\end{eqnarray}<br>$$<br>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x62FF;&#x5230;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5148;&#x5BF9;&#x6570;&#x636E;&#x96C6;&#x8FDB;&#x884C;&#x8FD9;&#x6837;&#x7684;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x81F3;Z&#x7A7A;&#x95F4;&#xFF0C;&#x5728;Z&#x7A7A;&#x95F4;&#x4E0A;&#x4F7F;&#x7528;&#x7EBF;&#x6027;&#x5206;&#x7C7B;&#x5668;&#x5982;Perceptron&#x3001;Linear Regression&#x3001;Logistic Regression&#x7B49;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#x6216;&#x8005;&#x56DE;&#x5F52;&#xFF0C;&#x5C06;&#x7ED3;&#x679C;&#x5BF9;&#x5E94;&#x5230;X&#x7A7A;&#x95F4;&#x4E0A;&#x3002;<br><br>&#x66F4;&#x4E00;&#x822C;&#x5730;&#xFF0C;&#x5F53;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x5176;&#x4E2D;&#x6BCF;&#x4E2A;&#x6837;&#x672C;&#x70B9;$x_i \in \mathbf{R}^d$&#x3002;&#x5BF9;&#x5176;&#x8FDB;&#x884C;$Q$-th&#x53D8;&#x6362;&#x53EF;&#x5F97;&#x5230;<br>$$<br>\begin{eqnarray}<br>\Phi &amp;=&amp; (1, \nonumber \\<br>&amp;&amp; x_{(1)},x_{(2)},\cdots,x_{(d)}, \nonumber \\<br>&amp;&amp; x_{(1)}^2,x_{(1)}x_{(2)},\cdots,x_{(d)}^2, \nonumber \\<br>&amp;&amp; \cdots, \nonumber \\<br>&amp;&amp; x_{(1)}^Q,x_{(1)}^{Q-1}x_{(2)},\cdots,x_{(d)}^{Q}) \nonumber<br>\end{eqnarray}<br>$$<br><br>&#x4E8C;&#x7EF4;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x4EE3;&#x7801;&#xFF08;$Q=2$&#xFF09;:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__feature_transform</span><span class="params">(self, x1, x2)</span>:</span></div><div class="line">    d = self.FEAT_TRANS_DIM</div><div class="line">    res = []</div><div class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>, d + <span class="number">1</span>):</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, k + <span class="number">1</span>):</div><div class="line">            res.append((x1 ** i) * (x2 ** (k - i)))</div><div class="line">    <span class="keyword">return</span> np.array(res)</div></pre></td></tr></table></figure><br><br>&#x5728;&#x4E0A;&#x7BC7;&#x6587;&#x7AE0;<a href="https://umbrellabeach.github.io/2016/10/29/ciuxy81d70002ialnen52maxj/" target="_blank" rel="external">Logistic Regression&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x7684;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x73B0;</a>&#x4E2D;&#x5B9E;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;LR Classifier&#xFF0C;&#x6211;&#x4EEC;&#x628A;LR&#x76F4;&#x63A5;&#x5728;&#x672C;&#x4F8B;&#x6570;&#x636E;&#x539F;&#x7EF4;&#x5EA6;&#x8DD1;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF0C;&#x51C6;&#x786E;&#x7387;&#x53EA;&#x6709;60%&#xFF1A;<br><br><div align="center"><img src="/2016/10/31/ciuy2tyv40006onlnrc8zxrrr/c1.png" alt="c1"></div>
 
 <p>&#x4F7F;&#x7528;&#x672C;&#x4F8B;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x4EE3;&#x7801;&#x5904;&#x7406;&#x540E;&#xFF08;$Q=2$&#xFF09;&#x518D;&#x4F7F;&#x7528;LR Classifier&#x5206;&#x7C7B;&#xFF0C;&#x51C6;&#x786E;&#x7387;&#x63D0;&#x5347;&#x81F3;<strong>96.7%</strong>&#x3002;&#x53EF;&#x89C1;&#xFF0C;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x81F3;&#x5C11;&#x5C06;$E_in$&#x964D;&#x5230;&#x4E86;&#x6700;&#x4F4E;&#xFF0C;&#x53EF;&#x8C13;&#x201C;&#x795E;&#x529B;&#x201D;&#x3002;</p>
 <h4 id="&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;"><a href="#&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;" class="headerlink" title="&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;"></a>&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;</h4><p>&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x589E;&#x52A0;&#x4E86;&#x6A21;&#x578B;&#x7684;&#x590D;&#x6742;&#x5EA6;&#xFF0C;&#x4ECE;VC&#x89D2;&#x5EA6;&#x6765;&#x8BF4;&#xFF1A;<br>$<br>E_{out} \leqslant E_{in} + O(\mathrm{model})<br>$<br>&#x5F53;&#x6A21;&#x578B;&#x590D;&#x6742;&#x5EA6;&#x8D8A;&#x6765;&#x8D8A;&#x5927;&#xFF0C;&#x8BAD;&#x7EC3;&#x8BEF;&#x5DEE;$E_in$&#x4F1A;&#x51CF;&#x5C11;&#xFF0C;&#x4F46;&#x5B9E;&#x9645;&#x8BEF;&#x5DEE;$E_out$&#x53CD;&#x800C;&#x4F1A;&#x4E0A;&#x5347;&#xFF0C;&#x8FD9;&#x4E2A;&#x60C5;&#x51B5;&#x79F0;&#x4E3A;<strong>Over-fitting &#x8FC7;&#x62DF;&#x5408;</strong>&#x3002;</p>
 <p>&#x6765;&#x770B;&#x53F0;&#x5927;&#x300A;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x57FA;&#x77F3;&#x300B;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p>
-<div align="center"><img src="/2016/10/31/ciuy26z6a0006moln6a2ueby5/o1.png" alt="o1"></div><br>&#x5F53;&#x6211;&#x4EEC;&#x7528;&#x66F4;&#x201C;&#x5389;&#x5BB3;&#x201D;&#x7684;&#x6A21;&#x578B;&#x53BB;&#x62DF;&#x5408;&#xFF0C;&#x5C31;&#x4F1A;&#x53D1;&#x751F;&#x53F3;&#x8FB9;&#x8FD9;&#x6837;&#x7684;&#x8FC7;&#x62DF;&#x5408;&#x60C5;&#x51B5;&#xFF0C;&#x4F46;&#x53EF;&#x80FD;&#x5B9E;&#x9645;&#x4E0A;&#x4F4E;&#x7EF4;&#x5EA6;&#x7684;&#x6A21;&#x578B;&#x66F4;&#x63A5;&#x8FD1;&#x771F;&#x5B9E;&#x7684;&#x6A21;&#x578B;&#x3002;&#x8FD9;&#x6837;&#x60F3;&#x6765;&#xFF0C;&#x8FC7;&#x62DF;&#x5408;&#x662F;<strong>&#x6A21;&#x578B;&#x590D;&#x6742;&#x5EA6;</strong>&#x6216;&#x8005;<strong>&#x566A;&#x58F0;</strong>&#x5F71;&#x54CD;&#x7684;&#x3002;<br><br><div align="center"><img src="/2016/10/31/ciuy26z6a0006moln6a2ueby5/o2.png" alt="o2"></div>
+<div align="center"><img src="/2016/10/31/ciuy2tyv40006onlnrc8zxrrr/o1.png" alt="o1"></div><br>&#x5F53;&#x6211;&#x4EEC;&#x7528;&#x66F4;&#x201C;&#x5389;&#x5BB3;&#x201D;&#x7684;&#x6A21;&#x578B;&#x53BB;&#x62DF;&#x5408;&#xFF0C;&#x5C31;&#x4F1A;&#x53D1;&#x751F;&#x53F3;&#x8FB9;&#x8FD9;&#x6837;&#x7684;&#x8FC7;&#x62DF;&#x5408;&#x60C5;&#x51B5;&#xFF0C;&#x4F46;&#x53EF;&#x80FD;&#x5B9E;&#x9645;&#x4E0A;&#x4F4E;&#x7EF4;&#x5EA6;&#x7684;&#x6A21;&#x578B;&#x66F4;&#x63A5;&#x8FD1;&#x771F;&#x5B9E;&#x7684;&#x6A21;&#x578B;&#x3002;&#x8FD9;&#x6837;&#x60F3;&#x6765;&#xFF0C;&#x8FC7;&#x62DF;&#x5408;&#x662F;<strong>&#x6A21;&#x578B;&#x590D;&#x6742;&#x5EA6;</strong>&#x6216;&#x8005;<strong>&#x566A;&#x58F0;</strong>&#x5F71;&#x54CD;&#x7684;&#x3002;<br><br><div align="center"><img src="/2016/10/31/ciuy2tyv40006onlnrc8zxrrr/o2.png" alt="o2"></div>
 
 <p>&#x4E0A;&#x56FE;&#x8FD9;&#x4E2A;&#x5B9E;&#x9A8C;&#x5C31;&#x663E;&#x793A;&#x8FC7;&#x62DF;&#x5408;&#x7684;&#x6781;&#x5927;&#x5371;&#x5BB3;&#x3002;</p>
 <h4 id="&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;"><a href="#&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;" class="headerlink" title="&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;"></a>&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;</h4><p>&#x7ECF;&#x8FC7;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x540E;&#xFF0C;&#x5176;&#x5B9E;&#x8FD8;&#x662F;&#x5728;&#x4E00;&#x4E2A;&#x7EBF;&#x6027;&#x95EE;&#x9898;&#x4E2D;</p>
 <p>$$<br>h(z)=w_0+w_1 z_1+w_2 z_2+\cdots+w_m z_m<br>$$</p>
 <p>&#x5728;&#x6700;&#x5C0F;&#x5316;in sample error $E_{in}(\mathbf{w})$&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x5BF9;$\mathbf{w}$&#x505A;&#x4E00;&#x4E9B;&#x9650;&#x5236;&#xFF0C;&#x8BA9;&#x67D0;&#x4E9B;&#x5F71;&#x54CD;&#x8FC7;&#x62DF;&#x5408;&#x7684;&#x9879;&#x5C3D;&#x53EF;&#x80FD;&#x5C0F;&#x3002;</p>
 <p>&#x6BD4;&#x5982;$\mathbf{w^T w}\leqslant \mathbf{C}$&#x3002;&#x6211;&#x4EEC;&#x4F7F;&#x7528;<strong>Lagrange Multiplier</strong>&#x628A;&#x5B83;&#x52A0;&#x5230;&#x7ECF;&#x9A8C;&#x516C;&#x5F0F;&#x4E2D;&#x5F97;&#x5230;&#xFF1A;<br>$$<br>\min E_{in}(\mathbf{w}) + \lambda \mathbf{w^T w}<br>$$</p>
+<p>&#x66F4;&#x4E00;&#x822C;&#x7684;&#x5F62;&#x5F0F;&#x662F;<br>$$<br>E_{aug}(w&#xFF09;= E_in(w) + \lambda L(w)<br>$$<br>&#x5176;&#x4E2D;&#x7684;L(f)&#x6211;&#x4EEC;&#x53EB;&#x505A;<strong>&#x6B63;&#x5219;&#x9879;</strong>&#x6216;<strong>&#x60E9;&#x7F5A;&#x9879; Regularizer</strong>&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5373;&#x662F;<strong>&#x6B63;&#x5219;&#x5316;Regularization</strong>&#x3002;</p>
+<blockquote>
+<p>&#x6B63;&#x5219;&#x5316;&#x7B26;&#x5408;&#x5965;&#x5361;&#x59C6;&#x5243;&#x5200;&#x5B9A;&#x5F8B;&#xFF08;Occam&#x2019;s razor&#xFF09;&#x539F;&#x7406;&#xFF0C;&#x5965;&#x5361;&#x59C6;&#x5243;&#x5200;&#x5B9A;&#x5F8B;&#x539F;&#x7406;&#x5E94;&#x7528;&#x4E8E;&#x6A21;&#x578B;&#x9009;&#x62E9;&#x65F6;&#x4E3A;&#x4EE5;&#x4E0B;&#x60F3;&#x6CD5;&#xFF1A;&#x5728;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x9009;&#x62E9;&#x7684;&#x6A21;&#x578B;&#x4E2D;&#xFF0C;&#x80FD;&#x591F;&#x5F88;&#x597D;&#x5730;&#x89E3;&#x91CA;&#x5DF2;&#x77E5;&#x6570;&#x636E;&#x5E76;&#x4E14;&#x5341;&#x5206;&#x7B80;&#x5355;&#x624D;&#x662F;&#x597D;&#x7684;&#x6A21;&#x578B;&#x3002;&#xFF08;&#x674E;&#x822A;&#x300A;&#x7EDF;&#x8BA1;&#x5B66;&#x65B9;&#x6CD5;&#x300B;&#xFF09;</p>
+</blockquote>
+<p>&#x6B63;&#x5219;&#x5316;&#x901A;&#x5E38;&#x6709;&#x4E09;&#x79CD;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<p><strong>L2-Regularization</strong>&#x53C8;&#x79F0;Ridge Regression &#x5CAD;&#x56DE;&#x5F52;</p>
+<p>$$<br>E_{aug}(w)=\frac{1}{2} \sum_{i=1}^N (y_i - y(x_i,w)^2)+\frac{\lambda}{2} \Vert w \Vert^2<br>$$</p>
+<p><strong>L1-Regularization</strong>&#x53C8;&#x79F0;Lasso Regression </p>
+<p>$$<br>E_{aug}(w)=\frac{1}{2} \sum_{i=1}^N (y_i - y(x_i,w)^2)+\lambda \Vert w \Vert_1<br>$$</p>
+<p><strong>L0-Regularization</strong></p>
+<p>$$<br>E_{aug}(w)=\frac{1}{2} \sum_{i=1}^N (y_i - y(x_i,w)^2)+\lambda \sum_{i=1}^N \delta (w_i \neq 0)<br>$$</p>
 
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2016/10/31/ciuy26z6a0006moln6a2ueby5/" class="archive-article-date">
+      <a href="/2016/10/31/ciuy2tyv40006onlnrc8zxrrr/" class="archive-article-date">
   	<time datetime="2016-10-31T05:25:26.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-31</time>
 </a>
       
@@ -199,7 +210,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/29/ciuy26z5s0004molnlxo3pg20/">Logistic Regression逻辑回归的原理及实现</a>
+      <a class="article-title" href="/2016/10/29/ciuy2tyv30005onlnal2yihnu/">Logistic Regression逻辑回归的原理及实现</a>
     </h1>
   
 
@@ -253,16 +264,16 @@
 <p><a href="https://github.com/umbrellabeach/logistic_regression" target="_blank" rel="external">&#x5B8C;&#x6574;Github&#x4EE3;&#x7801;</a></p>
 <h4 id="&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;&#xFF08;Results&#xFF09;"><a href="#&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;&#xFF08;Results&#xFF09;" class="headerlink" title="&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;&#xFF08;Results&#xFF09;"></a>&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;&#xFF08;Results&#xFF09;</h4><p>&#x6570;&#x636E;&#x6765;&#x81EA;<a href="http://blog.csdn.net/zouxy09/article/details/20319673" target="_blank" rel="external">zouxy09</a></p>
 <p>&#x539F;&#x59CB;&#x6570;&#x636E;VIS</p>
-<div align="center"><img src="/2016/10/29/ciuy26z5s0004molnlxo3pg20/f1.png" alt="f1"></div>
+<div align="center"><img src="/2016/10/29/ciuy2tyv30005onlnal2yihnu/f1.png" alt="f1"></div>
 
 <p>&#x5728;SGD&#x68AF;&#x5EA6;&#x4E0B;&#x964D;1000&#x6B21;&#x8FED;&#x4EE3;&#x540E;&#xFF0C;&#x8F93;&#x51FA;&#x7ED3;&#x679C;VIS&#xFF0C;&#x51C6;&#x786E;&#x7387;&#x4E3A;86.7%</p>
-<div align="center"><img src="/2016/10/29/ciuy26z5s0004molnlxo3pg20/f2.png" alt="f2"></div>
+<div align="center"><img src="/2016/10/29/ciuy2tyv30005onlnal2yihnu/f2.png" alt="f2"></div>
 
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2016/10/29/ciuy26z5s0004molnlxo3pg20/" class="archive-article-date">
+      <a href="/2016/10/29/ciuy2tyv30005onlnal2yihnu/" class="archive-article-date">
   	<time datetime="2016-10-29T01:26:23.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-29</time>
 </a>
       
@@ -297,7 +308,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/27/ciuy26z600005molnd4gfzn2j/">Linear Regression原理及实现</a>
+      <a class="article-title" href="/2016/10/27/ciuy2tyuy0004onlncccy3sdv/">Linear Regression原理及实现</a>
     </h1>
   
 
@@ -383,7 +394,7 @@
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2016/10/27/ciuy26z600005molnd4gfzn2j/" class="archive-article-date">
+      <a href="/2016/10/27/ciuy2tyuy0004onlncccy3sdv/" class="archive-article-date">
   	<time datetime="2016-10-27T02:40:58.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-27</time>
 </a>
       
@@ -418,7 +429,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/23/ciuy26z5l0002molnzmf71kc7/">Leetcode 4: Median of Two Sorted Arrays</a>
+      <a class="article-title" href="/2016/10/23/ciuy2tyuo0002onlnobbsgxng/">Leetcode 4: Median of Two Sorted Arrays</a>
     </h1>
   
 
@@ -461,7 +472,7 @@
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2016/10/23/ciuy26z5l0002molnzmf71kc7/" class="archive-article-date">
+      <a href="/2016/10/23/ciuy2tyuo0002onlnobbsgxng/" class="archive-article-date">
   	<time datetime="2016-10-23T05:01:57.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-23</time>
 </a>
       
@@ -496,7 +507,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/23/ciuy26z5h0001molnupr76arn/">Index of Leetcode Solution</a>
+      <a class="article-title" href="/2016/10/23/ciuy2tyuj0001onlno1o11m9z/">Index of Leetcode Solution</a>
     </h1>
   
 
@@ -545,7 +556,7 @@
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2016/10/23/ciuy26z5h0001molnupr76arn/" class="archive-article-date">
+      <a href="/2016/10/23/ciuy2tyuj0001onlno1o11m9z/" class="archive-article-date">
   	<time datetime="2016-10-23T02:31:10.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-23</time>
 </a>
       
@@ -580,7 +591,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/12/ciuy26z6c0008moln4f7bxyar/">PLA算法实现(Python)</a>
+      <a class="article-title" href="/2016/10/12/ciuy2tyvh0009onlnxv4zsl18/">PLA算法实现(Python)</a>
     </h1>
   
 
@@ -594,13 +605,13 @@
 <p>$$<br>\color{red}{h}(x)= \text{sign}((\sum_{i=1}^d \color{red}{W_i} X_i)-\color{red}{\text{threshold}})<br>$$<br>perceptron&#x7684;&#x7B80;&#x5316;&#xFF1A;</p>
 <p>$$<br>\begin{eqnarray}<br>\color{red}{h}(x) &amp;=&amp; \text{sign}((\sum_{i=1}^d \color{red}{W_i} X_i)+\color{blue}{(-\text{threshold})(+1)})      \nonumber \\<br>  &amp;=&amp; \text{sign}(\sum_{\color{blue}{i=0}}^d W_i \cdot X_i)  \nonumber \\<br>  &amp;=&amp; \text{sign}(\color{red}{\bf{W^T}}\cdot X)  \nonumber<br>\end{eqnarray}<br>$$</p>
 <p>&#x6839;&#x636E;&#x4E0A;&#x9762;&#x7684;&#x7B80;&#x5316;&#xFF0C;&#x5728;&#x4E4B;&#x540E;&#x7684;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x4EE5;&#x4E8C;&#x7EF4;&#x7A7A;&#x95F4;&#x4E3A;&#x4F8B;&#xFF0C;&#x6570;&#x636E;&#x70B9;$x_i=(a,b)$&#x5C06;&#x4F1A;&#x88AB;&#x8F6C;&#x5316;&#x4E3A;$x_i=(a,b,1)$&#x3002;&#x5F97;&#x5230;&#x7684;&#x5206;&#x5272;&#x7EBF;&#x4E3A;$w_2 \cdot x_2+w_1 \cdot x_1+b=0$&#xFF0C;&#x5176;&#x4E2D;$(w_2,w_1)$&#x4E3A;&#x6CD5;&#x5411;&#x91CF;&#x3002;</p>
-<h4 id="&#x201C;&#x77E5;&#x9519;&#x80FD;&#x6539;&#x201D;&#x539F;&#x7406;"><a href="#&#x201C;&#x77E5;&#x9519;&#x80FD;&#x6539;&#x201D;&#x539F;&#x7406;" class="headerlink" title="&#x201C;&#x77E5;&#x9519;&#x80FD;&#x6539;&#x201D;&#x539F;&#x7406;"></a>&#x201C;&#x77E5;&#x9519;&#x80FD;&#x6539;&#x201D;&#x539F;&#x7406;</h4><p>PLA&#x7B97;&#x6CD5;&#x7684;&#x201C;&#x77E5;&#x9519;&#x80FD;&#x6539;&#x201D;&#x539F;&#x7406;&#x53C2;&#x89C1;&#x4E0B;&#x56FE;<br><img src="/2016/10/12/ciuy26z6c0008moln4f7bxyar/pla1.png" alt="PLA"><br>&#x53EF;&#x4EE5;&#x77E5;&#x9053;Y&#x662F;W&#x4E0E;X&#x7684;&#x5185;&#x79EF;&#x7684;sign&#xFF0C;&#x800C;</p>
+<h4 id="&#x201C;&#x77E5;&#x9519;&#x80FD;&#x6539;&#x201D;&#x539F;&#x7406;"><a href="#&#x201C;&#x77E5;&#x9519;&#x80FD;&#x6539;&#x201D;&#x539F;&#x7406;" class="headerlink" title="&#x201C;&#x77E5;&#x9519;&#x80FD;&#x6539;&#x201D;&#x539F;&#x7406;"></a>&#x201C;&#x77E5;&#x9519;&#x80FD;&#x6539;&#x201D;&#x539F;&#x7406;</h4><p>PLA&#x7B97;&#x6CD5;&#x7684;&#x201C;&#x77E5;&#x9519;&#x80FD;&#x6539;&#x201D;&#x539F;&#x7406;&#x53C2;&#x89C1;&#x4E0B;&#x56FE;<br><img src="/2016/10/12/ciuy2tyvh0009onlnxv4zsl18/pla1.png" alt="PLA"><br>&#x53EF;&#x4EE5;&#x77E5;&#x9053;Y&#x662F;W&#x4E0E;X&#x7684;&#x5185;&#x79EF;&#x7684;sign&#xFF0C;&#x800C;</p>
 <p>$$<br>W\cdot X=|W||X|\cos(W,X)<br>$$</p>
 <p>&#x5176;&#x503C;&#x5176;&#x5B9E;&#x662F;&#x88AB;$\cos(W,X)$&#x5F71;&#x54CD;&#x3002;<br>&#x5BF9;&#x4E8E;$W_t$&#x4E2D;&#x4E00;&#x4E2A;&#x72AF;&#x9519;&#x7684;&#x70B9;$(X_n(t),Y_n(t))$&#xFF0C;&#x5982;&#x679C;$y=+1$&#xFF0C;&#x90A3;&#x4E48;&#x8BF4;&#x660E;$\cos(W,Y) &lt; 0$&#xFF0C;&#x5373;&#x5939;&#x89D2;&#x592A;&#x5927;&#xFF0C;&#x6240;&#x4EE5;$W_{t+1} = W_t-X_n(t)(+1)$&#x3002;&#x540C;&#x7406;$y=-1$&#x65F6;&#xFF0C;$W_{t+1} = W_t-X_n(t)(-1)$&#x3002;&#x4EE5;&#x6B64;&#x8FBE;&#x5230;&#x77E5;&#x9519;&#x80FD;&#x6539;&#x7684;&#x6548;&#x679C;&#x3002;</p>
 <h4 id="PLA&#x7B97;&#x6CD5;&#x8FC7;&#x7A0B;"><a href="#PLA&#x7B97;&#x6CD5;&#x8FC7;&#x7A0B;" class="headerlink" title="PLA&#x7B97;&#x6CD5;&#x8FC7;&#x7A0B;"></a>PLA&#x7B97;&#x6CD5;&#x8FC7;&#x7A0B;</h4><p>1&#xFF09;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x72AF;&#x9519;&#x7684;&#x70B9;$ \text{sign}(\bf{W} \cdot \bf{x_i}) \neq y_i$<br>2&#xFF09;&#x66F4;&#x65B0;$\bf{W_{\text{new}}} = \bf{W_{\text{old}}} + y_i \cdot \bf{x_i}$<br>3) &#x4E0D;&#x65AD;&#x5FAA;&#x73AF;1&#x3001;2&#x76F4;&#x5230;&#x6240;&#x6709;&#x70B9;&#x4E0D;&#x518D;&#x72AF;&#x9519;</p>
 <h4 id="PLA&#x7684;&#x5B9E;&#x73B0;"><a href="#PLA&#x7684;&#x5B9E;&#x73B0;" class="headerlink" title="PLA&#x7684;&#x5B9E;&#x73B0;"></a>PLA&#x7684;&#x5B9E;&#x73B0;</h4><p>&#x9996;&#x5148;&#xFF0C;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x4E8C;&#x7EF4;&#x7684;&#x6837;&#x672C;&#xFF0C;&#x8BE5;&#x6837;&#x672C;&#x4E3A;&#x7EBF;&#x6027;&#x53EF;&#x5206;&#x3002;</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">data_set = np.array([</div><div class="line">    (<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>), (<span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>),</div><div class="line">    (<span class="number">3</span>, <span class="number">1</span>, <span class="number">1</span>), (<span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>), (<span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>)</div><div class="line">])</div><div class="line"></div><div class="line">ids = [</div><div class="line">    <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span></div><div class="line">]</div></pre></td></tr></table></figure>
-<p>&#x4E0B;&#x56FE;&#x4E3A;&#x8FD9;&#x4E2A;&#x6837;&#x672C;&#x7684;VIS&#xFF0C;&#x5708;&#x548C;&#x53C9;&#x8868;&#x793A;&#x6837;&#x672C;&#x6807;&#x7B7E;&#x4E3A;+1&#x548C;-1&#xFF1A;<br><img src="/2016/10/12/ciuy26z6c0008moln4f7bxyar/figure_1.png" alt="inital_sample"><br>&#x53EF;&#x4EE5;&#x77E5;&#x9053;&#xFF0C;&#x8FD9;&#x4E2A;&#x6837;&#x672C;&#x662F;&#x7EBF;&#x6027;&#x53EF;&#x5206;&#x7684;</p>
+<p>&#x4E0B;&#x56FE;&#x4E3A;&#x8FD9;&#x4E2A;&#x6837;&#x672C;&#x7684;VIS&#xFF0C;&#x5708;&#x548C;&#x53C9;&#x8868;&#x793A;&#x6837;&#x672C;&#x6807;&#x7B7E;&#x4E3A;+1&#x548C;-1&#xFF1A;<br><img src="/2016/10/12/ciuy2tyvh0009onlnxv4zsl18/figure_1.png" alt="inital_sample"><br>&#x53EF;&#x4EE5;&#x77E5;&#x9053;&#xFF0C;&#x8FD9;&#x4E2A;&#x6837;&#x672C;&#x662F;&#x7EBF;&#x6027;&#x53EF;&#x5206;&#x7684;</p>
 <p>Sign&#x51FD;&#x6570;&#xFF1A;</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sign</span><span class="params">(w, data)</span>:</span></div><div class="line">    num = np.dot(w.T, data)</div><div class="line">    <span class="keyword">if</span> num &gt; <span class="number">0</span>:</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span></div></pre></td></tr></table></figure>
 <p>&#x66F4;&#x65B0;&#x51FD;&#x6570;&#xFF1A;</p>
@@ -609,8 +620,8 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_w</span><span class="params">(w, data_set, ids)</span>:</span></div><div class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">0</span>, N_ITER):</div><div class="line">        <span class="keyword">print</span> <span class="string">&apos;iteration = &apos;</span>, t</div><div class="line">        idx = t % len(data_set)</div><div class="line">        w = update_w(w, data_set[idx], ids[idx])</div><div class="line">    <span class="keyword">return</span> w</div></pre></td></tr></table></figure>
 <p>&#x5B8C;&#x5168;&#x4EE3;&#x7801;&#xFF1A;</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding=utf-8 -*-</span></div><div class="line"><span class="comment"># Author: fujiaqi@zju.edu.cn</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> display <span class="keyword">import</span> *</div><div class="line"></div><div class="line">N_ITER = <span class="number">200</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sign</span><span class="params">(w, data)</span>:</span></div><div class="line">    num = np.dot(w.T, data)</div><div class="line">    <span class="keyword">if</span> num &gt; <span class="number">0</span>:</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_w</span><span class="params">(w, data, id)</span>:</span></div><div class="line">    pred = sign(w, data)</div><div class="line">    <span class="keyword">if</span> pred == id:</div><div class="line">        <span class="keyword">return</span> w</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">&apos;w changed from &apos;</span>, w, <span class="string">&apos; to &apos;</span>,</div><div class="line">        w = w + id * data</div><div class="line">    <span class="keyword">return</span> w</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_w</span><span class="params">(w, data_set, ids)</span>:</span></div><div class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">0</span>, N_ITER):</div><div class="line">        <span class="keyword">print</span> <span class="string">&apos;iteration = &apos;</span>, t</div><div class="line">        idx = t % len(data_set)</div><div class="line">        w = update_w(w, data_set[idx], ids[idx])</div><div class="line">    <span class="keyword">return</span> w</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">&apos;__main__&apos;</span>:</div><div class="line">    data_set = np.array([</div><div class="line">        (<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>), (<span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>),</div><div class="line">        (<span class="number">3</span>, <span class="number">1</span>, <span class="number">1</span>), (<span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>), (<span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>)</div><div class="line">    ])</div><div class="line"></div><div class="line">    ids = [</div><div class="line">        <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span></div><div class="line">    ]</div><div class="line"></div><div class="line">    w = np.array([<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>])</div><div class="line">    w = train_w(w, data_set, ids)</div><div class="line">    <span class="comment"># plot_sample(data_set, ids)</span></div><div class="line">    plot_sample_with_line(data_set, ids, w)</div></pre></td></tr></table></figure>
-<p>&#x8FD0;&#x884C;100&#x6B21;&#x4E4B;&#x540E;&#x7684;&#x7ED3;&#x679C;&#xFF1A;<br><img src="/2016/10/12/ciuy26z6c0008moln4f7bxyar/ITER100.png" alt="I100"></p>
-<p>&#x8FD0;&#x884C;200&#x6B21;&#x4E4B;&#x540E;&#x7684;&#x7ED3;&#x679C;&#xFF1A;<br><img src="/2016/10/12/ciuy26z6c0008moln4f7bxyar/ITER200.png" alt="I200"></p>
+<p>&#x8FD0;&#x884C;100&#x6B21;&#x4E4B;&#x540E;&#x7684;&#x7ED3;&#x679C;&#xFF1A;<br><img src="/2016/10/12/ciuy2tyvh0009onlnxv4zsl18/ITER100.png" alt="I100"></p>
+<p>&#x8FD0;&#x884C;200&#x6B21;&#x4E4B;&#x540E;&#x7684;&#x7ED3;&#x679C;&#xFF1A;<br><img src="/2016/10/12/ciuy2tyvh0009onlnxv4zsl18/ITER200.png" alt="I200"></p>
 <p>&#x5F53;iteration=141&#x65F6;&#xFF0C;PLA&#x5DF2;&#x7ECF;&#x627E;&#x5230;&#x4E86;&#x5408;&#x9002;&#x7684;&#x503C;$W=(-3,-3,10)^T$</p>
 <h4 id="Pocket-Algorithm"><a href="#Pocket-Algorithm" class="headerlink" title="Pocket Algorithm"></a>Pocket Algorithm</h4><p>&#x5F53;&#x6837;&#x672C;&#x5B58;&#x5728;&#x566A;&#x58F0;&#x65F6;&#x5019;&#xFF0C;&#x663E;&#x7136;&#x4E0D;&#x80FD;&#x627E;&#x5230;&#x4E00;&#x6761;&#x53EF;&#x4EE5;&#x65E0;&#x9519;&#x5206;&#x5272;&#x7684;&#x7EBF;&#x3002;&#x5982;&#x679C;&#x8981;&#x5BFB;&#x627E;&#x72AF;&#x9519;&#x8BEF;&#x6700;&#x5C11;&#x7684;&#x90A3;&#x6761;&#x7EBF;&#xFF0C;&#x5219;&#xFF1A;<br>$$<br>\bf{w_g} \leftarrow \mathop{argmin}\limits_{w} \sum_{n=1}^N [ y_n \neq \text{sign}(\bf{W}^T \bf{X}_n)]<br>$$</p>
 <h4 id="Pocket&#x7B97;&#x6CD5;&#x8FC7;&#x7A0B;"><a href="#Pocket&#x7B97;&#x6CD5;&#x8FC7;&#x7A0B;" class="headerlink" title="Pocket&#x7B97;&#x6CD5;&#x8FC7;&#x7A0B;"></a>Pocket&#x7B97;&#x6CD5;&#x8FC7;&#x7A0B;</h4><p>1&#xFF09;<strong>&#x968F;&#x673A;</strong>&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x72AF;&#x9519;&#x7684;&#x70B9;$ \text{sign}(\bf{W} \cdot \bf{x_i}) \neq y_i$<br>2&#xFF09;&#x8BA1;&#x7B97;$\bf{W_{\text{new}}} = \bf{W_{\text{old}}} + y_i \cdot \bf{x_i}$<br>3) &#x5982;&#x679C;$w_{t+1}$&#x5728;&#x5168;&#x90E8;&#x6570;&#x636E;&#x96C6;&#x4E0A;&#x72AF;&#x7684;&#x9519;&#x8BEF;&#x6BD4;$\hat{w}$&#x8981;&#x5C11;&#xFF0C;&#x5219;&#x628A;$\hat{w}$&#x8BBE;&#x4E3A;$w_{t+1}$<br>&#x4E0D;&#x65AD;&#x5FAA;&#x73AF;&#x4E0A;&#x8FF0;&#x8FC7;&#x7A0B;&#x76F4;&#x5230;&#x8FED;&#x4EE3;&#x4E86;&#x63D0;&#x524D;&#x8BBE;&#x7F6E;&#x597D;&#x7684;&#x6B21;&#x6570;&#x540E;&#xFF0C;&#x6700;&#x7EC8;$\hat{w}$&#x5373;&#x4E3A;&#x6240;&#x6C42;$w$</p>
@@ -684,14 +695,14 @@ N_ITER = <span class="number">200</span>
     plot_sample_with_line(data_set, ids, w)
 </code></pre>
 <p>&#x8FED;&#x4EE3;200&#x6B21;&#x4E4B;&#x540E;&#x7684;&#x7ED3;&#x679C;</p>
-<p><img src="/2016/10/12/ciuy26z6c0008moln4f7bxyar/ITER200P.png" alt="ITER200P"></p>
+<p><img src="/2016/10/12/ciuy2tyvh0009onlnxv4zsl18/ITER200P.png" alt="ITER200P"></p>
 <p><a href="https://github.com/umbrellabeach/PLA" target="_blank" rel="external">Github&#x4EE3;&#x7801;</a></p>
 
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2016/10/12/ciuy26z6c0008moln4f7bxyar/" class="archive-article-date">
+      <a href="/2016/10/12/ciuy2tyvh0009onlnxv4zsl18/" class="archive-article-date">
   	<time datetime="2016-10-12T11:04:40.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-12</time>
 </a>
       
@@ -726,7 +737,7 @@ N_ITER = <span class="number">200</span>
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/25/ciuy26z6d0009molnocumwg9j/">Ubuntu 14.04 + cuda 7.5 + Theano (双显卡 Intel核显+GTX 980Ti)</a>
+      <a class="article-title" href="/2016/05/25/ciuy2tyvg0008onlnjp4km7sz/">Ubuntu 14.04 + cuda 7.5 + Theano (双显卡 Intel核显+GTX 980Ti)</a>
     </h1>
   
 
@@ -771,7 +782,7 @@ N_ITER = <span class="number">200</span>
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2016/05/25/ciuy26z6d0009molnocumwg9j/" class="archive-article-date">
+      <a href="/2016/05/25/ciuy2tyvg0008onlnjp4km7sz/" class="archive-article-date">
   	<time datetime="2016-05-25T13:21:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-05-25</time>
 </a>
       
