@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Ubuntu 14.04 + cuda 7.5 + Theano (双显卡 Intel核显+GTX 980Ti) | The Heart of Machine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;#x4F7F;&amp;#x7528;&amp;#x6BD4;&amp;#x8F83;&amp;#x7ECF;&amp;#x5178;&amp;#x7684;&amp;#x6559;&amp;#x7A0B;&amp;#x51FA;&amp;#x73B0;&amp;#x4E86;&amp;#x767B;&amp;#x9646;&amp;#x754C;&amp;#x9762;&amp;#x65E0;&amp;#x9650;&amp;#x5FAA;&amp;#x73AF;&amp;#x7684;&amp;#x95EE;&amp;#x9898;&amp;#xFF0C;Google&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 14.04 + cuda 7.5 + Theano (双显卡 Intel核显+GTX 980Ti)">
+<meta property="og:url" content="http://yoursite.com/2016/05/25/ciuyrtpan0008n2lnc2cxx40u/index.html">
+<meta property="og:site_name" content="The Heart of Machine">
+<meta property="og:description" content="&amp;#x4F7F;&amp;#x7528;&amp;#x6BD4;&amp;#x8F83;&amp;#x7ECF;&amp;#x5178;&amp;#x7684;&amp;#x6559;&amp;#x7A0B;&amp;#x51FA;&amp;#x73B0;&amp;#x4E86;&amp;#x767B;&amp;#x9646;&amp;#x754C;&amp;#x9762;&amp;#x65E0;&amp;#x9650;&amp;#x5FAA;&amp;#x73AF;&amp;#x7684;&amp;#x95EE;&amp;#x9898;&amp;#xFF0C;Google&amp;#">
+<meta property="og:updated_time" content="2016-10-23T05:05:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu 14.04 + cuda 7.5 + Theano (双显卡 Intel核显+GTX 980Ti)">
+<meta name="twitter:description" content="&amp;#x4F7F;&amp;#x7528;&amp;#x6BD4;&amp;#x8F83;&amp;#x7ECF;&amp;#x5178;&amp;#x7684;&amp;#x6559;&amp;#x7A0B;&amp;#x51FA;&amp;#x73B0;&amp;#x4E86;&amp;#x767B;&amp;#x9646;&amp;#x754C;&amp;#x9762;&amp;#x65E0;&amp;#x9650;&amp;#x5FAA;&amp;#x73AF;&amp;#x7684;&amp;#x95EE;&amp;#x9898;&amp;#xFF0C;Google&amp;#">
+  
+    <link rel="alternative" href="/atom.xml" title="The Heart of Machine" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://oe0136353.bkt.clouddn.com/head.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jiaqi Fu</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">home</a></li>
+	        
+				<li><a href="/archives">archives</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">archives</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">tags</a>
+    			
+    			
+            
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">aboutme</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/umbrellabeach" title="github">github</a>
+		        
+					<a class="mail" target="_blank" href="mailto:fujiaqi@zju.edu.cn" title="mail">mail</a>
+		        
+					<a class="linkedin" target="_blank" href="https://cn.linkedin.com/in/jiaqi-fu-013a27104" title="linkedin">linkedin</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jiaqi Fu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://oe0136353.bkt.clouddn.com/head.jpeg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jiaqi Fu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">home</a></li>
+		        
+					<li><a href="/archives">archives</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/umbrellabeach" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:fujiaqi@zju.edu.cn" title="mail">mail</a>
+			        
+						<a class="linkedin" target="_blank" href="https://cn.linkedin.com/in/jiaqi-fu-013a27104" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Ubuntu-14-04-cuda-7-5-Theano-双显卡-Intel核显-GTX-980Ti" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ubuntu 14.04 + cuda 7.5 + Theano (双显卡 Intel核显+GTX 980Ti)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&#x4F7F;&#x7528;&#x6BD4;&#x8F83;&#x7ECF;&#x5178;&#x7684;&#x6559;&#x7A0B;&#x51FA;&#x73B0;&#x4E86;&#x767B;&#x9646;&#x754C;&#x9762;&#x65E0;&#x9650;&#x5FAA;&#x73AF;&#x7684;&#x95EE;&#x9898;&#xFF0C;Google&#x4E86;&#x5F88;&#x591A;&#xFF0C;&#x7EC8;&#x4E8E;&#x6210;&#x529F;&#x3002;&#x5982;&#x679C;&#x8BF4;&#x5355;&#x663E;&#x5361;&#x88C5;cuda&#x96BE;&#x5EA6;&#x662F;1&#xFF0C;&#x90A3;&#x4E48;&#x53CC;&#x663E;&#x5361;&#x5C31;&#x662F;10&#x3002;</p>
+<p>&#x9996;&#x5148;&#xFF0C;&#x5728;BIOS&#x754C;&#x9762;&#x8BBE;&#x7F6E;&#x663E;&#x5361;&#x81EA;&#x52A8;&#x5207;&#x6362;&#x6A21;&#x5F0F;&#x3002;&#x5B89;&#x88C5;&#x5B8C;Ubuntu&#x5148;&#x4E0D;&#x8981;&#x66F4;&#x65B0;&#x7CFB;&#x7EDF;&#xFF0C;&#x4E00;&#x4E9B;&#x6559;&#x7A0B;&#x8BF4;&#x66F4;&#x65B0;&#x7CFB;&#x7EDF;&#x518D;&#x88C5;cuda&#x4F1A;&#x5BFC;&#x81F4;&#x5931;&#x8D25;&#x3002;</p>
+<p>&#x91CD;&#x70B9;&#x9700;&#x8981;&#x7981;&#x7528;nouveau&#xFF0C;&#x8FD9;&#x4E2A;&#x5BFC;&#x81F4;&#x51FA;&#x73B0;login loop&#x95EE;&#x9898;&#x7684;&#x5143;&#x51F6;&#xFF0C;&#x8FDB;&#x5165;&#x9ED1;&#x540D;&#x5355;&#xFF0C;&#x628A;nouveau&#x52A0;&#x5165;&#x9ED1;&#x540D;&#x5355;&#x3002;</p>
+<h3 id="&#x521B;&#x5EFA;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;"><a href="#&#x521B;&#x5EFA;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;" class="headerlink" title="&#x521B;&#x5EFA;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;"></a>&#x521B;&#x5EFA;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vi /etc/modprobe.d/blacklist-nouveau.conf</div></pre></td></tr></table></figure>
+<h3 id="&#x5173;&#x6389;-nouveau"><a href="#&#x5173;&#x6389;-nouveau" class="headerlink" title="&#x5173;&#x6389; nouveau"></a>&#x5173;&#x6389; nouveau</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">blacklist nouveau</div><div class="line">blacklist lbm-nouveau</div><div class="line">options nouveau modeset=0</div><div class="line"><span class="built_in">alias</span> nouveau off</div><div class="line"><span class="built_in">alias</span> lbm-nouveau off</div></pre></td></tr></table></figure>
+<h3 id="&#x6267;&#x884C;"><a href="#&#x6267;&#x884C;" class="headerlink" title="&#x6267;&#x884C;"></a>&#x6267;&#x884C;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo update-initramfs -u</div></pre></td></tr></table></figure>
+<h3 id="&#x91CD;&#x542F;&#x7535;&#x8111;"><a href="#&#x91CD;&#x542F;&#x7535;&#x8111;" class="headerlink" title="&#x91CD;&#x542F;&#x7535;&#x8111;"></a>&#x91CD;&#x542F;&#x7535;&#x8111;</h3><p>&#x5728;&#x51FA;&#x73B0;&#x767B;&#x5F55;&#x754C;&#x9762;&#x65F6;&#xFF0C;&#x767B;&#x5F55;tty1,&#x6309;Ctrl + Alt + F1&#xFF0C;&#x5728;&#x6587;&#x672C;&#x6A21;&#x5F0F;&#x4E2D;&#x767B;&#x5F55;&#x3002;</p>
+<h3 id="&#x5173;&#x95ED;&#x684C;&#x9762;&#x670D;&#x52A1;"><a href="#&#x5173;&#x95ED;&#x684C;&#x9762;&#x670D;&#x52A1;" class="headerlink" title="&#x5173;&#x95ED;&#x684C;&#x9762;&#x670D;&#x52A1;"></a>&#x5173;&#x95ED;&#x684C;&#x9762;&#x670D;&#x52A1;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo service lightdm stop</div></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x6B65;&#x5BF9;&#x4E8E;&#x5B89;&#x88C5;Nvidia&#x9A71;&#x52A8;&#x81F3;&#x5173;&#x91CD;&#x8981;&#x3002;</p>
+<h3 id="&#x5B89;&#x88C5;CUDA"><a href="#&#x5B89;&#x88C5;CUDA" class="headerlink" title="&#x5B89;&#x88C5;CUDA"></a>&#x5B89;&#x88C5;CUDA</h3><p>&#x8FD0;&#x884C;.run&#x6587;&#x4EF6;&#xFF0C;&#x4E0D;&#x8981;&#x8986;&#x76D6;opengl</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./cuda-7.0.28_linux.run --no-opengl-libs</div></pre></td></tr></table></figure>
+<p>&#x5728;&#x5B89;&#x88C5;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Accept EULA conditions</div><div class="line">Say YES to installing the NVIDIA driver</div><div class="line">SAY YES to installing CUDA Toolkit + Driver</div><div class="line">Say YES to installing CUDA Samples</div></pre></td></tr></table></figure>
+<h3 id="&#x5B89;&#x88C5;&#x5B8C;&#x6210;"><a href="#&#x5B89;&#x88C5;&#x5B8C;&#x6210;" class="headerlink" title="&#x5B89;&#x88C5;&#x5B8C;&#x6210;"></a>&#x5B89;&#x88C5;&#x5B8C;&#x6210;</h3><p>check device nodes</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Check <span class="keyword">if</span> /dev/nvidia*files exist</div></pre></td></tr></table></figure>
+<p>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x7684;&#x8BDD;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo mod probe nvidia</div></pre></td></tr></table></figure>
+<h3 id="&#x91CD;&#x542F;&#x684C;&#x9762;&#x670D;&#x52A1;"><a href="#&#x91CD;&#x542F;&#x684C;&#x9762;&#x670D;&#x52A1;" class="headerlink" title="&#x91CD;&#x542F;&#x684C;&#x9762;&#x670D;&#x52A1;"></a>&#x91CD;&#x542F;&#x684C;&#x9762;&#x670D;&#x52A1;</h3><p>&#x6B64;&#x65F6;&#x80FD;&#x591F;&#x767B;&#x5F55;&#xFF0C;&#x6CA1;&#x6709;login-loop&#x95EE;&#x9898;&#x3002;</p>
+<h3 id="&#x8BBE;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;"><a href="#&#x8BBE;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;" class="headerlink" title="&#x8BBE;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;"></a>&#x8BBE;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;</h3><p>&#x5728;/etc/ld.so.conf.d/&#x5EFA;&#x7ACB;cuda.conf&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x5199;&#x5165;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="built_in">local</span>/cuda-7.0/lib64</div></pre></td></tr></table></figure>
+<p>&#x7136;&#x540E;sudo ldconfig</p>
+<p>&#x6DFB;&#x52A0;PATH&#xFF0C;&#x4E3A;&#x4E86;&#x957F;&#x4E45;&#x6DFB;&#x52A0;&#xFF0C;&#x5728;/etc/profile&#x52A0;&#x5165;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PATH=/usr/<span class="built_in">local</span>/cuda-7.0/bin:<span class="variable">$PATH</span></div><div class="line"><span class="built_in">source</span> /etc/profile</div></pre></td></tr></table></figure>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x76F4;&#x63A5;&#x5728;&#x7EC8;&#x7AEF;export PATH=/usr/local/cuda-7.0/bin:$PATH&#x662F;&#x6682;&#x65F6;&#x7684;</p>
+<h3 id="&#x9A8C;&#x8BC1;"><a href="#&#x9A8C;&#x8BC1;" class="headerlink" title="&#x9A8C;&#x8BC1;"></a>&#x9A8C;&#x8BC1;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cat /proc/driver/nvidia/version</div><div class="line">nvcc -V</div></pre></td></tr></table></figure>
+<p>&#x8FDB;&#x5165;NVIDIA_CUDA-7.5_Samples/bin/x86_64/linux/release/ &#x505A;&#x4E00;&#x4E0B;&#x4E24;&#x4E2A;&#x6807;&#x51C6;&#x68C0;&#x6D4B;&#xFF1A;</p>
+<ul>
+<li>./deviceQuery&#xFF1A;&#x67E5;&#x770B;&#x663E;&#x5361;&#x4FE1;&#x606F; </li>
+<li>./bandwidthTest&#xFF1A;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x5DE5;&#x4F5C;&#x6B63;&#x5E38; </li>
+</ul>
+<p>&#x90FD;&#x80FD;&#x591F;PASS</p>
+<p>Reboot</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/05/25/ciuyrtpan0008n2lnc2cxx40u/" class="archive-article-date">
+  	<time datetime="2016-05-25T13:21:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-05-25</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/10/12/ciuyrtpap0009n2lnj61r5dv0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Perceptron and Pocket 感知器与Pocket算法
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Ubuntu-14-04-cuda-7-5-Theano-双显卡-Intel核显-GTX-980Ti" data-title="Ubuntu 14.04 + cuda 7.5 + Theano (双显卡 Intel核显+GTX 980Ti)" data-url="http://yoursite.com/2016/05/25/ciuyrtpan0008n2lnc2cxx40u/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"3be3acb71203f68656cf27d834111f47"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Jiaqi Fu
+    	</div>
+      <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span id="busuanzi_container_site_uv">
+        本站访客数<span id="busuanzi_value_site_uv"></span>人次
+      </span>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 13.33px;">C++</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
