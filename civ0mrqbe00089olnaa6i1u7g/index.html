@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Perceptron and Pocket 感知器与Pocket算法 | The Heart of Machine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x662F;&amp;#x5B66;&amp;#x4E60;&amp;#x53F0;&amp;#x5927;&amp;#x673A;&amp;#x5668;&amp;#x5B66;&amp;#x4E60;&amp;#x57FA;&amp;#x77F3;PLA&amp;#x90E8;&amp;#x5206;&amp;#x7684;&amp;#x5C0F;&amp;#x7ED3;&amp;#x3002;Perceptron Learning Algorithm&amp;#x662F;&amp;#x6700;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Perceptron and Pocket 感知器与Pocket算法">
+<meta property="og:url" content="http://yoursite.com/civ0mrqbe00089olnaa6i1u7g/index.html">
+<meta property="og:site_name" content="The Heart of Machine">
+<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x662F;&amp;#x5B66;&amp;#x4E60;&amp;#x53F0;&amp;#x5927;&amp;#x673A;&amp;#x5668;&amp;#x5B66;&amp;#x4E60;&amp;#x57FA;&amp;#x77F3;PLA&amp;#x90E8;&amp;#x5206;&amp;#x7684;&amp;#x5C0F;&amp;#x7ED3;&amp;#x3002;Perceptron Learning Algorithm&amp;#x662F;&amp;#x6700;">
+<meta property="og:image" content="http://yoursite.com/civ0mrqbe00089olnaa6i1u7g/pla1.png">
+<meta property="og:image" content="http://yoursite.com/civ0mrqbe00089olnaa6i1u7g/figure_1.png">
+<meta property="og:image" content="http://yoursite.com/civ0mrqbe00089olnaa6i1u7g/ITER100.png">
+<meta property="og:image" content="http://yoursite.com/civ0mrqbe00089olnaa6i1u7g/ITER200.png">
+<meta property="og:image" content="http://yoursite.com/civ0mrqbe00089olnaa6i1u7g/ITER200P.png">
+<meta property="og:updated_time" content="2016-11-02T02:06:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Perceptron and Pocket 感知器与Pocket算法">
+<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x662F;&amp;#x5B66;&amp;#x4E60;&amp;#x53F0;&amp;#x5927;&amp;#x673A;&amp;#x5668;&amp;#x5B66;&amp;#x4E60;&amp;#x57FA;&amp;#x77F3;PLA&amp;#x90E8;&amp;#x5206;&amp;#x7684;&amp;#x5C0F;&amp;#x7ED3;&amp;#x3002;Perceptron Learning Algorithm&amp;#x662F;&amp;#x6700;">
+<meta name="twitter:image" content="http://yoursite.com/civ0mrqbe00089olnaa6i1u7g/pla1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="The Heart of Machine" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://oe0136353.bkt.clouddn.com/head.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jiaqi Fu</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">home</a></li>
+	        
+				<li><a href="/archives">archives</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">archives</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">tags</a>
+    			
+    			
+            
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">aboutme</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/umbrellabeach" title="github">github</a>
+		        
+					<a class="mail" target="_blank" href="mailto:fujiaqi@zju.edu.cn" title="mail">mail</a>
+		        
+					<a class="linkedin" target="_blank" href="https://cn.linkedin.com/in/jiaqi-fu-013a27104" title="linkedin">linkedin</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jiaqi Fu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://oe0136353.bkt.clouddn.com/head.jpeg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jiaqi Fu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">home</a></li>
+		        
+					<li><a href="/archives">archives</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/umbrellabeach" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:fujiaqi@zju.edu.cn" title="mail">mail</a>
+			        
+						<a class="linkedin" target="_blank" href="https://cn.linkedin.com/in/jiaqi-fu-013a27104" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Perceptron and Pocket 感知器与Pocket算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Perceptron and Pocket 感知器与Pocket算法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&#x672C;&#x6587;&#x662F;&#x5B66;&#x4E60;&#x53F0;&#x5927;<a href="http://www.csie.ntu.edu.tw/~htlin/mooc/" target="_blank" rel="external">&#x673A;&#x5668;&#x5B66;&#x4E60;&#x57FA;&#x77F3;</a>PLA&#x90E8;&#x5206;&#x7684;&#x5C0F;&#x7ED3;&#x3002;Perceptron Learning Algorithm&#x662F;&#x6700;&#x57FA;&#x7840;&#x7684;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x5206;&#x7C7B;&#x5668;&#x4E4B;&#x4E00;&#x3002;</p>
+<h4 id="PLA&#x7684;&#x4F7F;&#x7528;&#x6761;&#x4EF6;"><a href="#PLA&#x7684;&#x4F7F;&#x7528;&#x6761;&#x4EF6;" class="headerlink" title="PLA&#x7684;&#x4F7F;&#x7528;&#x6761;&#x4EF6;"></a>PLA&#x7684;&#x4F7F;&#x7528;&#x6761;&#x4EF6;</h4><p>&#x5982;&#x679C;N&#x7EF4;&#x6570;&#x636E;&#x4E3A;&#x7EBF;&#x6027;&#x53EF;&#x5206;&#xFF08;Linearly Separable&#xFF09;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x5728;N-1&#x7EF4;&#x4E0A;&#x627E;&#x4E00;&#x4E2A;&#x9762;&#x5C06;&#x6570;&#x636E;&#x65E0;&#x9519;&#x5730;&#x5206;&#x7C7B;&#x3002;</p>
+<h4 id="PLA&#x63A8;&#x5BFC;"><a href="#PLA&#x63A8;&#x5BFC;" class="headerlink" title="PLA&#x63A8;&#x5BFC;"></a>PLA&#x63A8;&#x5BFC;</h4><p>perceptron&#x7684;&#x5047;&#x8BBE;&#xFF1A;</p>
+<p>$$<br>\color{red}{h}(x)= \text{sign}((\sum_{i=1}^d \color{red}{W_i} X_i)-\color{red}{\text{threshold}})<br>$$<br>perceptron&#x7684;&#x7B80;&#x5316;&#xFF1A;</p>
+<p>$$<br>\begin{eqnarray}<br>\color{red}{h}(x) &amp;=&amp; \text{sign}((\sum_{i=1}^d \color{red}{W_i} X_i)+\color{blue}{(-\text{threshold})(+1)})      \nonumber \\<br>  &amp;=&amp; \text{sign}(\sum_{\color{blue}{i=0}}^d W_i \cdot X_i)  \nonumber \\<br>  &amp;=&amp; \text{sign}(\color{red}{\bf{W^T}}\cdot X)  \nonumber<br>\end{eqnarray}<br>$$</p>
+<p>&#x6839;&#x636E;&#x4E0A;&#x9762;&#x7684;&#x7B80;&#x5316;&#xFF0C;&#x5728;&#x4E4B;&#x540E;&#x7684;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x4EE5;&#x4E8C;&#x7EF4;&#x7A7A;&#x95F4;&#x4E3A;&#x4F8B;&#xFF0C;&#x6570;&#x636E;&#x70B9;$x_i=(a,b)$&#x5C06;&#x4F1A;&#x88AB;&#x8F6C;&#x5316;&#x4E3A;$x_i=(a,b,1)$&#x3002;&#x5F97;&#x5230;&#x7684;&#x5206;&#x5272;&#x7EBF;&#x4E3A;$w_2 \cdot x_2+w_1 \cdot x_1+b=0$&#xFF0C;&#x5176;&#x4E2D;$(w_2,w_1)$&#x4E3A;&#x6CD5;&#x5411;&#x91CF;&#x3002;</p>
+<h4 id="&#x201C;&#x77E5;&#x9519;&#x80FD;&#x6539;&#x201D;&#x539F;&#x7406;"><a href="#&#x201C;&#x77E5;&#x9519;&#x80FD;&#x6539;&#x201D;&#x539F;&#x7406;" class="headerlink" title="&#x201C;&#x77E5;&#x9519;&#x80FD;&#x6539;&#x201D;&#x539F;&#x7406;"></a>&#x201C;&#x77E5;&#x9519;&#x80FD;&#x6539;&#x201D;&#x539F;&#x7406;</h4><p>PLA&#x7B97;&#x6CD5;&#x7684;&#x201C;&#x77E5;&#x9519;&#x80FD;&#x6539;&#x201D;&#x539F;&#x7406;&#x53C2;&#x89C1;&#x4E0B;&#x56FE;<br><img src="/civ0mrqbe00089olnaa6i1u7g/pla1.png" alt="PLA"><br>&#x53EF;&#x4EE5;&#x77E5;&#x9053;Y&#x662F;W&#x4E0E;X&#x7684;&#x5185;&#x79EF;&#x7684;sign&#xFF0C;&#x800C;</p>
+<p>$$<br>W\cdot X=|W||X|\cos(W,X)<br>$$</p>
+<p>&#x5176;&#x503C;&#x5176;&#x5B9E;&#x662F;&#x88AB;$\cos(W,X)$&#x5F71;&#x54CD;&#x3002;<br>&#x5BF9;&#x4E8E;$W_t$&#x4E2D;&#x4E00;&#x4E2A;&#x72AF;&#x9519;&#x7684;&#x70B9;$(X_n(t),Y_n(t))$&#xFF0C;&#x5982;&#x679C;$y=+1$&#xFF0C;&#x90A3;&#x4E48;&#x8BF4;&#x660E;$\cos(W,Y) &lt; 0$&#xFF0C;&#x5373;&#x5939;&#x89D2;&#x592A;&#x5927;&#xFF0C;&#x6240;&#x4EE5;$W_{t+1} = W_t-X_n(t)(+1)$&#x3002;&#x540C;&#x7406;$y=-1$&#x65F6;&#xFF0C;$W_{t+1} = W_t-X_n(t)(-1)$&#x3002;&#x4EE5;&#x6B64;&#x8FBE;&#x5230;&#x77E5;&#x9519;&#x80FD;&#x6539;&#x7684;&#x6548;&#x679C;&#x3002;</p>
+<h4 id="PLA&#x7B97;&#x6CD5;&#x8FC7;&#x7A0B;"><a href="#PLA&#x7B97;&#x6CD5;&#x8FC7;&#x7A0B;" class="headerlink" title="PLA&#x7B97;&#x6CD5;&#x8FC7;&#x7A0B;"></a>PLA&#x7B97;&#x6CD5;&#x8FC7;&#x7A0B;</h4><p>1&#xFF09;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x72AF;&#x9519;&#x7684;&#x70B9;$ \text{sign}(\bf{W} \cdot \bf{x_i}) \neq y_i$<br>2&#xFF09;&#x66F4;&#x65B0;$\bf{W_{\text{new}}} = \bf{W_{\text{old}}} + y_i \cdot \bf{x_i}$<br>3) &#x4E0D;&#x65AD;&#x5FAA;&#x73AF;1&#x3001;2&#x76F4;&#x5230;&#x6240;&#x6709;&#x70B9;&#x4E0D;&#x518D;&#x72AF;&#x9519;</p>
+<h4 id="PLA&#x7684;&#x5B9E;&#x73B0;"><a href="#PLA&#x7684;&#x5B9E;&#x73B0;" class="headerlink" title="PLA&#x7684;&#x5B9E;&#x73B0;"></a>PLA&#x7684;&#x5B9E;&#x73B0;</h4><p>&#x9996;&#x5148;&#xFF0C;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x4E8C;&#x7EF4;&#x7684;&#x6837;&#x672C;&#xFF0C;&#x8BE5;&#x6837;&#x672C;&#x4E3A;&#x7EBF;&#x6027;&#x53EF;&#x5206;&#x3002;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">data_set = np.array([</div><div class="line">    (<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>), (<span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>),</div><div class="line">    (<span class="number">3</span>, <span class="number">1</span>, <span class="number">1</span>), (<span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>), (<span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>)</div><div class="line">])</div><div class="line"></div><div class="line">ids = [</div><div class="line">    <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span></div><div class="line">]</div></pre></td></tr></table></figure>
+<p>&#x4E0B;&#x56FE;&#x4E3A;&#x8FD9;&#x4E2A;&#x6837;&#x672C;&#x7684;VIS&#xFF0C;&#x5708;&#x548C;&#x53C9;&#x8868;&#x793A;&#x6837;&#x672C;&#x6807;&#x7B7E;&#x4E3A;+1&#x548C;-1&#xFF1A;<br><img src="/civ0mrqbe00089olnaa6i1u7g/figure_1.png" alt="inital_sample"><br>&#x53EF;&#x4EE5;&#x77E5;&#x9053;&#xFF0C;&#x8FD9;&#x4E2A;&#x6837;&#x672C;&#x662F;&#x7EBF;&#x6027;&#x53EF;&#x5206;&#x7684;</p>
+<p>Sign&#x51FD;&#x6570;&#xFF1A;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sign</span><span class="params">(w, data)</span>:</span></div><div class="line">    num = np.dot(w.T, data)</div><div class="line">    <span class="keyword">if</span> num &gt; <span class="number">0</span>:</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span></div></pre></td></tr></table></figure>
+<p>&#x66F4;&#x65B0;&#x51FD;&#x6570;&#xFF1A;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_w</span><span class="params">(w, data, id)</span>:</span></div><div class="line">    pred = sign(w, data)</div><div class="line">    <span class="keyword">if</span> pred == id:</div><div class="line">        <span class="keyword">return</span> w</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">&apos;w changed from &apos;</span>, w, <span class="string">&apos; to &apos;</span>,</div><div class="line">        w = w + id * data</div><div class="line">    <span class="keyword">return</span> w</div></pre></td></tr></table></figure>
+<p>&#x8BAD;&#x7EC3;&#x51FD;&#x6570;&#xFF1A;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_w</span><span class="params">(w, data_set, ids)</span>:</span></div><div class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">0</span>, N_ITER):</div><div class="line">        <span class="keyword">print</span> <span class="string">&apos;iteration = &apos;</span>, t</div><div class="line">        idx = t % len(data_set)</div><div class="line">        w = update_w(w, data_set[idx], ids[idx])</div><div class="line">    <span class="keyword">return</span> w</div></pre></td></tr></table></figure>
+<p>&#x5B8C;&#x5168;&#x4EE3;&#x7801;&#xFF1A;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding=utf-8 -*-</span></div><div class="line"><span class="comment"># Author: fujiaqi@zju.edu.cn</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> display <span class="keyword">import</span> *</div><div class="line"></div><div class="line">N_ITER = <span class="number">200</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sign</span><span class="params">(w, data)</span>:</span></div><div class="line">    num = np.dot(w.T, data)</div><div class="line">    <span class="keyword">if</span> num &gt; <span class="number">0</span>:</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_w</span><span class="params">(w, data, id)</span>:</span></div><div class="line">    pred = sign(w, data)</div><div class="line">    <span class="keyword">if</span> pred == id:</div><div class="line">        <span class="keyword">return</span> w</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">&apos;w changed from &apos;</span>, w, <span class="string">&apos; to &apos;</span>,</div><div class="line">        w = w + id * data</div><div class="line">    <span class="keyword">return</span> w</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_w</span><span class="params">(w, data_set, ids)</span>:</span></div><div class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">0</span>, N_ITER):</div><div class="line">        <span class="keyword">print</span> <span class="string">&apos;iteration = &apos;</span>, t</div><div class="line">        idx = t % len(data_set)</div><div class="line">        w = update_w(w, data_set[idx], ids[idx])</div><div class="line">    <span class="keyword">return</span> w</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">&apos;__main__&apos;</span>:</div><div class="line">    data_set = np.array([</div><div class="line">        (<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>), (<span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>),</div><div class="line">        (<span class="number">3</span>, <span class="number">1</span>, <span class="number">1</span>), (<span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>), (<span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>)</div><div class="line">    ])</div><div class="line"></div><div class="line">    ids = [</div><div class="line">        <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span></div><div class="line">    ]</div><div class="line"></div><div class="line">    w = np.array([<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>])</div><div class="line">    w = train_w(w, data_set, ids)</div><div class="line">    <span class="comment"># plot_sample(data_set, ids)</span></div><div class="line">    plot_sample_with_line(data_set, ids, w)</div></pre></td></tr></table></figure>
+<p>&#x8FD0;&#x884C;100&#x6B21;&#x4E4B;&#x540E;&#x7684;&#x7ED3;&#x679C;&#xFF1A;<br><img src="/civ0mrqbe00089olnaa6i1u7g/ITER100.png" alt="I100"></p>
+<p>&#x8FD0;&#x884C;200&#x6B21;&#x4E4B;&#x540E;&#x7684;&#x7ED3;&#x679C;&#xFF1A;<br><img src="/civ0mrqbe00089olnaa6i1u7g/ITER200.png" alt="I200"></p>
+<p>&#x5F53;iteration=141&#x65F6;&#xFF0C;PLA&#x5DF2;&#x7ECF;&#x627E;&#x5230;&#x4E86;&#x5408;&#x9002;&#x7684;&#x503C;$W=(-3,-3,10)^T$</p>
+<h4 id="Pocket-Algorithm"><a href="#Pocket-Algorithm" class="headerlink" title="Pocket Algorithm"></a>Pocket Algorithm</h4><p>&#x5F53;&#x6837;&#x672C;&#x5B58;&#x5728;&#x566A;&#x58F0;&#x65F6;&#x5019;&#xFF0C;&#x663E;&#x7136;&#x4E0D;&#x80FD;&#x627E;&#x5230;&#x4E00;&#x6761;&#x53EF;&#x4EE5;&#x65E0;&#x9519;&#x5206;&#x5272;&#x7684;&#x7EBF;&#x3002;&#x5982;&#x679C;&#x8981;&#x5BFB;&#x627E;&#x72AF;&#x9519;&#x8BEF;&#x6700;&#x5C11;&#x7684;&#x90A3;&#x6761;&#x7EBF;&#xFF0C;&#x5219;&#xFF1A;<br>$$<br>\bf{w_g} \leftarrow \mathop{argmin}\limits_{w} \sum_{n=1}^N [ y_n \neq \text{sign}(\bf{W}^T \bf{X}_n)]<br>$$</p>
+<h4 id="Pocket&#x7B97;&#x6CD5;&#x8FC7;&#x7A0B;"><a href="#Pocket&#x7B97;&#x6CD5;&#x8FC7;&#x7A0B;" class="headerlink" title="Pocket&#x7B97;&#x6CD5;&#x8FC7;&#x7A0B;"></a>Pocket&#x7B97;&#x6CD5;&#x8FC7;&#x7A0B;</h4><p>1&#xFF09;<strong>&#x968F;&#x673A;</strong>&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x72AF;&#x9519;&#x7684;&#x70B9;$ \text{sign}(\bf{W} \cdot \bf{x_i}) \neq y_i$<br>2&#xFF09;&#x8BA1;&#x7B97;$\bf{W_{\text{new}}} = \bf{W_{\text{old}}} + y_i \cdot \bf{x_i}$<br>3) &#x5982;&#x679C;$w_{t+1}$&#x5728;&#x5168;&#x90E8;&#x6570;&#x636E;&#x96C6;&#x4E0A;&#x72AF;&#x7684;&#x9519;&#x8BEF;&#x6BD4;$\hat{w}$&#x8981;&#x5C11;&#xFF0C;&#x5219;&#x628A;$\hat{w}$&#x8BBE;&#x4E3A;$w_{t+1}$<br>&#x4E0D;&#x65AD;&#x5FAA;&#x73AF;&#x4E0A;&#x8FF0;&#x8FC7;&#x7A0B;&#x76F4;&#x5230;&#x8FED;&#x4EE3;&#x4E86;&#x63D0;&#x524D;&#x8BBE;&#x7F6E;&#x597D;&#x7684;&#x6B21;&#x6570;&#x540E;&#xFF0C;&#x6700;&#x7EC8;$\hat{w}$&#x5373;&#x4E3A;&#x6240;&#x6C42;$w$</p>
+<h4 id="Pocket&#x7B97;&#x6CD5;&#x5B9E;&#x73B0;"><a href="#Pocket&#x7B97;&#x6CD5;&#x5B9E;&#x73B0;" class="headerlink" title="Pocket&#x7B97;&#x6CD5;&#x5B9E;&#x73B0;"></a>Pocket&#x7B97;&#x6CD5;&#x5B9E;&#x73B0;</h4><p>&#x5B8C;&#x6574;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="Python"><span class="comment">#!/usr/bin/env python</span>
+<span class="comment"># -*- coding=utf-8 -*-</span>
+<span class="comment"># Author: fujiaqi@zju.edu.cn</span>
+
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+<span class="keyword">import</span> random
+<span class="keyword">from</span> display <span class="keyword">import</span> *
+
+N_ITER = <span class="number">200</span>
+
+
+<span class="function"><span class="keyword">def</span> <span class="title">sign</span><span class="params">(w, data)</span>:</span>
+    num = np.dot(w.T, data)
+    <span class="keyword">if</span> num &gt; <span class="number">0</span>:
+        <span class="keyword">return</span> <span class="number">1</span>
+    <span class="keyword">return</span> <span class="number">-1</span>
+
+
+<span class="function"><span class="keyword">def</span> <span class="title">update_w</span><span class="params">(w, data, id)</span>:</span>
+    pred = sign(w, data)
+    <span class="keyword">if</span> pred == id:
+        <span class="keyword">return</span> w
+    <span class="keyword">else</span>:
+        w = w + id * data
+    <span class="keyword">return</span> w
+
+
+<span class="function"><span class="keyword">def</span> <span class="title">err_w</span><span class="params">(w, data_set, ids)</span>:</span>
+    err_num = <span class="number">0</span>
+    <span class="keyword">for</span> idx <span class="keyword">in</span> range(<span class="number">0</span>, len(data_set)):
+        pred = sign(w, data_set[idx])
+        <span class="keyword">if</span> pred != ids[idx]:
+            err_num += <span class="number">1</span>
+    <span class="keyword">return</span> err_num
+
+
+<span class="function"><span class="keyword">def</span> <span class="title">train_w</span><span class="params">(w, data_set, ids)</span>:</span>
+    w_opt = w
+    err_w_o = err_w(w, data_set, ids)
+    <span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">0</span>, N_ITER):
+        <span class="keyword">print</span> <span class="string">&apos;iteration = &apos;</span>, t
+        <span class="comment"># randomly select a sample</span>
+        idx = random.randint(<span class="number">0</span>, len(data_set) - <span class="number">1</span>)
+        w = update_w(w, data_set[idx], ids[idx])
+        err_w_c = err_w(w, data_set, ids)
+        <span class="keyword">if</span> err_w_c &lt; err_w_o:
+            <span class="keyword">print</span> <span class="string">&apos;w changed from &apos;</span>, w_opt, <span class="string">&apos; to &apos;</span>, w
+            w_opt = w
+            err_w_o = err_w_c
+
+    <span class="keyword">return</span> w_opt
+
+
+<span class="keyword">if</span> __name__ == <span class="string">&apos;__main__&apos;</span>:
+    data_set = np.array([
+        (<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>), (<span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>),
+        (<span class="number">3</span>, <span class="number">1</span>, <span class="number">1</span>), (<span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>), (<span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>)
+    ])
+
+    ids = [
+        <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">1</span>
+    ]
+
+    w = np.array([<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>])
+    w = train_w(w, data_set, ids)
+    <span class="comment"># plot_sample(data_set, ids)</span>
+    plot_sample_with_line(data_set, ids, w)
+</code></pre>
+<p>&#x8FED;&#x4EE3;200&#x6B21;&#x4E4B;&#x540E;&#x7684;&#x7ED3;&#x679C;</p>
+<p><img src="/civ0mrqbe00089olnaa6i1u7g/ITER200P.png" alt="ITER200P"></p>
+<p><a href="https://github.com/umbrellabeach/PLA" target="_blank" rel="external">Github&#x4EE3;&#x7801;</a></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/civ0mrqbe00089olnaa6i1u7g/" class="archive-article-date">
+  	<time datetime="2016-06-23T11:04:40.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-06-23</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/civ0mrqar00019olnyjjec4at/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Index of Leetcode Solution
+        
+      </div>
+    </a>
+  
+  
+    <a href="/civ0mrqbj000b9oln92n15yl0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ubuntu 14.04 + cuda 7.5 + Theano (双显卡 Intel核显+GTX 980Ti)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+  
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-Perceptron and Pocket 感知器与Pocket算法" data-title="Perceptron and Pocket 感知器与Pocket算法" data-url="http://yoursite.com/civ0mrqbe00089olnaa6i1u7g/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'umbrellabeach'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
+
+
+
+      </div>
+      <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Jiaqi Fu
+    	</div>
+      <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span id="busuanzi_container_site_uv">
+        本站访客数<span id="busuanzi_value_site_uv"></span>人次
+      </span>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 13.33px;">C++</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
