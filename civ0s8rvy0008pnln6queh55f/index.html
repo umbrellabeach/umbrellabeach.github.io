@@ -4,14 +4,22 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016/10 | The Heart of Machine</title>
+  <title>SVM Duality and Kernel支持向量机、对偶形式与核 | The Heart of Machine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="The Heart of Machine">
-<meta property="og:url" content="http://yoursite.com/archives/2016/10/index.html">
+  <meta name="description" content="Linear Support Vector Machine&amp;#x5728;&amp;#x4E4B;&amp;#x524D;&amp;#x7684;Perceptron&amp;#x7B97;&amp;#x6CD5;&amp;#x4E2D;&amp;#xFF0C;&amp;#x540C;&amp;#x6837;&amp;#x7684;&amp;#x4E8C;&amp;#x5206;&amp;#x6CD5;&amp;#xFF08;dichotomy&amp;#xFF09;&amp;#xFF0C;&amp;#x53EF;&amp;#x80FD;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SVM Duality and Kernel支持向量机、对偶形式与核">
+<meta property="og:url" content="http://yoursite.com/civ0s8rvy0008pnln6queh55f/index.html">
 <meta property="og:site_name" content="The Heart of Machine">
+<meta property="og:description" content="Linear Support Vector Machine&amp;#x5728;&amp;#x4E4B;&amp;#x524D;&amp;#x7684;Perceptron&amp;#x7B97;&amp;#x6CD5;&amp;#x4E2D;&amp;#xFF0C;&amp;#x540C;&amp;#x6837;&amp;#x7684;&amp;#x4E8C;&amp;#x5206;&amp;#x6CD5;&amp;#xFF08;dichotomy&amp;#xFF09;&amp;#xFF0C;&amp;#x53EF;&amp;#x80FD;">
+<meta property="og:image" content="http://yoursite.com/civ0s8rvy0008pnln6queh55f/s1.0.png">
+<meta property="og:image" content="http://yoursite.com/civ0s8rvy0008pnln6queh55f/s1.1.png">
+<meta property="og:image" content="http://yoursite.com/civ0s8rvy0008pnln6queh55f/s1.2.png">
+<meta property="og:updated_time" content="2016-11-02T10:30:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The Heart of Machine">
+<meta name="twitter:title" content="SVM Duality and Kernel支持向量机、对偶形式与核">
+<meta name="twitter:description" content="Linear Support Vector Machine&amp;#x5728;&amp;#x4E4B;&amp;#x524D;&amp;#x7684;Perceptron&amp;#x7B97;&amp;#x6CD5;&amp;#x4E2D;&amp;#xFF0C;&amp;#x540C;&amp;#x6837;&amp;#x7684;&amp;#x4E8C;&amp;#x5206;&amp;#x6CD5;&amp;#xFF08;dichotomy&amp;#xFF09;&amp;#xFF0C;&amp;#x53EF;&amp;#x80FD;">
+<meta name="twitter:image" content="http://yoursite.com/civ0s8rvy0008pnln6queh55f/s1.0.png">
   
     <link rel="alternative" href="/atom.xml" title="The Heart of Machine" type="application/atom+xml">
   
@@ -126,54 +134,111 @@
 </nav>
 
       <div class="body-wrap">
+        <article id="post-SVM-Duality-and-Kernel支持向量机、对偶形式与核" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/civ0s8rvw0006pnlny03glg86/" class="archive-article-date">
-  	<time datetime="2016-10-03T05:25:26.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/civ0s8rvw0006pnlny03glg86/">Over-fitting and Regularization过拟合与正则化</a>
+    <h1 class="article-title" itemprop="name">
+      SVM Duality and Kernel支持向量机、对偶形式与核
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Linear-Support-Vector-Machine"><a href="#Linear-Support-Vector-Machine" class="headerlink" title="Linear Support Vector Machine"></a>Linear Support Vector Machine</h3><p>&#x5728;&#x4E4B;&#x524D;&#x7684;Perceptron&#x7B97;&#x6CD5;&#x4E2D;&#xFF0C;&#x540C;&#x6837;&#x7684;&#x4E8C;&#x5206;&#x6CD5;&#xFF08;dichotomy&#xFF09;&#xFF0C;&#x53EF;&#x80FD;&#x6709;&#x65E0;&#x7A77;&#x591A;&#x6761;&#x7EBF;&#x7684;&#x89E3;&#x3002;&#x4EE5;&#x4E0B;&#x4E09;&#x5F20;&#x56FE;&#x662F;&#x540C;&#x4E2A;&#x6837;&#x672C;&#xFF08;&#x6837;&#x672C;&#x4E3A;&#x81EA;&#x884C;&#x6A21;&#x62DF;&#xFF09;&#x7684;&#x4E0D;&#x540C;&#x5206;&#x7C7B;&#xFF1A;</p>
+<div align="center"><br><img src="/civ0s8rvy0008pnln6queh55f/s1.0.png" alt=""> <img src="/civ0s8rvy0008pnln6queh55f/s1.1.png" alt=""> <img src="/civ0s8rvy0008pnln6queh55f/s1.2.png" alt=""><br></div>
+
+<p>&#x867D;&#x7136;&#x8FD9;&#x4E09;&#x6761;&#x7EBF;&#x90FD;&#x5BF9;&#x5E94;&#x540C;&#x4E00;&#x79CD;dichotomy&#xFF0C;&#x4F46;&#x7B2C;&#x4E00;&#x5F20;&#x56FE;&#x8FD9;&#x6837;&#x7684;&#x7EBF;&#x5BB9;&#x9519;&#x80FD;&#x529B;&#x5927;&#xFF0C;&#x5728;&#x7A7A;&#x95F4;&#x4E0A;&#x7684;<strong>&#x95F4;&#x9694;</strong>&#x6700;&#x5927;&#x3002;</p>
+<h5 id="geometric-margin-and-functional-margin"><a href="#geometric-margin-and-functional-margin" class="headerlink" title="geometric margin and functional margin"></a>geometric margin and functional margin</h5><p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x8981;&#x6C42;&#x7684;&#x90A3;&#x4E2A;&#x95F4;&#x9694;&#x6700;&#x5927;&#x7684;&#x5206;&#x5272;&#x5E73;&#x9762;&#x4E3A;&#xFF1A;<br>$$<br>\mathbf{w}^T \mathbf{x}+b=0<br>$$<br>&#x8FD9;&#x91CC;&#x4E0D;&#x5728;&#x8FDB;&#x884C;$w_0=b^{\ast}$&#x548C;$x_0=1$&#x7684;&#x8BBE;&#x7F6E;&#xFF0C;&#x662F;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x4E4B;&#x540E;&#x7684;&#x8BA1;&#x7B97;&#x3002;</p>
+<p>&#x901A;&#x8FC7;&#x8DDD;&#x79BB;&#x516C;&#x5F0F;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x8FD9;&#x4E2A;&#x7A7A;&#x95F4;&#x4E0A;&#x7684;&#x4EFB;&#x610F;&#x4E00;&#x70B9;$x^{\ast}$&#x5230;&#x8FD9;&#x4E2A;&#x5E73;&#x9762;&#x7684;&#x8DDD;&#x79BB;&#x4E3A;<br>$$<br>\frac{\vert \mathbf{w}^T \mathbf{x^{\ast}}+b\vert}{\Vert \mathbf{w} \Vert}<br>$$</p>
+<p>&#x5176;&#x4E2D;&#xFF0C;&#x901A;&#x8FC7;&#x4E0E;$y \in \{+1,-1\}$&#x7684;&#x76F8;&#x4E58;&#x53EF;&#x4EE5;&#x628A;&#x7EDD;&#x5BF9;&#x503C;&#x7B26;&#x53F7;&#x53BB;&#x6389;&#x3002;&#x5B9A;&#x4E49;&#x5728;&#x7ED9;&#x5B9A;&#x6570;&#x636E;&#x96C6;$D$&#x4E2D;&#x7684;&#x70B9;$(x_i,y_i)$&#x5BF9;&#x4E8E;&#x8D85;&#x5E73;&#x9762;$(\mathbf{w},b)$&#x7684;<strong>&#x51E0;&#x4F55;&#x95F4;&#x9694;&#xFF08;geometric margin&#xFF09;</strong>&#x4E3A;&#xFF1A;<br>$$<br>\gamma_i = \frac{1}{\Vert \mathbf{w} \Vert} y_i (\mathbf{w}^T \mathbf{x}^{\ast}+b)<br>$$</p>
+<p><strong>&#x51FD;&#x6570;&#x95F4;&#x9694;&#xFF08;functional margin&#xFF09;</strong>&#x4E3A;:<br>$$<br>\hat{\gamma_i} = y_i (\mathbf{w}^T \mathbf{x^*}+b)<br>$$<br>&#x540C;&#x65F6;&#xFF0C;&#x6570;&#x636E;&#x96C6;$D$&#x5BF9;&#x4E8E;&#x8D85;&#x5E73;&#x9762;$(\mathbf{w},b)$&#x7684;&#x51E0;&#x4F55;&#x95F4;&#x9694;&#x4E3A;$\min \limits_{i=1,\cdots,N} \gamma_i$&#xFF0C;&#x51FD;&#x6570;&#x95F4;&#x9694;&#x4E3A;$\min \limits_{i=1,\cdots,N} \hat{\gamma_i}$</p>
+<h5 id="margin-maximization"><a href="#margin-maximization" class="headerlink" title="margin maximization"></a>margin maximization</h5><p>&#x6211;&#x4EEC;&#x8981;&#x6C42;&#x7684;&#x6700;&#x4F18;&#x5316;&#x95EE;&#x9898;&#x662F;&#x8BA9;&#x51E0;&#x4F55;&#x95F4;&#x9694;&#x5C3D;&#x53EF;&#x80FD;&#x5730;&#x5927;&#xFF1A;<br>$$<br>\begin{eqnarray}<br>\max \limits_{\mathbf{w},b} \quad \gamma \nonumber \\<br>s.t. \frac{1}{\Vert \mathbf{w} \Vert} y_i (\mathbf{w}^T \mathbf{x}^{\ast}+b) \geq \gamma \quad i=1,2,\ldots,N \nonumber<br>\end{eqnarray}<br>$$<br>&#x5229;&#x7528;&#x51FD;&#x6570;&#x95F4;&#x9694;&#x548C;&#x51E0;&#x4F55;&#x95F4;&#x9694;&#x7684;&#x8F6C;&#x6362;&#x5173;&#x7CFB;</p>
+<h3 id="Dual-Support-Vector-Machine"><a href="#Dual-Support-Vector-Machine" class="headerlink" title="Dual Support Vector Machine"></a>Dual Support Vector Machine</h3><h3 id="Kernel"><a href="#Kernel" class="headerlink" title="Kernel"></a>Kernel</h3>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/civ0s8rvy0008pnln6queh55f/" class="archive-article-date">
+  	<time datetime="2016-11-02T02:23:16.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-02</time>
+</a>
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li></ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/civ0s8rvw0006pnlny03glg86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Over-fitting and Regularization过拟合与正则化</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+  
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-SVM-Duality-and-Kernel支持向量机、对偶形式与核" data-title="SVM Duality and Kernel支持向量机、对偶形式与核" data-url="http://yoursite.com/civ0s8rvy0008pnln6queh55f/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'umbrellabeach'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
   
 
-    
 
 
       </div>
@@ -205,8 +270,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
