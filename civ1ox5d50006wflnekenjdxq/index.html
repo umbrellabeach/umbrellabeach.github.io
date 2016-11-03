@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Over-fitting and Regularization过拟合与正则化 | The Heart of Machine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;#x975E;&amp;#x7EBF;&amp;#x6027;&amp;#x53D8;&amp;#x6362;&amp;#xFF08;Non-linear Transformation&amp;#xFF09;&amp;#x5047;&amp;#x8BBE;&amp;#x6709;&amp;#x5982;&amp;#x4E0B;&amp;#x56FE;&amp;#x7684;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x6570;&amp;#x636E;&amp;#xFF08;&amp;#x6570;&amp;#x636E">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Over-fitting and Regularization过拟合与正则化">
+<meta property="og:url" content="http://yoursite.com/civ1ox5d50006wflnekenjdxq/index.html">
+<meta property="og:site_name" content="The Heart of Machine">
+<meta property="og:description" content="&amp;#x975E;&amp;#x7EBF;&amp;#x6027;&amp;#x53D8;&amp;#x6362;&amp;#xFF08;Non-linear Transformation&amp;#xFF09;&amp;#x5047;&amp;#x8BBE;&amp;#x6709;&amp;#x5982;&amp;#x4E0B;&amp;#x56FE;&amp;#x7684;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x6570;&amp;#x636E;&amp;#xFF08;&amp;#x6570;&amp;#x636E">
+<meta property="og:image" content="http://yoursite.com/civ1ox5d50006wflnekenjdxq/q1.png">
+<meta property="og:image" content="http://yoursite.com/civ1ox5d50006wflnekenjdxq/q2.png">
+<meta property="og:image" content="http://yoursite.com/civ1ox5d50006wflnekenjdxq/c1.png">
+<meta property="og:image" content="http://yoursite.com/civ1ox5d50006wflnekenjdxq/o1.png">
+<meta property="og:image" content="http://yoursite.com/civ1ox5d50006wflnekenjdxq/o2.png">
+<meta property="og:image" content="http://yoursite.com/civ1ox5d50006wflnekenjdxq/z.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/693134-c388a2981f36f146.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-11-02T02:50:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Over-fitting and Regularization过拟合与正则化">
+<meta name="twitter:description" content="&amp;#x975E;&amp;#x7EBF;&amp;#x6027;&amp;#x53D8;&amp;#x6362;&amp;#xFF08;Non-linear Transformation&amp;#xFF09;&amp;#x5047;&amp;#x8BBE;&amp;#x6709;&amp;#x5982;&amp;#x4E0B;&amp;#x56FE;&amp;#x7684;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x6570;&amp;#x636E;&amp;#xFF08;&amp;#x6570;&amp;#x636E">
+<meta name="twitter:image" content="http://yoursite.com/civ1ox5d50006wflnekenjdxq/q1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="The Heart of Machine" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://oe0136353.bkt.clouddn.com/head.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jiaqi Fu</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">home</a></li>
+	        
+				<li><a href="/archives">archives</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">archives</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">tags</a>
+    			
+    			
+            
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">aboutme</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/umbrellabeach" title="github">github</a>
+		        
+					<a class="mail" target="_blank" href="mailto:fujiaqi@zju.edu.cn" title="mail">mail</a>
+		        
+					<a class="linkedin" target="_blank" href="https://cn.linkedin.com/in/jiaqi-fu-013a27104" title="linkedin">linkedin</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jiaqi Fu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://oe0136353.bkt.clouddn.com/head.jpeg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jiaqi Fu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">home</a></li>
+		        
+					<li><a href="/archives">archives</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/umbrellabeach" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:fujiaqi@zju.edu.cn" title="mail">mail</a>
+			        
+						<a class="linkedin" target="_blank" href="https://cn.linkedin.com/in/jiaqi-fu-013a27104" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Over-fitting-and-Regularization过拟合与正则化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Over-fitting and Regularization过拟合与正则化
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear-Transformation&#xFF09;"><a href="#&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear-Transformation&#xFF09;" class="headerlink" title="&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear Transformation&#xFF09;"></a>&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear Transformation&#xFF09;</h4><p>&#x5047;&#x8BBE;&#x6709;&#x5982;&#x4E0B;&#x56FE;&#x7684;&#x7684;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#xFF08;&#x6570;&#x636E;&#x4E3A;&#x81EA;&#x884C;&#x6A21;&#x62DF;&#xFF09;&#xFF0C;&#x5708;&#x5708;&#x548C;&#x53C9;&#x53C9;&#x5206;&#x5E03;&#x8868;&#x793A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x4E24;&#x7C7B;&#x3002;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x6570;&#x636E;&#x96C6;&#x4E0D;&#x80FD;&#x88AB;&#x4E00;&#x6761;&#x76F4;&#x7EBF;&#x7EBF;&#x6027;&#x53EF;&#x5206;&#x3002;</p>
+<div align="center"><img src="/civ1ox5d50006wflnekenjdxq/q1.png" alt="q1"></div><br>&#x6B64;&#x65F6;&#x5982;&#x679C;&#x628A;&#x6570;&#x636E;&#x505A;&#x5982;&#x4E0B;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E00;&#x6761;&#x66F2;&#x7EBF;&#x5C06;&#x6570;&#x636E;&#x5207;&#x5206;&#x3002;<br>$$<br>\begin{eqnarray}<br>z_0&amp;=&amp;1 \nonumber \\<br>z_1&amp;=&amp;{x_1}^2 \nonumber \\<br>z_2&amp;=&amp;{x_2}^2 \nonumber<br>\end{eqnarray}<br>$$<br><br><div align="center"><img src="/civ1ox5d50006wflnekenjdxq/q2.png" alt="q2"></div><br>&#x5F97;&#x5230;&#x7684;hypothesis&#x662F;&#xFF1A;<br>$$<br>\begin{eqnarray}<br>h(\mathbf{z}) &amp;=&amp; \mathrm{sign}(w_2\cdot z_2+w_1\cdot z_1+w_0) \nonumber \\<br>&amp;=&amp; \mathrm{sign}(\mathrm{w^T Z})\nonumber<br>\end{eqnarray}<br>$$<br>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x62FF;&#x5230;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5148;&#x5BF9;&#x6570;&#x636E;&#x96C6;&#x8FDB;&#x884C;&#x8FD9;&#x6837;&#x7684;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x81F3;Z&#x7A7A;&#x95F4;&#xFF0C;&#x5728;Z&#x7A7A;&#x95F4;&#x4E0A;&#x4F7F;&#x7528;&#x7EBF;&#x6027;&#x5206;&#x7C7B;&#x5668;&#x5982;Perceptron&#x3001;Linear Regression&#x3001;Logistic Regression&#x7B49;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#x6216;&#x8005;&#x56DE;&#x5F52;&#xFF0C;&#x5C06;&#x7ED3;&#x679C;&#x5BF9;&#x5E94;&#x5230;X&#x7A7A;&#x95F4;&#x4E0A;&#x3002;<br><br>&#x66F4;&#x4E00;&#x822C;&#x5730;&#xFF0C;&#x5F53;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x5176;&#x4E2D;&#x6BCF;&#x4E2A;&#x6837;&#x672C;&#x70B9;$x_i \in \mathbf{R}^d$&#x3002;&#x5BF9;&#x5176;&#x8FDB;&#x884C;$Q$-th&#x53D8;&#x6362;&#x53EF;&#x5F97;&#x5230;<br>$$<br>\begin{eqnarray}<br>\Phi &amp;=&amp; (1, \nonumber \\<br>&amp;&amp; x_{(1)},x_{(2)},\cdots,x_{(d)}, \nonumber \\<br>&amp;&amp; x_{(1)}^2,x_{(1)}x_{(2)},\cdots,x_{(d)}^2, \nonumber \\<br>&amp;&amp; \cdots, \nonumber \\<br>&amp;&amp; x_{(1)}^Q,x_{(1)}^{Q-1}x_{(2)},\cdots,x_{(d)}^{Q}) \nonumber<br>\end{eqnarray}<br>$$<br><br>&#x4E8C;&#x7EF4;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x4EE3;&#x7801;&#xFF08;$Q=2$&#xFF09;:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__feature_transform</span><span class="params">(self, x1, x2)</span>:</span></div><div class="line">    d = self.FEAT_TRANS_DIM</div><div class="line">    res = []</div><div class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>, d + <span class="number">1</span>):</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, k + <span class="number">1</span>):</div><div class="line">            res.append((x1 ** i) * (x2 ** (k - i)))</div><div class="line">    <span class="keyword">return</span> np.array(res)</div></pre></td></tr></table></figure><br><br>&#x5728;&#x4E0A;&#x7BC7;&#x6587;&#x7AE0;<a href="https://umbrellabeach.github.io/civ0bosza00050dlnrat9tso0/" target="_blank" rel="external">Logistic Regression&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x7684;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x73B0;</a>&#x4E2D;&#x5B9E;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;LR Classifier&#xFF0C;&#x6211;&#x4EEC;&#x628A;LR&#x76F4;&#x63A5;&#x5728;&#x672C;&#x4F8B;&#x6570;&#x636E;&#x539F;&#x7EF4;&#x5EA6;&#x8DD1;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF0C;&#x51C6;&#x786E;&#x7387;&#x53EA;&#x6709;60%&#xFF1A;<br><br><div align="center"><img src="/civ1ox5d50006wflnekenjdxq/c1.png" alt="c1"></div>
+
+<p>&#x4F7F;&#x7528;&#x672C;&#x4F8B;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x4EE3;&#x7801;&#x5904;&#x7406;&#x540E;&#xFF08;$Q=2$&#xFF09;&#x518D;&#x4F7F;&#x7528;LR Classifier&#x5206;&#x7C7B;&#xFF0C;&#x51C6;&#x786E;&#x7387;&#x63D0;&#x5347;&#x81F3;<strong>96.7%</strong>&#x3002;&#x53EF;&#x89C1;&#xFF0C;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x81F3;&#x5C11;&#x5C06;$E_{in}$&#x964D;&#x5230;&#x4E86;&#x6700;&#x4F4E;&#xFF0C;&#x53EF;&#x8C13;&#x201C;&#x795E;&#x529B;&#x201D;&#x3002;</p>
+<h4 id="&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;"><a href="#&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;" class="headerlink" title="&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;"></a>&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;</h4><p>&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x589E;&#x52A0;&#x4E86;&#x6A21;&#x578B;&#x7684;&#x590D;&#x6742;&#x5EA6;&#xFF0C;&#x4ECE;VC&#x89D2;&#x5EA6;&#x6765;&#x8BF4;&#xFF1A;<br>$<br>E_{out} \leqslant E_{in} + O(\mathrm{model})<br>$<br>&#x5F53;&#x6A21;&#x578B;&#x590D;&#x6742;&#x5EA6;&#x8D8A;&#x6765;&#x8D8A;&#x5927;&#xFF0C;&#x8BAD;&#x7EC3;&#x8BEF;&#x5DEE;$E_{in}$&#x4F1A;&#x51CF;&#x5C11;&#xFF0C;&#x4F46;&#x5B9E;&#x9645;&#x8BEF;&#x5DEE;$E_{out}$&#x53CD;&#x800C;&#x4F1A;&#x4E0A;&#x5347;&#xFF0C;&#x8FD9;&#x4E2A;&#x60C5;&#x51B5;&#x79F0;&#x4E3A;<strong>Over-fitting &#x8FC7;&#x62DF;&#x5408;</strong>&#x3002;</p>
+<p>&#x6765;&#x770B;&#x53F0;&#x5927;&#x300A;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x57FA;&#x77F3;&#x300B;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<div align="center"><img src="/civ1ox5d50006wflnekenjdxq/o1.png" alt="o1"></div><br>&#x5F53;&#x6211;&#x4EEC;&#x7528;&#x66F4;&#x201C;&#x5389;&#x5BB3;&#x201D;&#x7684;&#x6A21;&#x578B;&#x53BB;&#x62DF;&#x5408;&#xFF0C;&#x5C31;&#x4F1A;&#x53D1;&#x751F;&#x53F3;&#x8FB9;&#x8FD9;&#x6837;&#x7684;&#x8FC7;&#x62DF;&#x5408;&#x60C5;&#x51B5;&#xFF0C;&#x4F46;&#x53EF;&#x80FD;&#x5B9E;&#x9645;&#x4E0A;&#x4F4E;&#x7EF4;&#x5EA6;&#x7684;&#x6A21;&#x578B;&#x66F4;&#x63A5;&#x8FD1;&#x771F;&#x5B9E;&#x7684;&#x6A21;&#x578B;&#x3002;&#x8FD9;&#x6837;&#x60F3;&#x6765;&#xFF0C;&#x8FC7;&#x62DF;&#x5408;&#x662F;<strong>&#x6A21;&#x578B;&#x590D;&#x6742;&#x5EA6;</strong>&#x6216;&#x8005;<strong>&#x566A;&#x58F0;</strong>&#x5F71;&#x54CD;&#x7684;&#x3002;<br><br><div align="center"><img src="/civ1ox5d50006wflnekenjdxq/o2.png" alt="o2"></div>
+
+<p>&#x4E0A;&#x56FE;&#x8FD9;&#x4E2A;&#x5B9E;&#x9A8C;&#x5C31;&#x663E;&#x793A;&#x8FC7;&#x62DF;&#x5408;&#x7684;&#x6781;&#x5927;&#x5371;&#x5BB3;&#x3002;</p>
+<h4 id="&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;"><a href="#&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;" class="headerlink" title="&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;"></a>&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;</h4><p>&#x7ECF;&#x8FC7;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x540E;&#xFF0C;&#x5176;&#x5B9E;&#x8FD8;&#x662F;&#x5728;&#x4E00;&#x4E2A;&#x7EBF;&#x6027;&#x95EE;&#x9898;&#x4E2D;</p>
+<p>$$<br>h(z)=w_0+w_1 z_1+w_2 z_2+\cdots+w_m z_m<br>$$</p>
+<p>&#x5728;&#x6700;&#x5C0F;&#x5316;in sample error $E_{in}(\mathbf{w})$&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x5BF9;$\mathbf{w}$&#x505A;&#x4E00;&#x4E9B;&#x9650;&#x5236;&#xFF0C;&#x8BA9;&#x67D0;&#x4E9B;&#x5F71;&#x54CD;&#x8FC7;&#x62DF;&#x5408;&#x7684;&#x9879;&#x5C3D;&#x53EF;&#x80FD;&#x5C0F;&#x3002;</p>
+<p>&#x6BD4;&#x5982;$\mathbf{w^T w}\leqslant \mathbf{C}$&#x3002;&#x6211;&#x4EEC;&#x4F7F;&#x7528;<strong>Lagrange Multiplier</strong>&#x628A;&#x5B83;&#x52A0;&#x5230;&#x7ECF;&#x9A8C;&#x516C;&#x5F0F;&#x4E2D;&#x5F97;&#x5230;&#xFF1A;<br>$$<br>\min E_{in}(\mathbf{w}) + \lambda \mathbf{w^T w}<br>$$</p>
+<p>&#x66F4;&#x4E00;&#x822C;&#x7684;&#x5F62;&#x5F0F;&#x662F;<br>$$<br>E_{aug}(w&#xFF09;= E_{in}(w) + \lambda L(w)<br>$$<br>&#x5176;&#x4E2D;&#x7684;L(f)&#x6211;&#x4EEC;&#x53EB;&#x505A;<strong>&#x6B63;&#x5219;&#x9879;</strong>&#x6216;<strong>&#x60E9;&#x7F5A;&#x9879; Regularizer</strong>&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5373;&#x662F;<strong>&#x6B63;&#x5219;&#x5316;Regularization</strong>&#x3002;</p>
+<blockquote>
+<p>&#x6B63;&#x5219;&#x5316;&#x7B26;&#x5408;&#x5965;&#x5361;&#x59C6;&#x5243;&#x5200;&#x5B9A;&#x5F8B;&#xFF08;Occam&#x2019;s razor&#xFF09;&#x539F;&#x7406;&#xFF0C;&#x5965;&#x5361;&#x59C6;&#x5243;&#x5200;&#x5B9A;&#x5F8B;&#x539F;&#x7406;&#x5E94;&#x7528;&#x4E8E;&#x6A21;&#x578B;&#x9009;&#x62E9;&#x65F6;&#x4E3A;&#x4EE5;&#x4E0B;&#x60F3;&#x6CD5;&#xFF1A;&#x5728;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x9009;&#x62E9;&#x7684;&#x6A21;&#x578B;&#x4E2D;&#xFF0C;&#x80FD;&#x591F;&#x5F88;&#x597D;&#x5730;&#x89E3;&#x91CA;&#x5DF2;&#x77E5;&#x6570;&#x636E;&#x5E76;&#x4E14;&#x5341;&#x5206;&#x7B80;&#x5355;&#x624D;&#x662F;&#x597D;&#x7684;&#x6A21;&#x578B;&#x3002;&#xFF08;&#x674E;&#x822A;&#x300A;&#x7EDF;&#x8BA1;&#x5B66;&#x65B9;&#x6CD5;&#x300B;&#xFF09;</p>
+</blockquote>
+<p>&#x6B63;&#x5219;&#x5316;&#x901A;&#x5E38;&#x6709;&#x4E09;&#x79CD;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<p><strong>L2-Regularization</strong>&#x53C8;&#x79F0;<strong>Ridge Regression &#x5CAD;&#x56DE;&#x5F52;</strong></p>
+<p>$$<br>E_{aug}(w)=\frac{1}{2} \sum_{i=1}^N (y_i - y(x_i,w)^2)+\frac{\lambda}{2} \Vert w \Vert^2<br>$$</p>
+<p><strong>L1-Regularization</strong>&#x53C8;&#x79F0;<strong>Lasso Regression</strong></p>
+<p>$$<br>E_{aug}(w)=\frac{1}{2} \sum_{i=1}^N (y_i - y(x_i,w)^2)+\lambda \Vert w \Vert_1<br>$$</p>
+<p><strong>L0-Regularization</strong></p>
+<p>$$<br>E_{aug}(w)=\frac{1}{2} \sum_{i=1}^N (y_i - y(x_i,w)^2)+\lambda \sum_{i=1}^N \delta (w_i \neq 0)<br>$$</p>
+<p><a href="https://github.com/umbrellabeach/logistic_regression" target="_blank" rel="external">Github&#x5B8C;&#x6574;&#x4EE3;&#x7801;</a></p>
+<p>&#x6700;&#x540E;&#x6765;&#x8BA8;&#x8BBA;&#x4E00;&#x4E0B;&#x5728;&#x77E5;&#x4E4E;&#x4E0A;&#x770B;&#x7684;&#x4E00;&#x4E2A;&#x95EE;&#x9898;</p>
+<p><a href="https://www.zhihu.com/question/37096933?sort=created" target="_blank" rel="external">&#x77E5;&#x4E4E;-l1 &#x76F8;&#x6BD4;&#x4E8E; l2 &#x4E3A;&#x4EC0;&#x4E48;&#x5BB9;&#x6613;&#x83B7;&#x5F97;&#x7A00;&#x758F;&#x89E3;&#xFF1F;</a></p>
+<p>ESL&#x4E66;&#x91CC;&#x5C31;&#x89E3;&#x91CA;&#x7684;&#x5F88;&#x6E05;&#x695A;</p>
+<p><img src="/civ1ox5d50006wflnekenjdxq/z.png" alt="ESL"><br>&#x8BF4;&#x767D;&#x4E86;&#xFF0C;l1&#x662F;&#x6709;&#x89D2;&#x7684;&#xFF0C;l2&#x662F;&#x65E0;&#x89D2;&#x7684;&#xFF0C;&#x4F7F;&#x7528;l1&#x6700;&#x540E;&#x7684;w&#x90FD;&#x4F1A;&#x8DD1;&#x5230;corner&#x90A3;&#x8FB9;&#xFF0C;&#x800C;corner&#x90A3;&#x8FB9;&#x6B63;&#x597D;&#x662F;&#x6709;w&#x7B49;&#x4E8E;0&#x7684;&#x5730;&#x65B9;&#x3002;</p>
+<p>&#x4E5F;&#x6709;&#x76F4;&#x89C2;&#x7684;&#x89E3;&#x91CA;</p>
+<blockquote>
+<p>&#x66F4;&#x52A0;&#x76F4;&#x89C2;&#x7684;&#x6765;&#x8BF4;&#xFF0C;&#x6709;&#x4E00;&#x4E2A;&#x7403;&#x5728;&#x66F2;&#x9762;&#x4E0A;&#xFF0C;&#x6211;&#x4EEC;&#x628A;&#x7403;&#x53D7;&#x5230;&#x7684;&#x91CD;&#x529B;&#x548C;&#x66F2;&#x9762;&#x7684;&#x652F;&#x6491;&#x529B;&#x7684;&#x5408;&#x529B;&#x770B;&#x6210;&#x4E00;&#x4E2A;&#x529B;&#xFF0C;&#x65B9;&#x5411;&#x4E5F;&#x5C31;&#x662F;&#x66F2;&#x9762;&#x7684;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x3002;&#x6B64;&#x5916;&#x6211;&#x4EEC;&#x8FD8;&#x53D7;&#x5230;&#x4E00;&#x4E2A;&#x6765;&#x81EA;&#x4E8E;&#x56DB;&#x8FB9;&#x5F62;&#xFF08;&#x4E0A;&#x56FE;&#xFF09;&#x7684;&#x67B6;&#x5B50;&#x7684;&#x652F;&#x6491;&#x529B;&#xFF0C;&#x800C;&#x6700;&#x4F18;&#x89E3;&#x5904;&#x5C31;&#x662F;&#x7403;&#x80FD;&#x591F;&#x9759;&#x6B62;&#x5E73;&#x8861;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x90A3;&#x4E48;&#x5F88;&#x660E;&#x663E;&#xFF0C;&#x662F;&#x4E0D;&#x662F;&#x5728;&#x56DB;&#x4E2A;&#x9876;&#x89D2;&#x5904;&#x6700;&#x6709;&#x53EF;&#x80FD;&#x7981;&#x6B62;&#x3002;</p>
+<p>&#x5C31;&#x662F;&#x62FF;&#x8DDF;&#x7EF3;&#x5B50;&#x6302;&#x70B9;&#x91CD;&#x7269;&#xFF0C;&#x7EF3;&#x5B50;&#x5F88;&#x5BB9;&#x6613;&#x6ED1;&#x5012;&#x8FD9;&#x4E2A;&#x67B6;&#x5B50;&#x7684;&#x89D2;&#x70B9;&#x5904;&#x5427;&#x3002;&#x4E00;&#x822C;&#x6765;&#x8BF4;&#xFF0C;&#x8D8A;&#x662F;non-convex&#x7684;regularizer&#x8D8A;&#x662F;&#x5BB9;&#x6613;&#x4F7F;&#x7684;&#x6211;&#x4EEC;&#x7684;&#x6A21;&#x578B;sparse&#x3002;</p>
+</blockquote>
+<p>&#x6700;&#x540E;&#x653E;&#x4E00;&#x5F20;regularizer&#x4E0D;&#x540C;&#x8303;&#x6570;&#x7684;&#x56FE;</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/693134-c388a2981f36f146.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/civ1ox5d50006wflnekenjdxq/" class="archive-article-date">
+  	<time datetime="2016-10-03T05:25:26.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-03</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/civ1ox5d80009wflnfxmqft4s/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          SVM Duality and Kernel支持向量机、对偶形式与核
+        
+      </div>
+    </a>
+  
+  
+    <a href="/civ1ox5d30005wflnoesw1qs9/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Logistic Regression逻辑回归的原理及实现</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+  
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-Over-fitting-and-Regularization过拟合与正则化" data-title="Over-fitting and Regularization过拟合与正则化" data-url="http://yoursite.com/civ1ox5d50006wflnekenjdxq/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'umbrellabeach'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
+
+
+
+      </div>
+      <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Jiaqi Fu
+    	</div>
+      <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span id="busuanzi_container_site_uv">
+        本站访客数<span id="busuanzi_value_site_uv"></span>人次
+      </span>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 13.33px;">C++</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
