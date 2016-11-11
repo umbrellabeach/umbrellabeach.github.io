@@ -4,14 +4,21 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Tag: C++ | The Heart of Machine</title>
+  <title>Same Tree Problem | The Heart of Machine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="The Heart of Machine">
-<meta property="og:url" content="http://yoursite.com/tags/C/index.html">
+  <meta name="description" content="Given two non-complete binary trees, the algorithm is to judge whether they are same (both in stuct and value or only in struct).
+It&amp;#x2019;s my clumsy solution to build a queue for level traverse in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Same Tree Problem">
+<meta property="og:url" content="http://yoursite.com/civdxtyi10007kolnqbn0q5v9/index.html">
 <meta property="og:site_name" content="The Heart of Machine">
+<meta property="og:description" content="Given two non-complete binary trees, the algorithm is to judge whether they are same (both in stuct and value or only in struct).
+It&amp;#x2019;s my clumsy solution to build a queue for level traverse in">
+<meta property="og:updated_time" content="2016-11-11T15:28:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The Heart of Machine">
+<meta name="twitter:title" content="Same Tree Problem">
+<meta name="twitter:description" content="Given two non-complete binary trees, the algorithm is to judge whether they are same (both in stuct and value or only in struct).
+It&amp;#x2019;s my clumsy solution to build a queue for level traverse in">
   
     <link rel="alternative" href="/atom.xml" title="The Heart of Machine" type="application/atom+xml">
   
@@ -126,118 +133,110 @@
 </nav>
 
       <div class="body-wrap">
+        <article id="post-Same-Tree-Problem" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
   
+    <h1 class="article-title" itemprop="name">
+      Same Tree Problem
+    </h1>
   
+
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
       
+        <p>Given two non-complete binary trees, the algorithm is to judge whether they are same (<em>both in stuct and value</em> or <em>only in struct</em>).</p>
+<p>It&#x2019;s my clumsy solution to build a queue for level traverse in that this only stores level information without parent information.</p>
+<p>For most <strong>recursion</strong>, conditions should be simply considered (do not think too much!). For example, in this problem, we could focus on two nodes ($n_i$ and $n_j$) in tree A and tree B. These denotes two nodes are equal:</p>
+<ol>
+<li>$n_i = NULL$ and  $n_j = NULL$</li>
+<li>leftChild of $n_i$ = leftChild of $n_j$ and  rightChild of $n_i$ = rightChild of $n_j$ (and value of node)</li>
+</ol>
+<p>This is not hard to solve by this condition. Here is the code of my solution:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * Problem: Same Tree</div><div class="line"> * Author: fujiaqi@zju.edu.cn</div><div class="line"> * Data: 11/11/2016</div><div class="line"> * Description: Judges whether two binary trees equal structurally or totally</div><div class="line">*/</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">struct</span> BiTreeNode{</div><div class="line">    <span class="keyword">int</span> data;</div><div class="line">    <span class="keyword">struct</span> BiTreeNode *left, *right;</div><div class="line">};</div><div class="line"></div><div class="line"><span class="comment">//Both in struct and value</span></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isSameTree</span><span class="params">(BiTreeNode *pA, BiTreeNode *pB)</span></span>{</div><div class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> == pA &amp;&amp; <span class="literal">NULL</span> == pB){</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="literal">NULL</span> == pA || <span class="literal">NULL</span> == pB || pA-&gt;data != pB-&gt;data){</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> isSameTree(pA-&gt;left,pB-&gt;left) &amp;&amp; isSameTree(pA-&gt;right, pB-&gt;right);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//Only in struct</span></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isSameStruTree</span><span class="params">(BiTreeNode *pA, BiTreeNode *pB)</span></span>{</div><div class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> == pA &amp;&amp; <span class="literal">NULL</span> == pB){</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="literal">NULL</span> == pA || <span class="literal">NULL</span> == pB){</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> isSameStruTree(pA-&gt;left,pB-&gt;left) &amp;&amp; isSameTree(pA-&gt;right, pB-&gt;right);</div><div class="line">}</div></pre></td></tr></table></figure>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/civdxtyi10007kolnqbn0q5v9/" class="archive-article-date">
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/civdxtyi10007kolnqbn0q5v9/" class="archive-article-date">
   	<time datetime="2016-11-11T14:59:12.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-11</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/civdxtyi10007kolnqbn0q5v9/">Same Tree Problem</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/civdxtyhd0000koln192j4bhr/" class="archive-article-date">
-  	<time datetime="2016-07-04T05:01:57.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-07-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/civdxtyhd0000koln192j4bhr/">Leetcode 4: Median of Two Sorted Arrays</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+  
+<nav id="article-nav">
+  
+  
+    <a href="/civdxtyid000dkolno8jw30tt/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SVM and Dual Problem 支持向量机与对偶问题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/civdxtyho0003kolnczxew5w4/" class="archive-article-date">
-  	<time datetime="2016-07-03T02:31:10.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-07-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/civdxtyho0003kolnczxew5w4/">Index of Leetcode Solution</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-Same-Tree-Problem" data-title="Same Tree Problem" data-url="http://yoursite.com/civdxtyi10007kolnqbn0q5v9/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'umbrellabeach'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
   
 
-    
 
 
       </div>
@@ -269,9 +268,9 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/"
