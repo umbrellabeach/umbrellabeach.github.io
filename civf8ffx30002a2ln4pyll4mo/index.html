@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Leetcode 4: Median of Two Sorted Arrays | The Heart of Machine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="The problem
+There are two sorted arrays nums1 and nums2 of size m and n respectively. 
+Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
+
+Example 1:
+123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode 4: Median of Two Sorted Arrays">
+<meta property="og:url" content="http://yoursite.com/civf8ffx30002a2ln4pyll4mo/index.html">
+<meta property="og:site_name" content="The Heart of Machine">
+<meta property="og:description" content="The problem
+There are two sorted arrays nums1 and nums2 of size m and n respectively. 
+Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
+
+Example 1:
+123">
+<meta property="og:updated_time" content="2016-11-03T08:35:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leetcode 4: Median of Two Sorted Arrays">
+<meta name="twitter:description" content="The problem
+There are two sorted arrays nums1 and nums2 of size m and n respectively. 
+Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
+
+Example 1:
+123">
+  
+    <link rel="alternative" href="/atom.xml" title="The Heart of Machine" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://oe0136353.bkt.clouddn.com/head.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jiaqi Fu</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">home</a></li>
+	        
+				<li><a href="/archives">archives</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">archives</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">tags</a>
+    			
+    			
+            
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">aboutme</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/umbrellabeach" title="github">github</a>
+		        
+					<a class="mail" target="_blank" href="mailto:fujiaqi@zju.edu.cn" title="mail">mail</a>
+		        
+					<a class="linkedin" target="_blank" href="https://cn.linkedin.com/in/jiaqi-fu-013a27104" title="linkedin">linkedin</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jiaqi Fu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://oe0136353.bkt.clouddn.com/head.jpeg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jiaqi Fu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">home</a></li>
+		        
+					<li><a href="/archives">archives</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/umbrellabeach" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:fujiaqi@zju.edu.cn" title="mail">mail</a>
+			        
+						<a class="linkedin" target="_blank" href="https://cn.linkedin.com/in/jiaqi-fu-013a27104" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Leetcode-4-Median-of-Two-Sorted-Arrays" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Leetcode 4: Median of Two Sorted Arrays
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="The-problem"><a href="#The-problem" class="headerlink" title="The problem"></a>The problem</h3><blockquote>
+<p>There are two sorted arrays nums1 and nums2 of size m and n respectively. </p>
+<p>Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).</p>
+</blockquote>
+<p>Example 1:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">nums1 = [1, 3]</div><div class="line">nums2 = [2]</div><div class="line"></div><div class="line">The median is 2.0</div></pre></td></tr></table></figure>
+<p>Example 2:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">nums1 = [1, 2]</div><div class="line">nums2 = [3, 4]</div><div class="line"></div><div class="line">The median is (2 + 3)/2 = 2.5</div></pre></td></tr></table></figure>
+<p>Custom Testcase:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[1,3]</div><div class="line">[2]</div></pre></td></tr></table></figure>
+<h3 id="The-thinking"><a href="#The-thinking" class="headerlink" title="The thinking"></a>The thinking</h3><p>The solution is asked for O(log(m+n)) in overall run time complexity. </p>
+<p>At first, I quickly figured out the solution which merges the two arrays in order. It&#x2019;s easy to code this solution and this solution was acceptable to Leetcode.</p>
+<p>Here is the code:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution {</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">int</span> MAX_INT = <span class="number">2147483647</span>;</div><div class="line">    <span class="function"><span class="keyword">double</span> <span class="title">findMedianSortedArrays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2)</span> </span>{</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; merged;</div><div class="line">        <span class="keyword">int</span> i=<span class="number">0</span>, j = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(i &lt; nums1.size() || j &lt; nums2.size()){</div><div class="line">            <span class="keyword">int</span> x = get_if_exitst(nums1, i);</div><div class="line">            <span class="keyword">int</span> y = get_if_exitst(nums2, j);</div><div class="line">            <span class="keyword">if</span>(x &lt; y){</div><div class="line">                merged.push_back(x);</div><div class="line">                i++;</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span>{</div><div class="line">                merged.push_back(y);</div><div class="line">                j++;</div><div class="line">            }</div><div class="line">        }</div><div class="line">        <span class="keyword">int</span> len = (<span class="keyword">int</span>)merged.size();</div><div class="line">        <span class="keyword">double</span> res;</div><div class="line">        <span class="keyword">if</span>(len % <span class="number">2</span> ==<span class="number">0</span>){</div><div class="line">            res = (<span class="keyword">double</span>)(merged[len/<span class="number">2</span><span class="number">-1</span>]+merged[len/<span class="number">2</span>])/<span class="number">2</span>;</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            res = (<span class="keyword">double</span>)merged[len/<span class="number">2</span>];</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    }</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get_if_exitst</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span></span>{</div><div class="line">        <span class="keyword">if</span>(k &gt;= nums.size()){</div><div class="line">            <span class="keyword">return</span> MAX_INT;</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> nums[k];</div><div class="line">    }</div><div class="line">};</div></pre></td></tr></table></figure>
+<p>However, this solution takes O(m+n) time complexity and O(m+n) space complexity. We can set two points to move in arrays instead of merging arrays and let points stop at the n/2. This takes O((m+n)/2)=O(m+n) time complexity and O(1) space complexity.</p>
+<p>According to <a href="http://blog.csdn.net/zxzxy1988/article/details/8587244" target="_blank" rel="external">the article</a>, this problem can be resolved by a divide-and-conquer strategy. Generally, the problem can be regarded as a special case of <strong>finds the k-th element in two arrays</strong>.</p>
+<p>Given two sorted arrays A and B, we need to find the k-th element in two arrays. From the basic idea of binary search which takes O(logN) time complexity, we can design a divide-and-conquer method. Assume that the length of A and B are both larger than k/2. Then we pick out the A[k/2-1] and B[k/2-1]. There are three cases:</p>
+<ul>
+<li><strong>A[k/2-1] = B[k/2-1]</strong>. We can immediately obtain A[k/2-1] or B[k/2-1] as result. It&#x2019;s because that A[k/2-1] is the k/2-th elements in A, and so B[k/2-1] is. So A[k/2-1] or B[k/2-1] is the k-th element in A and B.</li>
+<li><strong>A[k/2-1] &lt; B[k/2-1]</strong>. In this case, we can remove the A[0], A[1], &#x2026;, A[k/2-1] elements in A. Because they can not the k-th element. Then this problem is transferred as find the (k-kp)-th elment in A[pa:]+B[:] or A[:]+B[pb:].</li>
+<li><strong>A[k/2-1] &gt; B[k/2-1]</strong>. It&#x2019;s the same as above.</li>
+</ul>
+<p>We can set A as the smaller array.</p>
+<p>Pay attention to this boundary conditions:</p>
+<ul>
+<li><strong>A or B is empty</strong>. Return B[k-1] or A[k-1].</li>
+<li><strong>k=1</strong>. Return min(A[0], B[0]).</li>
+<li><strong>A[k/2-1]==B[k/2-1]</strong>. Return one of A[k/2-1] or B[k/2-1].</li>
+</ul>
+<p>Here is the final solution:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution {</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">double</span> <span class="title">findMedianSortedArrays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2)</span> </span>{</div><div class="line">        <span class="keyword">int</span> total = (<span class="keyword">int</span>)nums1.size() + (<span class="keyword">int</span>)nums2.size();</div><div class="line">        <span class="keyword">if</span> (total &amp; <span class="number">0x1</span>)</div><div class="line">            <span class="keyword">return</span> findKth(nums1, nums2, total / <span class="number">2</span> + <span class="number">1</span>);</div><div class="line">        <span class="keyword">else</span></div><div class="line">            <span class="keyword">return</span> (findKth(nums1, nums2, total / <span class="number">2</span>)</div><div class="line">                    + findKth(nums1, nums2, total / <span class="number">2</span> + <span class="number">1</span>)) / <span class="number">2</span>;</div><div class="line">    }</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">erateElements</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; vec, <span class="keyword">int</span> m)</span></span>{</div><div class="line">        <span class="keyword">for</span> ( <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator it = vec.begin(); it != vec.end();  )</div><div class="line">        {</div><div class="line">            it = vec.erase(it);</div><div class="line">            m--;</div><div class="line">            <span class="keyword">if</span>(m &lt;= <span class="number">0</span>){</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            }</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">double</span> <span class="title">findKth</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums2, <span class="keyword">int</span> k)</span></span>{</div><div class="line">        <span class="keyword">if</span>(nums1.size() &gt; nums2.size()){</div><div class="line">            <span class="keyword">return</span> findKth(nums2, nums1, k);</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(nums1.size()==<span class="number">0</span>){</div><div class="line">            <span class="keyword">return</span> nums2[k<span class="number">-1</span>];</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(k==<span class="number">1</span>){</div><div class="line">            <span class="keyword">return</span> min(nums1[<span class="number">0</span>], nums2[<span class="number">0</span>]);</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keyword">int</span> pa = min(k/<span class="number">2</span>, (<span class="keyword">int</span>)nums1.size());</div><div class="line">        <span class="keyword">int</span> pb = k - pa;</div><div class="line">        <span class="keyword">if</span>(nums1[pa<span class="number">-1</span>] &lt; nums2[pb<span class="number">-1</span>]){</div><div class="line">            erateElements(nums1, pa);</div><div class="line">            <span class="keyword">return</span> findKth(nums1, nums2, k-pa);</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(nums1[pa<span class="number">-1</span>] &gt; nums2[pb<span class="number">-1</span>]){</div><div class="line">            erateElements(nums2, pb);</div><div class="line">            <span class="keyword">return</span> findKth(nums1, nums2, k-pb);</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span>{</div><div class="line">            <span class="keyword">return</span> nums1[pa<span class="number">-1</span>];</div><div class="line">        }</div><div class="line"></div><div class="line">    }</div><div class="line">};</div></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/civf8ffx30002a2ln4pyll4mo/" class="archive-article-date">
+  	<time datetime="2016-07-04T05:01:57.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-07-04</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/civf8ffx80004a2lnlj2iusfm/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Linear Regression原理及实现
+        
+      </div>
+    </a>
+  
+  
+    <a href="/civf8ffwy0001a2ln5omdvfx7/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Index of Leetcode Solution</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+  
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-Leetcode-4-Median-of-Two-Sorted-Arrays" data-title="Leetcode 4: Median of Two Sorted Arrays" data-url="http://yoursite.com/civf8ffx30002a2ln4pyll4mo/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'umbrellabeach'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
+
+
+
+      </div>
+      <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Jiaqi Fu
+    	</div>
+      <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span id="busuanzi_container_site_uv">
+        本站访客数<span id="busuanzi_value_site_uv"></span>人次
+      </span>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Algorithm/" style="font-size: 16.67px;">Algorithm</a> <a href="/tags/C/" style="font-size: 16.67px;">C++</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
