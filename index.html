@@ -128,6 +128,69 @@
       <div class="body-wrap">
         
   
+    <article id="post-Non-Linear SVM and Kernel Function非线性支持向量机与核函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/civg9n2in000500ln4el25t9u/">Non-Linear SVM and Kernel Function非线性支持向量机与核函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="kernel-in-SVM"><a href="#kernel-in-SVM" class="headerlink" title="kernel in SVM"></a>kernel in SVM</h3><p>&#x5F53;&#x6570;&#x636E;&#x4E0D;&#x662F;&#x7EBF;&#x6027;&#x53EF;&#x5206;&#x65F6;&#xFF0C;&#x628A;&#x6570;&#x636E;&#x4F7F;&#x7528;&#x975E;&#x7EBF;&#x6027;&#x8F6C;&#x6362;&#x5230;&#x9AD8;&#x7EF4;&#x4E0B;&#x4F1A;&#x53EF;&#x5206;&#xFF0C;&#x5728;&#x4E4B;&#x524D;&#x7684;&#x6587;&#x7AE0;<a href="http://fujiaqi.com/civfylt0n0007vmln0a7g7zjy/" target="_blank" rel="external">Over-fitting and Regularization</a>&#x4E2D;&#x8BB2;&#x5230;&#x4E86;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x5148;&#x5BF9;&#x6570;&#x636E;&#x505A;<strong>&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;non-linear transformation&#xFF09;</strong>&#xFF0C;&#x5148;&#x5047;&#x8BBE;&#x505A;&#x4E00;&#x4E2A;&#x4E8C;&#x6B21;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;&#x6240;&#x6709;&#x4E00;&#x6B21;&#x9879;&#x7EC4;&#x5408;+&#x4E8C;&#x6B21;&#x9879;&#x7EC4;&#x5408;&#xFF09;&#xFF0C;&#x5373;&#xFF1A;<br>$$<br>\Phi(x)=(1,x_1,x_2,\ldots,x_1^2,x_1 x_2,\ldots,x_1 x_d,x_2^2,\ldots,x_2 x_d,\ldots,x_d^2)<br>$$</p>
+<p>&#x4F7F;&#x7528;SVM&#x5BF9;&#x53D8;&#x6362;&#x7684;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#xFF0C;&#x5BF9;&#x5076;&#x95EE;&#x9898;&#x7684;target&#x662F;&#x8FD9;&#x6837;&#xFF1A;<br>$$<br>\begin{eqnarray}<br> \min \limits_{\alpha} &amp;\quad&amp;\frac{1}{2} \sum_{i=1}^N \sum_{j=1}^N \alpha_i \alpha_j y_i y_j(\Phi(x_i)^T \Phi(x_j))-\sum_{i=1}^N \alpha_i \nonumber \\<br>s.t.&amp;\quad&amp; \sum_{i}^N \alpha_i y_i=0 \nonumber \\<br>&amp;\quad&amp; 0 \leqslant \alpha_i \leqslant C,\quad,1,2,\ldots,N\nonumber<br>\end{eqnarray}<br>$$</p>
+<p>&#x56E0;&#x6B64;&#x9700;&#x8981;&#x8BA1;&#x7B97;$\Phi(x)^T \Phi(x&#x2019;)$&#xFF1A;<br>$$<br>\Phi(x)^T \Phi(x&#x2019;)=1+\sum_i^d x_i x_i&#x2019;+\sum_i^d \sum_j^d x_i x_j x_i&#x2019; x_j&#x2019;<br>$$</p>
+<p>&#x8FD9;&#x6837;&#x7684;&#x8BA1;&#x7B97;&#x9700;&#x8981;$O(d^2)$&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;</p>
+<p>&#x5047;&#x5982;&#x6211;&#x4EEC;&#x5728;&#x4E00;&#x6B21;&#x9879;&#x524D;&#x90FD;&#x4E58;&#x4E0A;$\sqrt{2 \gamma}$&#x5F97;&#xFF1A;<br>$$<br>\Phi(x)=(1,\sqrt{2 \gamma}x_1,\sqrt{2 \gamma}x_2,\ldots,x_1^2,x_1 x_2,\ldots,x_1<br>x_d,x_2^2,\ldots,x_2 x_d,\ldots,x_d^2)<br>$$<br>&#x90A3;&#x4E48;<br>$$<br>K_2(x,x&#x2019;)=\Phi(x)^T \Phi(x&#x2019;)=(1+\gamma x^T x&#x2019;)^2<br>$$</p>
+<p>&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x53EA;&#x9700;&#x8981;$O(d)$&#x3002;&#x6211;&#x4EEC;&#x628A;$K_2(x,x&#x2019;)$&#x79F0;&#x4E3A;<strong>&#x6838;&#x51FD;&#x6570;Kernel Function</strong>&#xFF0C;&#x5B83;&#x628A;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x4E0E;&#x65B0;&#x7A7A;&#x95F4;&#x7684;&#x5185;&#x79EF;&#x5408;&#x4E8C;&#x4E3A;&#x4E00;&#x3002;</p>
+<h3 id="common-kernel-function"><a href="#common-kernel-function" class="headerlink" title="common kernel function"></a>common kernel function</h3><p>&#x5E38;&#x7528;&#x7684;&#x6838;&#x51FD;&#x6570;&#x6709;&#x7EBF;&#x6027;&#x6838;&#x51FD;&#x6570;&#x3001;&#x591A;&#x9879;&#x5F0F;&#x6838;&#x51FD;&#x6570;&#x3001;&#x9AD8;&#x65AF;&#x6838;&#x51FD;&#x6570;&#x7B49;&#x7B49;</p>
+<h4 id="Linear-kernel-function"><a href="#Linear-kernel-function" class="headerlink" title="Linear kernel function"></a>Linear kernel function</h4><p><strong>&#x7EBF;&#x6027;&#x6838;&#x51FD;&#x6570;</strong>&#x53EF;&#x4EE5;&#x770B;&#x6210;&#x591A;&#x9879;&#x5F0F;&#x6838;&#x51FD;&#x6570;&#x7684;&#x7279;&#x6B8A;&#x5F62;&#x5F0F;&#xFF1A;<br>$$<br>K(x,x&#x2019;)=\gamma+\zeta x^T x&#x2019;<br>$$</p>
+<h4 id="Polynomial-kernel-function"><a href="#Polynomial-kernel-function" class="headerlink" title="Polynomial kernel function"></a>Polynomial kernel function</h4><p><strong>&#x591A;&#x9879;&#x5F0F;&#x6838;&#x51FD;&#x6570;</strong>&#xFF1A;<br>$$<br>K(x,x&#x2019;)=(\gamma+\zeta x^T x&#x2019;)^p<br>$$</p>
+<h4 id="Guassian-kernel-function"><a href="#Guassian-kernel-function" class="headerlink" title="Guassian kernel function"></a>Guassian kernel function</h4><p><strong>&#x9AD8;&#x65AF;&#x6838;&#x51FD;&#x6570;</strong>&#x4E5F;&#x53EB;&#x505A;<strong>&#x9AD8;&#x65AF;&#x5F84;&#x5411;&#x57FA;&#x51FD;&#x6570;(radial basis function)</strong>&#xFF1A;<br>$$<br>K(x,x&#x2019;)=\exp (-\zeta (x-x&#x2019;)^2)<br>$$</p>
+<p>&#x9AD8;&#x65AF;&#x6838;&#x51FD;&#x6570;&#x76F8;&#x5F53;&#x4E8E;&#x628A;&#x6570;&#x636E;&#x8F6C;&#x6362;&#x5230;&#x4E86;<strong>&#x65E0;&#x7A77;&#x591A;&#x7EF4;</strong>&#xFF0C;&#x8BC1;&#x660E;&#x5982;&#x4E0B;:<br>$$<br>\begin{eqnarray}<br>K(x,x&#x2019;)&amp;=&amp;\exp (-\zeta (x-x&#x2019;)^2) \nonumber \\<br>&amp;=&amp;\exp(-\zeta x^2)\exp(-\zeta {x&#x2019;}^2) \exp(2\zeta xx&#x2019;) \nonumber \\<br>&amp;=&amp;\exp(-\zeta x^2)\exp(-\zeta {x&#x2019;}^2) \sum_{i=0}^\infty \frac{(2\zeta xx&#x2019;)^i}{i!} \nonumber \\<br>&amp;=&amp; \sum_{i=0}^\infty \color{blue}{\exp(-\zeta x^2)}\color{red}{\exp(-\zeta x&#x2019;^2)} \color{blue}{\sqrt{\frac{(2\zeta)^i}{i!}}} \color{red}{\sqrt{\frac{(2\zeta)^i}{i!}}} \color{blue}{x^i}\color{red}{x&#x2019;^i} \nonumber \\<br>&amp;=&amp; \color{blue}{\Phi(x)}\color{red}{\Phi(x&#x2019;)} \nonumber \\<br>\end{eqnarray}<br>$$</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/civg9n2in000500ln4el25t9u/" class="archive-article-date">
+  	<time datetime="2016-11-13T01:25:01.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-13</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+  
+
+
+
+  
     <article id="post-Soft-Margin-SVM-软间隔支持向量机" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -138,7 +201,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/civfx0tjr0009rklnu4waxdfe/">Soft-Margin SVM 软间隔支持向量机</a>
+      <a class="article-title" href="/civg9n2iv000e00lne9yj4mqr/">Soft-Margin SVM 软间隔支持向量机</a>
     </h1>
   
 
@@ -163,7 +226,7 @@
 <p>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5F97;&#x5230;&#x7684;&#x62C9;&#x683C;&#x6717;&#x65E5;&#x51FD;&#x6570;&#x662F;:<br>$$<br>\begin{equation}<br>L(\mathbf{w},b,\xi,\alpha,\beta) = \frac{1}{2} \mathbf{w}^T \mathbf{w}+C \sum_i^N \xi_i + \sum_i^N \alpha_i (1-\xi_i-y_i(\mathbf{w}^T \mathbf{x}))+\sum_i^N \beta_i (-\xi_i)<br>\end{equation}<br>$$<br>&#x5176;&#x4E2D;&#xFF0C;$\alpha_i \geqslant 0$&#xFF0C;$\beta_i \geqslant 0$&#x3002;</p>
 <p>&#x5728;&#x6EE1;&#x8DB3;<strong>KKT&#x6761;&#x4EF6;</strong>&#x4E0B;&#xFF0C;&#x6211;&#x4EEC;&#x671F;&#x671B;&#x5F97;&#x5230;&#x6700;&#x4F18;&#x89E3;&#xFF0C;&#x5373;&#x68AF;&#x5EA6;&#x4E3A;0:</p>
 <p>$$<br>\begin{eqnarray}<br>\frac{\partial L}{\partial w} = w-\sum_{i=1}^N \alpha_i y_i x_i &amp;=&amp; 0 \\<br>\frac{\partial L}{\partial b} = \sum_{i=1}^N \alpha_i y_i &amp;=&amp; 0  \\<br>\frac{\partial L}{\partial \xi_i} = C-\alpha_i-\beta_i=0<br>\end{eqnarray}<br>$$</p>
-<p>&#x628A;&#x8FD9;&#x4E9B;&#x5E26;&#x5165;&#x5230;&#x516C;&#x5F0F;(1)&#x4E2D;&#x53EF;&#x4EE5;&#x6D88;&#x53BB;&#x5305;&#x542B;$\xi_i$&#x7684;&#x9879;&#xFF0C;&#x800C;$\beta_i=C-\alpha_i$&#x4E14;$\beta_i \geqslant 0$&#xFF0C;&#x53EF;&#x5F97;$\alpha_i \leqslant C$&#x3002;&#x6240;&#x4EE5;<strong>&#x8F6F;&#x95F4;&#x9694;SVM</strong>&#x7684;<strong>&#x5BF9;&#x5076;&#x95EE;&#x9898;</strong>&#x53EF;&#x4EE5;&#x5199;&#x6210;<br>$$<br>\begin{eqnarray}<br> \min \limits_{\alpha} &amp;\quad&amp;\frac{1}{2} \sum_{i=1}^N \sum_{j=1}^N \alpha_i \alpha_j y_i y_j(\mathbf{x_i}\cdot\mathbf{x_j})-\sum_{i=1}^N \alpha_i \nonumber \\<br>s.t.&amp;\quad&amp; \sum_{i}^N \alpha_i y_i=0 \nonumber \\<br>&amp;\quad&amp; 0 \leqslant \alpha_i \leqslant C,\quad,1,2,\ldots,N\nonumber<br>\end{eqnarray}<br>$$</p>
+<p>&#x628A;&#x8FD9;&#x4E9B;&#x5E26;&#x5165;&#x5230;&#x516C;&#x5F0F;(1)&#x4E2D;&#x53EF;&#x4EE5;&#x6D88;&#x53BB;&#x5305;&#x542B;$\xi_i$&#x7684;&#x9879;&#xFF0C;&#x800C;$\beta_i=C-\alpha_i$&#x4E14;$\beta_i \geqslant 0$&#xFF0C;&#x53EF;&#x5F97;$\alpha_i \leqslant C$&#x3002;&#x6240;&#x4EE5;<strong>&#x8F6F;&#x95F4;&#x9694;SVM</strong>target&#x7684;<strong>&#x5BF9;&#x5076;&#x5F62;&#x5F0F;</strong>&#x53EF;&#x4EE5;&#x5199;&#x6210;<br>$$<br>\begin{eqnarray}<br> \min \limits_{\alpha} &amp;\quad&amp;\frac{1}{2} \sum_{i=1}^N \sum_{j=1}^N \alpha_i \alpha_j y_i y_j(\mathbf{x_i}\cdot\mathbf{x_j})-\sum_{i=1}^N \alpha_i \nonumber \\<br>s.t.&amp;\quad&amp; \sum_{i}^N \alpha_i y_i=0 \nonumber \\<br>&amp;\quad&amp; 0 \leqslant \alpha_i \leqslant C,\quad,1,2,\ldots,N\nonumber<br>\end{eqnarray}<br>$$</p>
 <p>&#x5BF9;&#x6BD4;&#x786C;&#x95F4;&#x9694;SVM&#x5BF9;&#x5076;&#x95EE;&#x9898;&#xFF0C;&#x5176;&#x5B9E;&#x53EA;&#x662F;&#x591A;&#x4E86;$\leqslant C$&#x7684;&#x6761;&#x4EF6;&#x3002;</p>
 <p>&#x6700;&#x540E;&#x8D70;&#x4E00;&#x6CE2;KKT&#x6761;&#x4EF6;:<br>$$<br>\begin{eqnarray}<br>\frac{\partial L(\mathbf{w},b,\xi,\alpha,\beta)}{\partial w} &amp;=&amp; 0 \\<br>\frac{\partial L(\mathbf{w},b,\xi,\alpha,\beta)}{\partial b} &amp;=&amp; 0  \\<br>\frac{\partial L(\mathbf{w},b,\xi,\alpha,\beta)}{\partial \xi} &amp;=&amp; 0  \\<br>\alpha_i(1-\xi_i-y_i(w^Tx_i+b)) &amp;=&amp; 0 \quad i=1,2,\ldots,N\\<br>\beta_i \xi_i &amp;=&amp; 0 \quad i=1,2,\ldots,N\\<br>\xi_i+y_i(w^T x_i+b)-1 &amp;\geqslant&amp;0\quad i=1,2,\ldots,N\\<br>\xi_i &amp;\geqslant&amp;0\quad i=1,2,\ldots,N\\<br>\alpha_i &amp;\geqslant&amp;0 \quad i=1,2,\ldots,N \\<br>\xi_i &amp;\geqslant&amp;0 \quad i=1,2,\ldots,N<br>\end{eqnarray}<br>$$</p>
 <h3 id="hinge-loss-function"><a href="#hinge-loss-function" class="headerlink" title="hinge loss function"></a>hinge loss function</h3><p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x628A;&#x539F;&#x59CB;&#x95EE;&#x9898;&#x770B;&#x6210;&#x8FD9;&#x6837;&#x7684;&#x5F62;&#x5F0F;:<br>$$<br>\sum_i^N [1-y_i(w^T x_i+b)]_+ +\lambda w^T w<br>$$</p>
@@ -174,7 +237,7 @@
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/civfx0tjr0009rklnu4waxdfe/" class="archive-article-date">
+      <a href="/civg9n2iv000e00lne9yj4mqr/" class="archive-article-date">
   	<time datetime="2016-11-12T09:55:38.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-12</time>
 </a>
       
@@ -210,7 +273,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/civfx0tjw000drklnqtlpdnm2/">Same Tree Problem</a>
+      <a class="article-title" href="/civg9n2iy000h00ln8wh6iqqc/">Same Tree Problem</a>
     </h1>
   
 
@@ -233,7 +296,7 @@
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/civfx0tjw000drklnqtlpdnm2/" class="archive-article-date">
+      <a href="/civg9n2iy000h00ln8wh6iqqc/" class="archive-article-date">
   	<time datetime="2016-11-11T14:59:12.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-11</time>
 </a>
       
@@ -269,7 +332,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/civfx0tjp0008rklnlgq98imn/">SVM and Dual Problem 支持向量机与对偶问题</a>
+      <a class="article-title" href="/civg9n2it000c00lnvs5ifo9j/">SVM and Dual Problem 支持向量机与对偶问题</a>
     </h1>
   
 
@@ -280,7 +343,7 @@
         <!-- Table of Contents -->
         
         <h3 id="Linear-Support-Vector-Machine"><a href="#Linear-Support-Vector-Machine" class="headerlink" title="Linear Support Vector Machine"></a>Linear Support Vector Machine</h3><p>&#x5728;&#x4E4B;&#x524D;&#x7684;Perceptron&#x7B97;&#x6CD5;&#x4E2D;&#xFF0C;&#x540C;&#x6837;&#x7684;&#x4E8C;&#x5206;&#x6CD5;&#xFF08;dichotomy&#xFF09;&#xFF0C;&#x53EF;&#x80FD;&#x6709;&#x65E0;&#x7A77;&#x591A;&#x6761;&#x7EBF;&#x7684;&#x89E3;&#x3002;&#x4EE5;&#x4E0B;&#x4E09;&#x5F20;&#x56FE;&#x662F;&#x540C;&#x4E2A;&#x6837;&#x672C;&#xFF08;&#x6837;&#x672C;&#x4E3A;&#x81EA;&#x884C;&#x6A21;&#x62DF;&#xFF09;&#x7684;&#x4E0D;&#x540C;&#x5206;&#x7C7B;&#xFF1A;</p>
-<div align="center"><br><img src="/civfx0tjp0008rklnlgq98imn/s1.0.png" alt=""> <img src="/civfx0tjp0008rklnlgq98imn/s1.1.png" alt=""> <img src="/civfx0tjp0008rklnlgq98imn/s1.2.png" alt=""><br></div>
+<div align="center"><br><img src="/civg9n2it000c00lnvs5ifo9j/s1.0.png" alt=""> <img src="/civg9n2it000c00lnvs5ifo9j/s1.1.png" alt=""> <img src="/civg9n2it000c00lnvs5ifo9j/s1.2.png" alt=""><br></div>
 
 <p>&#x867D;&#x7136;&#x8FD9;&#x4E09;&#x6761;&#x7EBF;&#x90FD;&#x5BF9;&#x5E94;&#x540C;&#x4E00;&#x79CD;dichotomy&#xFF0C;&#x4F46;&#x7B2C;&#x4E00;&#x5F20;&#x56FE;&#x8FD9;&#x6837;&#x7684;&#x7EBF;&#x5BB9;&#x9519;&#x80FD;&#x529B;&#x5927;&#xFF0C;&#x5728;&#x7A7A;&#x95F4;&#x4E0A;&#x7684;<strong>&#x95F4;&#x9694;</strong>&#x6700;&#x5927;&#x3002;</p>
 <h5 id="geometric-margin-and-functional-margin"><a href="#geometric-margin-and-functional-margin" class="headerlink" title="geometric margin and functional margin"></a>geometric margin and functional margin</h5><p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x8981;&#x6C42;&#x7684;&#x90A3;&#x4E2A;&#x95F4;&#x9694;&#x6700;&#x5927;&#x7684;&#x5206;&#x5272;&#x5E73;&#x9762;&#x4E3A;&#xFF1A;<br>$$<br>\mathbf{w}^T \mathbf{x}+b=0<br>$$<br>&#x8FD9;&#x91CC;&#x4E0D;&#x5728;&#x8FDB;&#x884C;$w_0=b^{\ast}$&#x548C;$x_0=1$&#x7684;&#x8BBE;&#x7F6E;&#xFF0C;&#x662F;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x4E4B;&#x540E;&#x7684;&#x8BA1;&#x7B97;&#x3002;</p>
@@ -322,7 +385,7 @@
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/civfx0tjp0008rklnlgq98imn/" class="archive-article-date">
+      <a href="/civg9n2it000c00lnvs5ifo9j/" class="archive-article-date">
   	<time datetime="2016-11-02T02:23:16.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-02</time>
 </a>
       
@@ -358,7 +421,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/civfx0tjo0006rkln9iwrpq1k/">Over-fitting and Regularization过拟合与正则化</a>
+      <a class="article-title" href="/civg9n2iq000700lnp8oomdt3/">Over-fitting and Regularization过拟合与正则化</a>
     </h1>
   
 
@@ -369,12 +432,12 @@
         <!-- Table of Contents -->
         
         <h4 id="&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear-Transformation&#xFF09;"><a href="#&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear-Transformation&#xFF09;" class="headerlink" title="&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear Transformation&#xFF09;"></a>&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear Transformation&#xFF09;</h4><p>&#x5047;&#x8BBE;&#x6709;&#x5982;&#x4E0B;&#x56FE;&#x7684;&#x7684;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#xFF08;&#x6570;&#x636E;&#x4E3A;&#x81EA;&#x884C;&#x6A21;&#x62DF;&#xFF09;&#xFF0C;&#x5708;&#x5708;&#x548C;&#x53C9;&#x53C9;&#x5206;&#x5E03;&#x8868;&#x793A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x4E24;&#x7C7B;&#x3002;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x6570;&#x636E;&#x96C6;&#x4E0D;&#x80FD;&#x88AB;&#x4E00;&#x6761;&#x76F4;&#x7EBF;&#x7EBF;&#x6027;&#x53EF;&#x5206;&#x3002;</p>
-<div align="center"><img src="/civfx0tjo0006rkln9iwrpq1k/q1.png" alt="q1"></div><br>&#x6B64;&#x65F6;&#x5982;&#x679C;&#x628A;&#x6570;&#x636E;&#x505A;&#x5982;&#x4E0B;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E00;&#x6761;&#x66F2;&#x7EBF;&#x5C06;&#x6570;&#x636E;&#x5207;&#x5206;&#x3002;<br>$$<br>\begin{eqnarray}<br>z_0&amp;=&amp;1 \nonumber \\<br>z_1&amp;=&amp;{x_1}^2 \nonumber \\<br>z_2&amp;=&amp;{x_2}^2 \nonumber<br>\end{eqnarray}<br>$$<br><br><div align="center"><img src="/civfx0tjo0006rkln9iwrpq1k/q2.png" alt="q2"></div><br>&#x5F97;&#x5230;&#x7684;hypothesis&#x662F;&#xFF1A;<br>$$<br>\begin{eqnarray}<br>h(\mathbf{z}) &amp;=&amp; \mathrm{sign}(w_2\cdot z_2+w_1\cdot z_1+w_0) \nonumber \\<br>&amp;=&amp; \mathrm{sign}(\mathrm{w^T Z})\nonumber<br>\end{eqnarray}<br>$$<br>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x62FF;&#x5230;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5148;&#x5BF9;&#x6570;&#x636E;&#x96C6;&#x8FDB;&#x884C;&#x8FD9;&#x6837;&#x7684;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x81F3;Z&#x7A7A;&#x95F4;&#xFF0C;&#x5728;Z&#x7A7A;&#x95F4;&#x4E0A;&#x4F7F;&#x7528;&#x7EBF;&#x6027;&#x5206;&#x7C7B;&#x5668;&#x5982;Perceptron&#x3001;Linear Regression&#x3001;Logistic Regression&#x7B49;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#x6216;&#x8005;&#x56DE;&#x5F52;&#xFF0C;&#x5C06;&#x7ED3;&#x679C;&#x5BF9;&#x5E94;&#x5230;X&#x7A7A;&#x95F4;&#x4E0A;&#x3002;<br><br>&#x66F4;&#x4E00;&#x822C;&#x5730;&#xFF0C;&#x5F53;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x5176;&#x4E2D;&#x6BCF;&#x4E2A;&#x6837;&#x672C;&#x70B9;$x_i \in \mathbf{R}^d$&#x3002;&#x5BF9;&#x5176;&#x8FDB;&#x884C;$Q$-th&#x53D8;&#x6362;&#x53EF;&#x5F97;&#x5230;<br>$$<br>\begin{eqnarray}<br>\Phi &amp;=&amp; (1, \nonumber \\<br>&amp;&amp; x_{(1)},x_{(2)},\cdots,x_{(d)}, \nonumber \\<br>&amp;&amp; x_{(1)}^2,x_{(1)}x_{(2)},\cdots,x_{(d)}^2, \nonumber \\<br>&amp;&amp; \cdots, \nonumber \\<br>&amp;&amp; x_{(1)}^Q,x_{(1)}^{Q-1}x_{(2)},\cdots,x_{(d)}^{Q}) \nonumber<br>\end{eqnarray}<br>$$<br><br>&#x4E8C;&#x7EF4;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x4EE3;&#x7801;&#xFF08;$Q=2$&#xFF09;:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__feature_transform</span><span class="params">(self, x1, x2)</span>:</span></div><div class="line">    d = self.FEAT_TRANS_DIM</div><div class="line">    res = []</div><div class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>, d + <span class="number">1</span>):</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, k + <span class="number">1</span>):</div><div class="line">            res.append((x1 ** i) * (x2 ** (k - i)))</div><div class="line">    <span class="keyword">return</span> np.array(res)</div></pre></td></tr></table></figure><br><br>&#x5728;&#x4E0A;&#x7BC7;&#x6587;&#x7AE0;<a href="https://umbrellabeach.github.io/civ0bosza00050dlnrat9tso0/" target="_blank" rel="external">Logistic Regression&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x7684;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x73B0;</a>&#x4E2D;&#x5B9E;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;LR Classifier&#xFF0C;&#x6211;&#x4EEC;&#x628A;LR&#x76F4;&#x63A5;&#x5728;&#x672C;&#x4F8B;&#x6570;&#x636E;&#x539F;&#x7EF4;&#x5EA6;&#x8DD1;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF0C;&#x51C6;&#x786E;&#x7387;&#x53EA;&#x6709;60%&#xFF1A;<br><br><div align="center"><img src="/civfx0tjo0006rkln9iwrpq1k/c1.png" alt="c1"></div>
+<div align="center"><img src="/civg9n2iq000700lnp8oomdt3/q1.png" alt="q1"></div><br>&#x6B64;&#x65F6;&#x5982;&#x679C;&#x628A;&#x6570;&#x636E;&#x505A;&#x5982;&#x4E0B;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E00;&#x6761;&#x66F2;&#x7EBF;&#x5C06;&#x6570;&#x636E;&#x5207;&#x5206;&#x3002;<br>$$<br>\begin{eqnarray}<br>z_0&amp;=&amp;1 \nonumber \\<br>z_1&amp;=&amp;{x_1}^2 \nonumber \\<br>z_2&amp;=&amp;{x_2}^2 \nonumber<br>\end{eqnarray}<br>$$<br><br><div align="center"><img src="/civg9n2iq000700lnp8oomdt3/q2.png" alt="q2"></div><br>&#x5F97;&#x5230;&#x7684;hypothesis&#x662F;&#xFF1A;<br>$$<br>\begin{eqnarray}<br>h(\mathbf{z}) &amp;=&amp; \mathrm{sign}(w_2\cdot z_2+w_1\cdot z_1+w_0) \nonumber \\<br>&amp;=&amp; \mathrm{sign}(\mathrm{w^T Z})\nonumber<br>\end{eqnarray}<br>$$<br>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x62FF;&#x5230;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5148;&#x5BF9;&#x6570;&#x636E;&#x96C6;&#x8FDB;&#x884C;&#x8FD9;&#x6837;&#x7684;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x81F3;Z&#x7A7A;&#x95F4;&#xFF0C;&#x5728;Z&#x7A7A;&#x95F4;&#x4E0A;&#x4F7F;&#x7528;&#x7EBF;&#x6027;&#x5206;&#x7C7B;&#x5668;&#x5982;Perceptron&#x3001;Linear Regression&#x3001;Logistic Regression&#x7B49;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#x6216;&#x8005;&#x56DE;&#x5F52;&#xFF0C;&#x5C06;&#x7ED3;&#x679C;&#x5BF9;&#x5E94;&#x5230;X&#x7A7A;&#x95F4;&#x4E0A;&#x3002;<br><br>&#x66F4;&#x4E00;&#x822C;&#x5730;&#xFF0C;&#x5F53;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x5176;&#x4E2D;&#x6BCF;&#x4E2A;&#x6837;&#x672C;&#x70B9;$x_i \in \mathbf{R}^d$&#x3002;&#x5BF9;&#x5176;&#x8FDB;&#x884C;$Q$-th&#x53D8;&#x6362;&#x53EF;&#x5F97;&#x5230;<br>$$<br>\begin{eqnarray}<br>\Phi &amp;=&amp; (1, \nonumber \\<br>&amp;&amp; x_{(1)},x_{(2)},\cdots,x_{(d)}, \nonumber \\<br>&amp;&amp; x_{(1)}^2,x_{(1)}x_{(2)},\cdots,x_{(d)}^2, \nonumber \\<br>&amp;&amp; \cdots, \nonumber \\<br>&amp;&amp; x_{(1)}^Q,x_{(1)}^{Q-1}x_{(2)},\cdots,x_{(d)}^{Q}) \nonumber<br>\end{eqnarray}<br>$$<br><br>&#x4E8C;&#x7EF4;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x4EE3;&#x7801;&#xFF08;$Q=2$&#xFF09;:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__feature_transform</span><span class="params">(self, x1, x2)</span>:</span></div><div class="line">    d = self.FEAT_TRANS_DIM</div><div class="line">    res = []</div><div class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>, d + <span class="number">1</span>):</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, k + <span class="number">1</span>):</div><div class="line">            res.append((x1 ** i) * (x2 ** (k - i)))</div><div class="line">    <span class="keyword">return</span> np.array(res)</div></pre></td></tr></table></figure><br><br>&#x5728;&#x4E0A;&#x7BC7;&#x6587;&#x7AE0;<a href="https://umbrellabeach.github.io/civ0bosza00050dlnrat9tso0/" target="_blank" rel="external">Logistic Regression&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x7684;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x73B0;</a>&#x4E2D;&#x5B9E;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;LR Classifier&#xFF0C;&#x6211;&#x4EEC;&#x628A;LR&#x76F4;&#x63A5;&#x5728;&#x672C;&#x4F8B;&#x6570;&#x636E;&#x539F;&#x7EF4;&#x5EA6;&#x8DD1;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF0C;&#x51C6;&#x786E;&#x7387;&#x53EA;&#x6709;60%&#xFF1A;<br><br><div align="center"><img src="/civg9n2iq000700lnp8oomdt3/c1.png" alt="c1"></div>
 
 <p>&#x4F7F;&#x7528;&#x672C;&#x4F8B;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x4EE3;&#x7801;&#x5904;&#x7406;&#x540E;&#xFF08;$Q=2$&#xFF09;&#x518D;&#x4F7F;&#x7528;LR Classifier&#x5206;&#x7C7B;&#xFF0C;&#x51C6;&#x786E;&#x7387;&#x63D0;&#x5347;&#x81F3;<strong>96.7%</strong>&#x3002;&#x53EF;&#x89C1;&#xFF0C;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x81F3;&#x5C11;&#x5C06;$E_{in}$&#x964D;&#x5230;&#x4E86;&#x6700;&#x4F4E;&#xFF0C;&#x53EF;&#x8C13;&#x201C;&#x795E;&#x529B;&#x201D;&#x3002;</p>
 <h4 id="&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;"><a href="#&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;" class="headerlink" title="&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;"></a>&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;</h4><p>&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x589E;&#x52A0;&#x4E86;&#x6A21;&#x578B;&#x7684;&#x590D;&#x6742;&#x5EA6;&#xFF0C;&#x4ECE;VC&#x89D2;&#x5EA6;&#x6765;&#x8BF4;&#xFF1A;<br>$<br>E_{out} \leqslant E_{in} + O(\mathrm{model})<br>$<br>&#x5F53;&#x6A21;&#x578B;&#x590D;&#x6742;&#x5EA6;&#x8D8A;&#x6765;&#x8D8A;&#x5927;&#xFF0C;&#x8BAD;&#x7EC3;&#x8BEF;&#x5DEE;$E_{in}$&#x4F1A;&#x51CF;&#x5C11;&#xFF0C;&#x4F46;&#x5B9E;&#x9645;&#x8BEF;&#x5DEE;$E_{out}$&#x53CD;&#x800C;&#x4F1A;&#x4E0A;&#x5347;&#xFF0C;&#x8FD9;&#x4E2A;&#x60C5;&#x51B5;&#x79F0;&#x4E3A;<strong>Over-fitting &#x8FC7;&#x62DF;&#x5408;</strong>&#x3002;</p>
 <p>&#x6765;&#x770B;&#x53F0;&#x5927;&#x300A;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x57FA;&#x77F3;&#x300B;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p>
-<div align="center"><img src="/civfx0tjo0006rkln9iwrpq1k/o1.png" alt="o1"></div><br>&#x5F53;&#x6211;&#x4EEC;&#x7528;&#x66F4;&#x201C;&#x5389;&#x5BB3;&#x201D;&#x7684;&#x6A21;&#x578B;&#x53BB;&#x62DF;&#x5408;&#xFF0C;&#x5C31;&#x4F1A;&#x53D1;&#x751F;&#x53F3;&#x8FB9;&#x8FD9;&#x6837;&#x7684;&#x8FC7;&#x62DF;&#x5408;&#x60C5;&#x51B5;&#xFF0C;&#x4F46;&#x53EF;&#x80FD;&#x5B9E;&#x9645;&#x4E0A;&#x4F4E;&#x7EF4;&#x5EA6;&#x7684;&#x6A21;&#x578B;&#x66F4;&#x63A5;&#x8FD1;&#x771F;&#x5B9E;&#x7684;&#x6A21;&#x578B;&#x3002;&#x8FD9;&#x6837;&#x60F3;&#x6765;&#xFF0C;&#x8FC7;&#x62DF;&#x5408;&#x662F;<strong>&#x6A21;&#x578B;&#x590D;&#x6742;&#x5EA6;</strong>&#x6216;&#x8005;<strong>&#x566A;&#x58F0;</strong>&#x5F71;&#x54CD;&#x7684;&#x3002;<br><br><div align="center"><img src="/civfx0tjo0006rkln9iwrpq1k/o2.png" alt="o2"></div>
+<div align="center"><img src="/civg9n2iq000700lnp8oomdt3/o1.png" alt="o1"></div><br>&#x5F53;&#x6211;&#x4EEC;&#x7528;&#x66F4;&#x201C;&#x5389;&#x5BB3;&#x201D;&#x7684;&#x6A21;&#x578B;&#x53BB;&#x62DF;&#x5408;&#xFF0C;&#x5C31;&#x4F1A;&#x53D1;&#x751F;&#x53F3;&#x8FB9;&#x8FD9;&#x6837;&#x7684;&#x8FC7;&#x62DF;&#x5408;&#x60C5;&#x51B5;&#xFF0C;&#x4F46;&#x53EF;&#x80FD;&#x5B9E;&#x9645;&#x4E0A;&#x4F4E;&#x7EF4;&#x5EA6;&#x7684;&#x6A21;&#x578B;&#x66F4;&#x63A5;&#x8FD1;&#x771F;&#x5B9E;&#x7684;&#x6A21;&#x578B;&#x3002;&#x8FD9;&#x6837;&#x60F3;&#x6765;&#xFF0C;&#x8FC7;&#x62DF;&#x5408;&#x662F;<strong>&#x6A21;&#x578B;&#x590D;&#x6742;&#x5EA6;</strong>&#x6216;&#x8005;<strong>&#x566A;&#x58F0;</strong>&#x5F71;&#x54CD;&#x7684;&#x3002;<br><br><div align="center"><img src="/civg9n2iq000700lnp8oomdt3/o2.png" alt="o2"></div>
 
 <p>&#x4E0A;&#x56FE;&#x8FD9;&#x4E2A;&#x5B9E;&#x9A8C;&#x5C31;&#x663E;&#x793A;&#x8FC7;&#x62DF;&#x5408;&#x7684;&#x6781;&#x5927;&#x5371;&#x5BB3;&#x3002;</p>
 <h4 id="&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;"><a href="#&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;" class="headerlink" title="&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;"></a>&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;</h4><p>&#x7ECF;&#x8FC7;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x540E;&#xFF0C;&#x5176;&#x5B9E;&#x8FD8;&#x662F;&#x5728;&#x4E00;&#x4E2A;&#x7EBF;&#x6027;&#x95EE;&#x9898;&#x4E2D;</p>
@@ -396,7 +459,7 @@
 <p>&#x6700;&#x540E;&#x6765;&#x8BA8;&#x8BBA;&#x4E00;&#x4E0B;&#x5728;&#x77E5;&#x4E4E;&#x4E0A;&#x770B;&#x7684;&#x4E00;&#x4E2A;&#x95EE;&#x9898;</p>
 <p><a href="https://www.zhihu.com/question/37096933?sort=created" target="_blank" rel="external">&#x77E5;&#x4E4E;-l1 &#x76F8;&#x6BD4;&#x4E8E; l2 &#x4E3A;&#x4EC0;&#x4E48;&#x5BB9;&#x6613;&#x83B7;&#x5F97;&#x7A00;&#x758F;&#x89E3;&#xFF1F;</a></p>
 <p>ESL&#x4E66;&#x91CC;&#x5C31;&#x89E3;&#x91CA;&#x7684;&#x5F88;&#x6E05;&#x695A;</p>
-<p><img src="/civfx0tjo0006rkln9iwrpq1k/z.png" alt="ESL"><br>&#x8BF4;&#x767D;&#x4E86;&#xFF0C;l1&#x662F;&#x6709;&#x89D2;&#x7684;&#xFF0C;l2&#x662F;&#x65E0;&#x89D2;&#x7684;&#xFF0C;&#x4F7F;&#x7528;l1&#x6700;&#x540E;&#x7684;w&#x90FD;&#x4F1A;&#x8DD1;&#x5230;corner&#x90A3;&#x8FB9;&#xFF0C;&#x800C;corner&#x90A3;&#x8FB9;&#x6B63;&#x597D;&#x662F;&#x6709;w&#x7B49;&#x4E8E;0&#x7684;&#x5730;&#x65B9;&#x3002;</p>
+<p><img src="/civg9n2iq000700lnp8oomdt3/z.png" alt="ESL"><br>&#x8BF4;&#x767D;&#x4E86;&#xFF0C;l1&#x662F;&#x6709;&#x89D2;&#x7684;&#xFF0C;l2&#x662F;&#x65E0;&#x89D2;&#x7684;&#xFF0C;&#x4F7F;&#x7528;l1&#x6700;&#x540E;&#x7684;w&#x90FD;&#x4F1A;&#x8DD1;&#x5230;corner&#x90A3;&#x8FB9;&#xFF0C;&#x800C;corner&#x90A3;&#x8FB9;&#x6B63;&#x597D;&#x662F;&#x6709;w&#x7B49;&#x4E8E;0&#x7684;&#x5730;&#x65B9;&#x3002;</p>
 <p>&#x4E5F;&#x6709;&#x76F4;&#x89C2;&#x7684;&#x89E3;&#x91CA;</p>
 <blockquote>
 <p>&#x66F4;&#x52A0;&#x76F4;&#x89C2;&#x7684;&#x6765;&#x8BF4;&#xFF0C;&#x6709;&#x4E00;&#x4E2A;&#x7403;&#x5728;&#x66F2;&#x9762;&#x4E0A;&#xFF0C;&#x6211;&#x4EEC;&#x628A;&#x7403;&#x53D7;&#x5230;&#x7684;&#x91CD;&#x529B;&#x548C;&#x66F2;&#x9762;&#x7684;&#x652F;&#x6491;&#x529B;&#x7684;&#x5408;&#x529B;&#x770B;&#x6210;&#x4E00;&#x4E2A;&#x529B;&#xFF0C;&#x65B9;&#x5411;&#x4E5F;&#x5C31;&#x662F;&#x66F2;&#x9762;&#x7684;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x3002;&#x6B64;&#x5916;&#x6211;&#x4EEC;&#x8FD8;&#x53D7;&#x5230;&#x4E00;&#x4E2A;&#x6765;&#x81EA;&#x4E8E;&#x56DB;&#x8FB9;&#x5F62;&#xFF08;&#x4E0A;&#x56FE;&#xFF09;&#x7684;&#x67B6;&#x5B50;&#x7684;&#x652F;&#x6491;&#x529B;&#xFF0C;&#x800C;&#x6700;&#x4F18;&#x89E3;&#x5904;&#x5C31;&#x662F;&#x7403;&#x80FD;&#x591F;&#x9759;&#x6B62;&#x5E73;&#x8861;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x90A3;&#x4E48;&#x5F88;&#x660E;&#x663E;&#xFF0C;&#x662F;&#x4E0D;&#x662F;&#x5728;&#x56DB;&#x4E2A;&#x9876;&#x89D2;&#x5904;&#x6700;&#x6709;&#x53EF;&#x80FD;&#x7981;&#x6B62;&#x3002;</p>
@@ -409,109 +472,8 @@
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/civfx0tjo0006rkln9iwrpq1k/" class="archive-article-date">
+      <a href="/civg9n2iq000700lnp8oomdt3/" class="archive-article-date">
   	<time datetime="2016-10-03T05:25:26.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-03</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-  
-
-
-
-  
-    <article id="post-Logistic-Regression逻辑回归的原理及实现" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/civfx0tjm0005rklnom6aqnh2/">Logistic Regression逻辑回归的原理及实现</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <h4 id="&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x6982;&#x5FF5;&#xFF08;The-concept-of-logistic-regression&#xFF09;"><a href="#&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x6982;&#x5FF5;&#xFF08;The-concept-of-logistic-regression&#xFF09;" class="headerlink" title="&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x6982;&#x5FF5;&#xFF08;The concept of logistic regression&#xFF09;"></a>&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x6982;&#x5FF5;&#xFF08;The concept of logistic regression&#xFF09;</h4><p>&#x5047;&#x8BBE;&#x6837;&#x672C;&#x670D;&#x4ECE;<strong>&#x4E8C;&#x9879;&#x5206;&#x5E03;</strong>&#xFF0C;$ X \sim B(n,p)$&#x3002;&#x5176;&#x4E2D; $X \in \mathbf{R}^d, Y \in \{0,1\}$&#x3002;&#xFF08;&#x53E6;&#x4E00;&#x79CD;&#x53D6;&#x6CD5;&#x662F;$Y\in \{-1,+1\}$&#xFF0C;&#x540E;&#x9762;&#x4F1A;&#x8BB2;&#x5230;&#xFF09;</p>
-<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5C06;$P(Y=1|X)$&#x8868;&#x793A;&#x4E3A;&#x7ED9;&#x5B9A;&#x6837;&#x672C;$X$&#x6761;&#x4EF6;&#x4E0B;$Y=1$&#x7684;&#x6982;&#x7387;&#x3002;&#x540C;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x5F97;&#x5230;</p>
-<p>$P(Y=0|X)=1-P(Y=1|X)$&#x3002;</p>
-<p>&#x5982;&#x4F55;&#x6765;&#x63CF;&#x8FF0;&#x8FD9;&#x4E2A;&#x6982;&#x7387;&#x7684;&#x5206;&#x5E03;&#x5462;&#xFF1F;&#x5728;&#x4E4B;&#x524D;&#x548C;&#x540C;&#x5B66;&#x7684;&#x4E00;&#x6B21;&#x8BA8;&#x8BBA;&#x4E2D;&#xFF0C;<em>&#x5224;&#x65AD;&#x7537;&#x751F;&#x8FD8;&#x662F;&#x5973;&#x751F;</em>&#x7684;&#x95EE;&#x9898;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x4E8C;&#x9879;&#x5206;&#x5E03;&#xFF0C;&#x56E0;&#x4E3A;&#x4E24;&#x79CD;&#x6837;&#x672C;&#x5DEE;&#x5F02;&#x5F88;&#x5927;&#xFF08;&#x867D;&#x7136;&#x6211;&#x4EEC;&#x4E00;&#x6837;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x8BE5;&#x6837;&#x672C;&#x4E3A;&#x7537;&#x751F;&#x8FD8;&#x662F;&#x5973;&#x751F;&#x7684;&#x6982;&#x7387;&#xFF09;&#x3002;&#x8BA9;&#x8D8A;&#x9C9C;&#x660E;&#x7684;&#x6837;&#x672C;&#x7684;&#x6982;&#x7387;&#x8D8A;&#x63A5;&#x8FD1;1&#x6216;&#x8005;0&#x662F;&#x8BE5;&#x5206;&#x5E03;&#x7684;&#x91CD;&#x70B9;&#x3002;</p>
-<h6 id="Logistic-function"><a href="#Logistic-function" class="headerlink" title="Logistic function"></a>Logistic function</h6><p>&#x4E0B;&#x56FE;&#x662F;&#x4E00;&#x4E2A;Logistic&#x5206;&#x5E03;&#xFF0C;&#x5176;&#x51FD;&#x6570;&#x5F62;&#x5F0F;&#x4E3A;&#xFF1A;<br>$$<br>\pi(z)=\frac{1}{1+e^{-z}}<br>$$</p>
-<div align="center"><img src="http://www.myexception.cn/img/2014/12/14/112214377.png" alt="Logistic"></div>
-
-<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x662F;&#x4E00;&#x4E2A;s&#x578B;&#x66F2;&#x7EBF;&#xFF0C;&#x56E0;&#x6B64;&#x4E5F;&#x88AB;&#x79F0;&#x4E3A;<strong>sigmoid function</strong></p>
-<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x628A;&#x4E0A;&#x8FF0;&#x7684;&#x6982;&#x7387;&#x901A;&#x8FC7;Logistic&#x5206;&#x5E03;&#x6765;&#x63CF;&#x8FF0;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E8C;&#x9879;&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x6A21;&#x578B;(binomial logistic regression model)&#xFF1A;<br>$$<br>P(Y=1|x)=\frac{\exp{w^T x}}{1+\exp(w^Tx)} \\<br>P(Y=0|x)=\frac{1}{1+\exp(w^Tx)}<br>$$</p>
-<p>&#x5982;&#x679C;&#x4E00;&#x4EF6;&#x4E8B;&#x60C5;&#x53D1;&#x751F;&#x7684;&#x6982;&#x7387;&#x662F;$p$&#xFF0C;&#x6211;&#x4EEC;&#x628A;&#x4E00;&#x4EF6;&#x4E8B;&#x60C5;&#x53D1;&#x751F;&#x548C;&#x4E0D;&#x53D1;&#x751F;&#x6982;&#x7387;&#x7684;&#x6BD4;$\frac{p}{1-p}$&#x79F0;&#x4E4B;&#x4E3A;<strong>&#x51E0;&#x7387;</strong>&#xFF08;odds&#xFF09;&#xFF0C;logit&#x51FD;&#x6570;&#x8868;&#x793A;&#x4E3A;<strong>&#x5BF9;&#x6570;&#x51E0;&#x7387;</strong>&#xFF1A;<br>$$<br>\mathrm{logit}(p)=\ln \frac{p}{1-p}<br>$$<br>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x7ED3;&#x8BBA;&#xFF1A;<br>$$<br>\ln \frac{P(Y=1|x)}{1-P(Y=1|x)}=w^T x<br>$$<br>&#x4ECE;&#x8FD9;&#x4E2A;&#x5F0F;&#x5B50;&#x53EF;&#x4EE5;&#x770B;&#x6210;&#xFF0C;$P(Y=1|x)$&#x548C;$w^T x$&#x662F;&#x5B58;&#x5728;&#x7EBF;&#x6027;&#x5173;&#x7CFB;&#x7684;&#xFF0C;$w^T x$&#x8D8A;&#x5927;&#xFF0C;&#x51E0;&#x7387;&#x8D8A;&#x5927;&#x3002;</p>
-<h4 id="&#x53C2;&#x6570;&#x4F30;&#x8BA1;&#xFF08;parameter-estimation&#xFF09;"><a href="#&#x53C2;&#x6570;&#x4F30;&#x8BA1;&#xFF08;parameter-estimation&#xFF09;" class="headerlink" title="&#x53C2;&#x6570;&#x4F30;&#x8BA1;&#xFF08;parameter estimation&#xFF09;"></a>&#x53C2;&#x6570;&#x4F30;&#x8BA1;&#xFF08;parameter estimation&#xFF09;</h4><p>&#x5047;&#x8BBE;&#x5F97;&#x5230;&#x7684;&#x4F30;&#x8BA1;&#x503C;&#x662F;$y_1,\cdots,y_i,\cdots,y_N$&#xFF0C;&#x4E14;&#x6837;&#x672C;&#x4E3A;&#x72EC;&#x7ACB;&#x540C;&#x5206;&#x5E03;&#xFF0C;&#x90A3;&#x4E48;LR&#x7684;<em>&#x6781;&#x5927;&#x4F3C;&#x7136;&#x4F30;&#x8BA1;&#xFF08;Maximum Likelihood Estimation, MLE&#xFF09;</em>&#x7684;&#x503C;&#x4E3A;&#xFF1A;<br>$$<br>L(w)=\prod_{i=1}^{N} [\pi (x_i)]^{y_i} [1-\pi (x_i)]^{1-y_i}<br>$$</p>
-<p>&#x4ECE;&#x53E6;&#x4E00;&#x4E2A;&#x89D2;&#x5EA6;&#x770B;&#xFF0C;&#x8BE5;&#x503C;&#x5C31;&#x662F;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x7684;&#x6982;&#x7387;&#x4E4B;&#x79EF;&#xFF0C;&#x6211;&#x4EEC;&#x8981;&#x505A;&#x7684;&#x5C31;&#x662F;&#x8BA9;&#x5176;&#x5C3D;&#x53EF;&#x80FD;&#x5927;&#x3002;&#x8FD9;&#x4E00;&#x70B9;&#x548C;&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x5706;&#x7684;&#x505A;&#x6CD5;&#x6709;&#x5F02;&#x66F2;&#x540C;&#x5DE5;&#x4E4B;&#x5904;&#x3002;</p>
-<p>&#x9996;&#x5148;&#xFF0C;&#x6211;&#x4EEC;&#x6C42;&#x5176;&#x5BF9;&#x6570;&#x5F62;&#x5F0F;&#xFF0C;&#x56E0;&#x4E3A;&#x8FDE;&#x52A0;&#x6BD4;&#x8FDE;&#x4E58;&#x597D;&#x89E3;&#x3002;&#x90A3;&#x4E48;&#xFF0C;&#x5BF9;&#x6570;&#x4F3C;&#x7136;&#x51FD;&#x6570;&#x4E3A;&#xFF1A;<br>$$<br>\begin{eqnarray}<br>l(w)=\ln L(w)&amp;=&amp;\sum_{i=1}^{N} [y_i \ln \pi(x_i)+(1-y_i)\ln (1-\pi(x_i))] \nonumber \\<br>&amp;=&amp;\sum_{i=1}^{N}[y_i \ln{\frac{\pi (x_i)}{1-\pi (x_i)}}+\ln(1-\pi (x_i))] \nonumber \\<br>&amp;=&amp;\sum_{i=1}^{N}[y_i(w^T x_i)-\ln(1+\exp(w^T x_i))] \nonumber<br>\end{eqnarray}<br>$$</p>
-<p>&#x7136;&#x540E;&#x6211;&#x4EEC;&#x7684;&#x76EE;&#x6807;&#x662F;&#x8BA9;&#x8FD9;&#x4E2A;&#x4F30;&#x8BA1;&#x53D6;&#x6700;&#x5927;&#x503C;&#x3002;&#x5728;andrew ng&#x8BFE;&#x7A0B;&#x4E2D;&#xFF0C;LR&#x7684;<strong>cost function</strong>&#x635F;&#x5931;&#x51FD;&#x6570;&#xFF0C;&#x53D6;&#x4E3A;$J(w)=-\frac{1}{N}l(w)$&#x3002;&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x770B;&#x4F5C;&#x5BF9;&#x635F;&#x5931;&#x51FD;&#x6570;&#x7684;&#x6700;&#x5C0F;&#x5316;&#x3002;</p>
-<p>&#x6211;&#x4EEC;&#x5BF9;&#x5BF9;&#x6570;&#x4F3C;&#x7136;&#x6C42;&#x504F;&#x5BFC;&#x6570;&#xFF1A;<br>$$<br>\frac{\partial L(w)}{\partial w}=\sum_{i=1}^{N} [y_i x_i-\frac{1}{1+\exp(w^T x_i)} \exp(w^T x_i) x_i] \\<br>=\sum_{i=1}^{N} (y_i-\pi(w^T x_i))x_i<br>$$</p>
-<p>&#x4EE4;&#x5BFC;&#x6570;&#x7B49;&#x4E8E;0&#xFF0C;&#x4F1A;&#x53D1;&#x73B0;&#x5E76;&#x4E0D;&#x80FD;&#x7B80;&#x5355;&#x5730;&#x89E3;&#x51FA;&#x6765;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x4E00;&#x4E2A;<strong>closed form solution</strong>&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x4F7F;&#x7528;&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x7684;&#x65B9;&#x6CD5;&#x4F18;&#x5316;&#x8BE5;&#x95EE;&#x9898;&#xFF0C;&#x540C;&#x65F6;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<a href="http://blog.csdn.net/wangran51/article/details/8892923" target="_blank" rel="external">&#x725B;&#x987F;&#xFF0D;&#x62C9;&#x6590;&#x68EE;&#x8FED;&#x4EE3;&#x6CD5;</a>&#x7B49;&#x3002;</p>
-<h4 id="&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#xFF08;gradient-descent&#xFF09;"><a href="#&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#xFF08;gradient-descent&#xFF09;" class="headerlink" title="&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#xFF08;gradient descent&#xFF09;"></a>&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#xFF08;gradient descent&#xFF09;</h4><p>&#x5176;&#x5B9E;&#x672C;&#x6B21;&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x5E94;&#x8BE5;&#x53EB;<strong>&#x68AF;&#x5EA6;&#x4E0A;&#x5347;</strong>&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x6240;&#x6C42;&#x7684;&#x662F;MLE&#x7684;&#x6700;&#x5927;&#x5316;&#x3002;&#x800C;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x635F;&#x5931;&#x51FD;&#x6570;&#x5219;&#x6C42;&#x7684;&#x662F;&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x3002;</p>
-<blockquote>
-<p>&#x5BF9;&#x6BD4;<strong>&#x68AF;&#x5EA6;&#x4E0A;&#x5347;</strong>&#x6CD5;&#xFF0C;&#x5176;&#x51E0;&#x4F55;&#x610F;&#x4E49;&#x548C;&#x5F88;&#x597D;&#x7406;&#x89E3;&#xFF0C;&#x90A3;&#x5C31;&#x662F;&#xFF1A;&#x7B97;&#x6CD5;&#x7684;&#x8FED;&#x4EE3;&#x8FC7;&#x7A0B;&#x662F;&#x4E00;&#x4E2A;&#x4E0A;&#x5761;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x6BCF;&#x4E00;&#x6B65;&#x9009;&#x62E9;&#x5761;&#x5EA6;&#x53D8;&#x5316;&#x7387;&#x6700;&#x5927;&#x7684;&#x65B9;&#x5411;&#x5F80;&#x4E0A;&#x8D70;&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x5411;&#x5C31;&#x662F;&#x51FD;&#x6570;&#x5728;&#x8FD9;&#x4E00;&#x70B9;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#xFF08;&#x6CE8;&#x610F;&#x4E0D;&#x662F;&#x53CD;&#x65B9;&#x5411;&#x4E86;&#xFF09;&#x3002;&#x6700;&#x540E;&#x968F;&#x7740;&#x8FED;&#x4EE3;&#x7684;&#x8FDB;&#x884C;&#xFF0C;&#x68AF;&#x5EA6;&#x8FD8;&#x662F;&#x4E0D;&#x65AD;&#x51CF;&#x5C0F;&#xFF0C;&#x6700;&#x540E;&#x8D8B;&#x8FD1;&#x4E0E;&#x96F6;&#x3002;</p>
-</blockquote>
-<p>&#x6700;&#x5927;&#x5316;&#x53D6;&#x5F97;&#x662F;&#x68AF;&#x5EA6;&#x7684;&#x65B9;&#x5411;&#xFF0C;&#x800C;&#x6700;&#x5C0F;&#x5316;&#x53D6;&#x5F97;&#x662F;&#x68AF;&#x5EA6;&#x7684;&#x53CD;&#x65B9;&#x5411;&#x3002;</p>
-<h6 id="gradient-descent"><a href="#gradient-descent" class="headerlink" title="gradient descent"></a>gradient descent</h6><p>&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#xFF08;&#x4E0A;&#x5347;&#xFF09;&#x7684;&#x8FC7;&#x7A0B;&#x7684;&#x7B2C;&#x4E00;&#x6B65;&#x662F;&#x8BA1;&#x7B97;&#x5F53;&#x524D;&#x7684;&#x68AF;&#x5EA6;&#xFF0C;&#x6211;&#x4EEC;&#x6709;&#xFF1A;</p>
-<p>$$<br>\begin{eqnarray}<br>\nabla l(w) &amp;=&amp; \sum_{i=1}^{N} (y_i-\pi(w^T x_i))x_i \nonumber \\<br>&amp;=&amp; \mathbf{X}^T \cdot (\mathbf{y}-\mathbf{X}\cdot\mathbf{w}) \nonumber<br>\end{eqnarray}<br>$$</p>
-<p>&#x5176;&#x4E2D;&#x4E00;&#x4E9B;&#x5411;&#x91CF;&#x77E9;&#x9635;&#x7684;&#x5927;&#x5C0F;&#x6BD4;&#x8F83;&#x7ED5;&#xFF0C;$\mathbf{X}$&#x548C;$x$&#x5173;&#x7CFB;&#x5982;&#x4E0B;</p>
-<p>$$<br>\mathbf{X} =<br>\begin{bmatrix}<br>\cdots&amp; x_0^T &amp; \cdots \\<br>\vdots&amp; \vdots &amp; \vdots \\<br>\cdots&amp; x_i^T &amp; \cdots \\<br>\vdots&amp; \vdots &amp; \vdots \\<br>\cdots&amp; x_N^T &amp; \cdots \\<br>\end{bmatrix}<br>$$<br>&#x6D89;&#x53CA;&#x5230;&#x7684;&#x77E9;&#x9635;&#x548C;&#x5411;&#x91CF;&#x7684;&#x5F62;&#x72B6;</p>
-<ul>
-<li>x.shape = {n_dim,1}</li>
-<li>y.shape = {1,1}</li>
-<li>w.shape = {n_dim,1}</li>
-<li>X.shape = {n_samples,n_dim}</li>
-<li>Y.shape = {n_samples,1}</li>
-<li>W.shape = {n_dim,1}</li>
-</ul>
-<p>&#x7B2C;&#x4E8C;&#x6B65;&#xFF0C;&#x66F4;&#x65B0;$w=w \color{red}{+}\eta \nabla l(w)$</p>
-<p>&#x8FD9;&#x79CD;&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x7684;&#x65B9;&#x6CD5;&#x4F18;&#x70B9;&#x662F;&#x6BCF;&#x6B21;&#x4E0B;&#x964D;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x5E73;&#x5747;&#x68AF;&#x5EA6;&#xFF0C;&#x4E0D;&#x4F1A;&#x81F4;&#x4F7F;&#x4E0B;&#x964D;&#x65B9;&#x5411;&#x8D70;&#x504F;&#xFF0C;&#x800C;&#x7F3A;&#x70B9;&#x5F88;&#x660E;&#x663E;&#xFF0C;&#x5C31;&#x662F;&#x6BCF;&#x4E00;&#x6B21;&#x90FD;&#x8981;&#x8BA1;&#x7B97;&#x5168;&#x90E8;&#x7684;&#x68AF;&#x5EA6;&#xFF0C;&#x6709;&#x70B9;&#x7C7B;&#x4F3C;&#x4E8E;<a href="https://umbrellabeach.github.io/civ0boszl00090dlngr88e023/" target="_blank" rel="external">Pocket&#x7B97;&#x6CD5;</a></p>
-<h6 id="stochastic-gradient-descent"><a href="#stochastic-gradient-descent" class="headerlink" title="stochastic gradient descent"></a>stochastic gradient descent</h6><p>&#x968F;&#x673A;&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#xFF08;SGD&#xFF09;&#x987E;&#x540D;&#x601D;&#x4E49;&#x5C31;&#x662F;&#x6BCF;&#x6B21;&#x968F;&#x673A;&#x9009;&#x62E9;&#x4E00;&#x4E2A;&#x70B9;&#x7684;&#x68AF;&#x5EA6;&#x6765;&#x4EE3;&#x8868;&#x5E73;&#x5747;&#x68AF;&#x5EA6;&#x3002;&#x5C31;&#x50CF;&#x6211;&#x53EA;&#x53D6;&#x4E86;&#x4E00;&#x4E2A;&#x6837;&#x672C;&#x7684;&#x503C;&#x4EE3;&#x8868;&#x5168;&#x90E8;&#x6837;&#x672C;&#xFF0C;&#x4ECE;&#x671F;&#x671B;&#x4E0A;&#x6765;&#x8BF4;&#xFF0C;&#x591A;&#x6B21;&#x53D6;&#x4E00;&#x6B21;&#x6837;&#x672C;&#x7684;&#x5747;&#x503C;&#x4E0E;&#x603B;&#x4F53;&#x5747;&#x503C;&#x662F;&#x4E00;&#x6837;&#x3002;&#x6216;&#x8005;&#x4E5F;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x4E00;&#x6B21;&#x6837;&#x672C;&#x5747;&#x503C;=&#x603B;&#x4F53;&#x6837;&#x672C;&#x5747;&#x503C;+&#x566A;&#x58F0;&#x3002;</p>
-<p>&#x8FD9;&#x6B21;&#x6211;&#x4EEC;&#x5047;&#x8BBE;&#x6BCF;&#x6B21;&#x53EA;&#x53D6;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x70B9;&#x7684;&#x68AF;&#x5EA6;&#x8FDB;&#x884C;&#x8FED;&#x4EE3;&#xFF0C;&#x53D6;&#x8FD9;&#x4E2A;&#x70B9;&#x7684;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x662F;1&#xFF09;&#x4ECE;1~N&#x968F;&#x673A;&#x62BD;&#x53D6;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x662F;&#xFF0C;2)<a href="http://blog.csdn.net/u014568921/article/details/44856915" target="_blank" rel="external">&#x6709;&#x6587;&#x7AE0;</a>&#x8BBE;&#x7F6E;&#x8FED;&#x4EE3;&#x6B21;&#x6570;N_ITER=N&#xFF0C;&#x8FD9;&#x6837;&#x5F53;&#x524D;&#x8FED;&#x4EE3;&#x6B21;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x505A;&#x8FD9;&#x4E2A;&#x968F;&#x673A;&#xFF0C;&#x4E5F;&#x6709;3&#xFF09;<a href="http://blog.csdn.net/zouxy09/article/details/20319673" target="_blank" rel="external">&#x65B9;&#x6CD5;</a>&#x5728;&#x6BCF;&#x6B21;&#x8FED;&#x4EE3;&#x4E2D;&#x66F4;&#x65B0;N&#x6B21;&#xFF0C;&#x6BCF;&#x6B21;&#x4ECE;1~N&#x987A;&#x5E8F;&#x6216;&#x968F;&#x673A;&#x66F4;&#x65B0;&#x7B49;</p>
-<p>&#x56E0;&#x6B64;&#xFF0C;SGD&#x7684;&#x8FC7;&#x7A0B;&#x662F;:</p>
-<ol>
-<li>&#x8BA1;&#x7B97;&#x968F;&#x673A;&#x7B2C;$i$&#x70B9;&#x7684;&#x68AF;&#x5EA6;$\nabla l(w,x_i)=(y_i-\pi(w^T x_i))x_i$</li>
-<li>&#x66F4;&#x65B0;$w=w \color{red}{+}\eta \nabla l(w,x_i)$</li>
-</ol>
-<h4 id="&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#xFF08;Implementation-in-Python&#xFF09;"><a href="#&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#xFF08;Implementation-in-Python&#xFF09;" class="headerlink" title="&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#xFF08;Implementation in Python&#xFF09;"></a>&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#xFF08;Implementation in Python&#xFF09;</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LogisticRegression</span>:</span></div><div class="line">    MAX_ITER = <span class="number">1000</span></div><div class="line">    LEARNING_RATE = <span class="number">0.01</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.X_train = np.array([])</div><div class="line">        self.X_test = np.array([])</div><div class="line">        self.y_train = np.array([])</div><div class="line">        self.y_test = np.array([])</div><div class="line">        self.w_ = np.array([])</div><div class="line">        self.mse_ = <span class="number">0.0</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X_train, y_train, gd_method=<span class="string">&apos;BGD&apos;</span>)</span>:</span></div><div class="line">        self.X_train = X_train</div><div class="line">        self.y_train = y_train</div><div class="line">        w = np.array([[<span class="number">0.0</span>]] * X_train.shape[<span class="number">1</span>])</div><div class="line"></div><div class="line">        <span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">0</span>, self.MAX_ITER):</div><div class="line">            <span class="comment"># print &apos;iter &apos;,t</span></div><div class="line">            <span class="keyword">if</span> gd_method == <span class="string">&apos;BGD&apos;</span>:</div><div class="line">                output = self.sigmoid(np.dot(self.X_train, w))</div><div class="line">                error = self.y_train - output</div><div class="line">                w = w + self.LEARNING_RATE * np.dot(self.X_train.T, error)</div><div class="line">            <span class="keyword">elif</span> gd_method == <span class="string">&apos;SGD&apos;</span>:</div><div class="line">                idx = random.randint(<span class="number">0</span>, len(y_train) - <span class="number">1</span>)</div><div class="line"></div><div class="line">                output = self.sigmoid(np.dot(self.X_train[idx], w))</div><div class="line">                error = self.y_train[idx] - output</div><div class="line">                error.shape = (<span class="number">1</span>, <span class="number">1</span>)</div><div class="line">                tmp = self.X_train[idx]</div><div class="line">                tmp.shape = (<span class="number">1</span>, self.X_train.shape[<span class="number">1</span>])</div><div class="line">                w = w + self.LEARNING_RATE * np.dot(tmp.T, error)</div><div class="line"></div><div class="line">        self.w_ = w</div><div class="line"></div><div class="line">        <span class="keyword">return</span> self</div><div class="line"></div><div class="line"><span class="meta">    @staticmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sigmoid</span><span class="params">(x)</span>:</span></div><div class="line">        <span class="keyword">return</span> np.array(<span class="number">1.0</span> / (<span class="number">1.0</span> + np.exp(-x)))</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/umbrellabeach/logistic_regression" target="_blank" rel="external">&#x5B8C;&#x6574;Github&#x4EE3;&#x7801;</a></p>
-<h4 id="&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;&#xFF08;Results&#xFF09;"><a href="#&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;&#xFF08;Results&#xFF09;" class="headerlink" title="&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;&#xFF08;Results&#xFF09;"></a>&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;&#xFF08;Results&#xFF09;</h4><p>&#x6570;&#x636E;&#x6765;&#x81EA;<a href="http://blog.csdn.net/zouxy09/article/details/20319673" target="_blank" rel="external">zouxy09</a></p>
-<p>&#x539F;&#x59CB;&#x6570;&#x636E;VIS</p>
-<div align="center"><img src="/civfx0tjm0005rklnom6aqnh2/f1.png" alt="f1"></div>
-
-<p>&#x5728;SGD&#x68AF;&#x5EA6;&#x4E0B;&#x964D;1000&#x6B21;&#x8FED;&#x4EE3;&#x540E;&#xFF0C;&#x8F93;&#x51FA;&#x7ED3;&#x679C;VIS&#xFF0C;&#x51C6;&#x786E;&#x7387;&#x4E3A;86.7%</p>
-<div align="center"><img src="/civfx0tjm0005rklnom6aqnh2/f2.png" alt="f2"></div>
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/civfx0tjm0005rklnom6aqnh2/" class="archive-article-date">
-  	<time datetime="2016-09-09T01:26:23.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-09</time>
 </a>
       
 	<div class="article-tag tagcloud">
@@ -538,7 +500,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
