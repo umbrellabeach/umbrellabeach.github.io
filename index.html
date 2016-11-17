@@ -128,6 +128,136 @@
       <div class="body-wrap">
         
   
+    <article id="post-Spring-MVC-Login-Demo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/civmh7bnb000kodlnx05jp2fl/">Spring MVC Login Demo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="Preliminary"><a href="#Preliminary" class="headerlink" title="Preliminary"></a>Preliminary</h3><p>&#x521D;&#x6B21;&#x5B66;&#x4E60;Spring&#x6846;&#x67B6;&#xFF0C;&#x5B66;&#x4E60;&#x7684;&#x8DEF;&#x7EBF;&#x4E3A;&#xFF1A;</p>
+<ol>
+<li>HTTP</li>
+<li>Servlet </li>
+<li>JSP</li>
+<li>Spring</li>
+<li>Spring MVC</li>
+</ol>
+<h4 id="HTTP&#x534F;&#x8BAE;"><a href="#HTTP&#x534F;&#x8BAE;" class="headerlink" title="HTTP&#x534F;&#x8BAE;"></a>HTTP&#x534F;&#x8BAE;</h4><p>&#x5BF9;&#x4E8E;HTTP&#xFF0C;&#x9700;&#x8981;&#x77E5;&#x9053;&#x6BCF;&#x6B21;&#x6D4F;&#x89C8;&#x5668;&#x53D1;&#x9001;&#x7684;HTTP&#x8BF7;&#x6C42;&#x548C;&#x670D;&#x52A1;&#x5668;&#x8FD4;&#x56DE;&#x7684;HTTP&#x54CD;&#x5E94;&#x7684;&#x53C2;&#x6570;&#x542B;&#x4E49;&#x3002;&#x4F7F;&#x7528;Firefox&#x7684;&#x5F00;&#x53D1;&#x8005;&#x5DE5;&#x5177;&#xFF0C;&#x6253;&#x5F00;www.baidu.com&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;</p>
+<p>&#x8BF7;&#x6C42;&#x7F51;&#x7AD9;&#xFF1A;<a href="https://ss2.bdstatic.com/lfoZeXSm1A5BphGlnYG/skin/125.jpg?2" target="_blank" rel="external">https://ss2.bdstatic.com/lfoZeXSm1A5BphGlnYG/skin/125.jpg?2</a><br>&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#xFF1A;GET<br>&#x72B6;&#x6001;&#x7801;&#xFF1A;200</p>
+<p>HTTP&#x8BF7;&#x6C42;&#x5934;&#x5982;&#x4E0B;</p>
+<div align="center"><img src="/civmh7bnb000kodlnx05jp2fl/p1.png" alt=""></div>
+
+<p>HTTP&#x54CD;&#x5E94;&#x5934;&#x5982;&#x4E0B;</p>
+<div align="center"><img src="/civmh7bnb000kodlnx05jp2fl/p2.png" alt=""></div>
+
+<h4 id="Servlet-and-JSP"><a href="#Servlet-and-JSP" class="headerlink" title="Servlet and JSP"></a>Servlet and JSP</h4><p><a href="http://www.runoob.com/servlet/servlet-tutorial.html" target="_blank" rel="external">servlet&#x6559;&#x7A0B;</a></p>
+<p><a href="http://www.runoob.com/jsp/jsp-tutorial.html" target="_blank" rel="external">JSP&#x6559;&#x7A0B;</a></p>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p>&#x672C;demo&#x4F7F;&#x7528;Mac&#x73AF;&#x5883;&#x4E0B;&#x7684; IDEA(2016.2.5) + Gradle(3.2) + Spring MVC </p>
+<h4 id="gradle"><a href="#gradle" class="headerlink" title="gradle"></a>gradle</h4><p><strong>gradle</strong>&#x548C;<strong>maven</strong>&#x90FD;&#x662F;&#x9879;&#x76EE;&#x6784;&#x5EFA;&#x7684;&#x5DE5;&#x5177;&#xFF0C;gradle&#x6BD4;maven&#x597D;&#x7528;&#x7684;&#x5730;&#x65B9;&#x5728;&#x4E8E;&#x4F7F;&#x7528;groovy&#x8BED;&#x8A00;&#x63CF;&#x8FF0;&#xFF0C;&#x66F4;&#x7B80;&#x5355;&#xFF0C;&#x800C;&#x4E14;&#x652F;&#x6301;&#x4F7F;&#x7528;maven&#x5E93;&#x3002;</p>
+<p>&#x5728;&#x6B64;&#x4E4B;&#x524D;&#xFF0C;Mac&#x9700;&#x8981;&#x5148;&#x5B89;&#x88C5;maven&#x548C;gradle&#xFF0C;&#x4E0B;&#x8F7D;&#x7684;&#x5730;&#x5740;&#x4E3A;&#xFF1A;</p>
+<ul>
+<li>maven: <a href="http://maven.apache.org/download.cgi" target="_blank" rel="external">http://maven.apache.org/download.cgi</a></li>
+<li>gradle: <a href="https://gradle.org/gradle-download/" target="_blank" rel="external">https://gradle.org/gradle-download/</a></li>
+</ul>
+<p>&#x89E3;&#x538B;&#x540E;&#x653E;&#x5230;&#x6587;&#x4EF6;&#x4E0B;~&#x76EE;&#x5F55;&#x4E0B;&#xFF08;/Users/kue&#xFF09;<br>&#x7136;&#x540E;&#x6DFB;&#x52A0;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#xFF0C;Mac&#x4E0B;&#x662F;.bash_profile&#xFF08;linux&#x4E3A; /etc/profile&#xFF09;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim ~/.bash_profile</div></pre></td></tr></table></figure></p>
+<p>&#x6DFB;&#x52A0;&#x73AF;&#x5883;&#x53D8;&#x91CF;(maven)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> M2_HOME=/Users/kue/maven</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$M2_HOME</span>/bin</div></pre></td></tr></table></figure></p>
+<p>&#x6DFB;&#x52A0;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#xFF08;gradle&#xFF09;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">GRADLE_HOME=/Users/kue/gradle</div><div class="line"><span class="built_in">export</span> GRADLE_HOME</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$GRADLE_HOME</span>/bin</div></pre></td></tr></table></figure></p>
+<p>&#x5373;&#x65F6;&#x751F;&#x6548;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> ~/.bash_profile</div></pre></td></tr></table></figure></p>
+<p>gradle&#x4E2D;&#x6DFB;&#x52A0;maven&#x5E93;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5176;&#x4E2D;mavenLocal&#x4F7F;&#x7528;&#x672C;&#x5730;maven&#x4ED3;&#x5E93;&#xFF0C;mavenCentral&#x4F7F;&#x7528;&#x4E2D;&#x5FC3;maven&#x4ED3;&#x5E93;&#xFF0C;maven{url &#x2018;&#x2026;&#x2019;}&#x4F7F;&#x7528;&#x81EA;&#x5B9A;&#x4E49;mavn&#x4ED3;&#x5E93;&#x3002;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">repositories {</div><div class="line">    mavenLocal()</div><div class="line">    maven{</div><div class="line">        url <span class="string">&apos;http://uk.maven.org/maven2&apos;</span></div><div class="line">    }</div><div class="line">    mavenCentral()</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x7531;&#x4E8E;oschina maven&#x5E93;&#x505C;&#x7528;&#xFF0C;&#x963F;&#x91CC;&#x4E91;&#x7684;maven&#x5E93;&#x5305;&#x6CA1;&#x90A3;&#x4E48;&#x5168;&#xFF0C;uk&#x7684;&#x901F;&#x5EA6;&#x4E5F;&#x4E00;&#x822C;&#xFF0C;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x624B;&#x52A8;&#x6DFB;&#x52A0;jar&#x5E93;&#x3002;&#x624B;&#x52A8;&#x6DFB;&#x52A0;&#x7684;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<ol>
+<li>&#x8FDB;&#x5165;<a href="http://mvnrepository.com/" target="_blank" rel="external">http://mvnrepository.com/</a></li>
+<li>&#x5728;&#x641C;&#x7D22;&#x680F;&#x8F93;&#x5165;&#x8981;&#x4E0B;&#x8F7D;&#x7684;jar&#x5305;&#xFF0C;&#x6BD4;&#x5982;&#x8981;&#x4E0B;&#x8F7D;spring mvc 4.2.3&#x7684;&#x5305;</li>
+<li>&#x8FDB;&#x5165;&#x8BE6;&#x60C5;&#x9875;&#xFF0C;&#x70B9;&#x51FB;Download (JAR)&#xFF0C;&#x540C;&#x65F6;&#x53EF;&#x4EE5;&#x770B;&#x5230;maven&#x6DFB;&#x52A0;&#x6B64;&#x5305;&#x7684;xml</li>
+</ol>
+<div align="center"><img src="/civmh7bnb000kodlnx05jp2fl/smvc1.png" alt=""></div><br>4. &#x8BB0;&#x5F55;&#x8FD9;&#x4E2A; jar &#x5305;&#x7684; groupId&#xFF0C;artifactId&#xFF0C;version&#x4FE1;&#x606F;&#xFF0C;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x8FD0;&#x884C;<br><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn install:install-file -Dfile=jar&#x5305;&#x7684;&#x4F4D;&#x7F6E; -DgroupId=&#x4E0A;&#x9762;&#x7684;groupId -DartifactId=&#x4E0A;&#x9762;&#x7684;artifactId -Dversion=&#x4E0A;&#x9762;&#x7684;version -Dpackaging=jar</div></pre></td></tr></table></figure><br><br>&#x6BD4;&#x5982;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn install:install-file -Dfile=/Users/kue/Downloads/spring-webmvc-4.2.3.RELEASE.jar -DgroupId=org.springframework -DartifactId=spring-webmvc -Dversion=4.2.3.RELEASE -Dpackaging=jar</div></pre></td></tr></table></figure><br><br>#### Build SpringMVC Project in IDEA<br><br>&#x6253;&#x5F00;IDEA&#xFF0C;&#x70B9;&#x51FB;New&#xFF0C;&#x9009;&#x62E9;Gradle&#xFF0C;&#x9009;&#x4E0A;Java&#x3001;Web<br><br><div align="center"><img src="/civmh7bnb000kodlnx05jp2fl/i1.png" alt=""></div>
+
+<p>&#x70B9;&#x51FB;Next&#xFF0C;GroupId&#x8868;&#x793A;&#x5F00;&#x53D1;&#x8005;&#x6807;&#x8BC6;&#xFF0C;ArtfactId&#x8868;&#x793A;&#x9879;&#x76EE;&#x540D;&#x79F0;</p>
+<div align="center"><img src="/civmh7bnb000kodlnx05jp2fl/i2.png" alt=""></div>
+
+<p>&#x70B9;&#x51FB;Next&#xFF0C;&#x9009;&#x62E9;&#x672C;&#x5730;Gradle&#x4F4D;&#x7F6E;</p>
+<div align="center"><img src="/civmh7bnb000kodlnx05jp2fl/i3.png" alt=""></div>
+
+<p>&#x521B;&#x5EFA;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x9879;&#x76EE;&#x7ED3;&#x679C;&#x5982;&#x4E0B;</p>
+<div align="center"><img src="/civmh7bnb000kodlnx05jp2fl/i4.png" alt=""></div>
+
+
+<h4 id="Dependency-Config"><a href="#Dependency-Config" class="headerlink" title="Dependency Config"></a>Dependency Config</h4><p>&#x5728;build.gradle&#x6DFB;&#x52A0;&#x9879;&#x76EE;&#x4F9D;&#x8D56;&#xFF0C;&#x6211;&#x4EEC;&#x8981;&#x7528;&#x5230;&#x7684;&#x662F;spring-webmvc&#x548C;servlet&#x5305;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dependencies {</div><div class="line">    compile group: <span class="string">&apos;javax.servlet&apos;</span>, name: <span class="string">&apos;javax.servlet-api&apos;</span>, version: <span class="string">&apos;3.1.0&apos;</span></div><div class="line">    compile <span class="string">&apos;org.springframework:spring-webmvc:3.2.8.RELEASE&apos;</span></div><div class="line">}</div></pre></td></tr></table></figure></p>
+<h4 id="Spring-Config"><a href="#Spring-Config" class="headerlink" title="Spring Config"></a>Spring Config</h4><p>&#x5728;webapp&#x4E0B;&#x65B0;&#x5EFA;&#x76EE;&#x5F55;WEB-INF&#xFF0C;&#x5728;WEB-INF&#x65B0;&#x5EFA;web.xml&#x548C;spring-mvc.xml&#x3002;</p>
+<p>spring&#x672C;&#x8D28;&#x662F;Servlet&#xFF0C;&#x901A;&#x8FC7;DispatcherServlet&#x4F5C;&#x4E3A;&#x524D;&#x7AEF;&#x5206;&#x914D;&#x5BB9;&#x5668;&#xFF0C;&#x6211;&#x4EEC;&#x5728;<strong>web.xml</strong>&#x8FDB;&#x884C;&#x5982;&#x4E0B;&#x914D;&#x7F6E;</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://java.sun.com/xml/ns/javaee&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></div><div class="line">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://java.sun.com/xml/ns/javaee</span></div><div class="line">	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;</div><div class="line">         <span class="attr">version</span>=<span class="string">&quot;2.5&quot;</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">display-name</span>&gt;</span><span class="tag">&lt;/<span class="name">display-name</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- For web context --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>spring<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>/WEB-INF/spring-mvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>spring<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.html<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">listener</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">listener</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">context-param</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath*:applicationContext.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>&#x4F7F;&#x7528;&#x4E86;org.springframework.web.servlet.DispatcherServlet&#x4F5C;&#x4E3A;Servlet&#x5BB9;&#x5668;&#x3002;</p>
+<p>&#x5728;<strong>spring-mvc.xml</strong>&#x5982;&#x4E0B;&#x914D;&#x7F6E;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;beans xmlns=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></div><div class="line">	xmlns:context=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></div><div class="line">	xmlns:xsi=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></div><div class="line">	xmlns:mvc=<span class="string">&quot;http://www.springframework.org/schema/mvc&quot;</span></div><div class="line">	xsi:schemaLocation=<span class="string">&quot;</span></div><div class="line">        http://www.springframework.org/schema/beans     </div><div class="line">        http://www.springframework.org/schema/beans/spring-beans.xsd</div><div class="line">        http://www.springframework.org/schema/context </div><div class="line">        http://www.springframework.org/schema/context/spring-context.xsd &quot;&gt;</div><div class="line"> </div><div class="line">	&lt;context:component-scan base-package=<span class="string">&quot;com.fjq.demo.logindemo&quot;</span> /&gt;</div><div class="line"></div><div class="line">&lt;/beans&gt;</div></pre></td></tr></table></figure></p>
+<p>&#x8868;&#x793A;&#x81EA;&#x52A8;&#x626B;&#x63CF;com.fjq.demo.logindemo&#x4E0B;&#x7684;&#x7EC4;&#x4EF6;</p>
+<h4 id="View-Layer"><a href="#View-Layer" class="headerlink" title="View Layer"></a>View Layer</h4><p>&#x8868;&#x793A;&#x5C42;&#x4F7F;&#x7528;jsp&#xFF0C;&#x5728;WEB-INF&#x4E0B;&#x521B;&#x5EFA;jsp&#x76EE;&#x5F55;&#xFF0C;&#x5728;jsp&#x76EE;&#x5F55;&#x4E0B;&#x5206;&#x522B;&#x521B;&#x5EFA;login.jsp&#x548C;success.jsp&#x3002;</p>
+<p><strong>login.jsp</strong>&#x4E3A;&#x7528;&#x6237;&#x8F93;&#x5165;&#x8D26;&#x53F7;&#x548C;&#x5BC6;&#x7801;&#x754C;&#x9762;&#xFF0C;&#x540C;&#x65F6;&#x6700;&#x5E95;&#x4E0B;&#x6709;&#x7A7A;&#x8F93;&#x5165;&#x548C;&#x8F93;&#x9519;&#x7684;&#x63D0;&#x793A;&#xFF1A;</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;title&gt;Login&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line"></div><div class="line">    &lt;form action=&quot;login.html&quot;&gt;</div><div class="line">        &lt;p&gt;</div><div class="line">            Username:&lt;input name=&quot;uname&quot; type=&quot;text&quot;&gt;</div><div class="line">        &lt;/p&gt;</div><div class="line">        &lt;p&gt;</div><div class="line">            Password:&lt;input name=&quot;upasswd&quot; type=&quot;password&quot;&gt;</div><div class="line">        &lt;/p&gt;</div><div class="line">        &lt;p&gt;</div><div class="line">            &lt;input type=&quot;submit&quot;&gt;</div><div class="line">        &lt;/p&gt;</div><div class="line">    &lt;/form&gt;</div><div class="line"></div><div class="line">    &lt;font color=&quot;red&quot;&gt;${error}&lt;/font&gt;</div><div class="line"></div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p><strong>success.jsp</strong>&#x5219;&#x4E3A;&#x7B80;&#x5355;&#x7684;&#x767B;&#x9646;&#x6210;&#x529F;&#x9875;&#x9762;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;title&gt;Login&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line"></div><div class="line">    &lt;h1&gt;Login Successfully&lt;/h1&gt;</div><div class="line"></div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="Controller-Layer"><a href="#Controller-Layer" class="headerlink" title="Controller Layer"></a>Controller Layer</h4><p>&#x65B0;&#x5EFA; com.fjq.demo.logindemo.controller.LoginController</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.fjq.demo.logindemo.controller;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.fjq.demo.logindemo.service.LoginService;</div><div class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</div><div class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</div><div class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.annotation.Resource;</div><div class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">@Controller</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginController</span> </span>{</div><div class="line"></div><div class="line">    <span class="meta">@Resource</span></div><div class="line">    LoginService service;</div><div class="line"></div><div class="line">    <span class="meta">@Resource</span></div><div class="line">    HttpServletRequest request;</div><div class="line"></div><div class="line">    <span class="meta">@RequestMapping</span>(<span class="string">&quot;index&quot;</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">toLoginPage</span><span class="params">()</span></span>{</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">&quot;WEB-INF/jsp/login.jsp&quot;</span>);</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="meta">@RequestMapping</span>(<span class="string">&quot;login&quot;</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">doLogin</span><span class="params">()</span></span>{</div><div class="line">        String loginPageUrl = <span class="string">&quot;WEB-INF/jsp/login.jsp&quot;</span>;</div><div class="line">        String successPageUrl = <span class="string">&quot;WEB-INF/jsp/success.jsp&quot;</span>;</div><div class="line"></div><div class="line">        String uname = request.getParameter(<span class="string">&quot;uname&quot;</span>);</div><div class="line">        String passwd = request.getParameter(<span class="string">&quot;upasswd&quot;</span>);</div><div class="line">        <span class="keyword">return</span> service.doLogin(loginPageUrl, successPageUrl, uname, passwd);</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x5176;&#x4E2D;&#xFF0C;@Service&#x3001;@Controller&#x3001;@Repository&#x90FD;&#x7B49;&#x4EF7;&#x4E8E;@Component&#xFF0C;&#x533A;&#x522B;&#x662F;&#xFF1A;</p>
+<ul>
+<li>@Service&#x7528;&#x4E8E;&#x6807;&#x6CE8;&#x4E1A;&#x52A1;&#x5C42;&#x7EC4;&#x4EF6;&#xFF08;&#x6211;&#x4EEC;&#x901A;&#x5E38;&#x5B9A;&#x4E49;&#x7684;service&#x5C42;&#x5C31;&#x7528;&#x8FD9;&#x4E2A;&#xFF09;</li>
+<li>@Controller&#x7528;&#x4E8E;&#x6807;&#x6CE8;&#x63A7;&#x5236;&#x5C42;&#x7EC4;&#x4EF6;&#xFF08;&#x5982;struts&#x4E2D;&#x7684;action&#xFF09;</li>
+<li>@Repository&#x7528;&#x4E8E;&#x6807;&#x6CE8;&#x6570;&#x636E;&#x8BBF;&#x95EE;&#x7EC4;&#x4EF6;&#xFF0C;&#x5373;DAO&#x7EC4;&#x4EF6;</li>
+<li>@Component&#x6CDB;&#x6307;&#x7EC4;&#x4EF6;&#xFF0C;&#x5F53;&#x7EC4;&#x4EF6;&#x4E0D;&#x597D;&#x5F52;&#x7C7B;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x6CE8;&#x89E3;&#x8FDB;&#x884C;&#x6807;&#x6CE8;&#x3002;</li>
+</ul>
+<p>&#x540C;&#x65F6;&#xFF0C;@Resource&#x548C;@Autowired&#x4F5C;&#x7528;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;@Autowired&#x6309;byType&#x81EA;&#x52A8;&#x6CE8;&#x5165;&#xFF0C;&#x800C;@Resource&#x9ED8;&#x8BA4;&#x6309; byName&#x81EA;&#x52A8;&#x6CE8;&#x5165;&#x3002;</p>
+<h4 id="Model-Layer"><a href="#Model-Layer" class="headerlink" title="Model Layer"></a>Model Layer</h4><p>&#x65B0;&#x5EFA; com.fjq.demo.logindemo.service.LoginService</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.fjq.demo.logindemo.service;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</div><div class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">@Service</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginService</span> </span>{</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">doLogin</span><span class="params">(String loginPageUrl, String successPageUrl, String uname, String passwd)</span></span>{</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(uname == <span class="keyword">null</span> || <span class="string">&quot;&quot;</span>.equals(uname)){</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(loginPageUrl, <span class="string">&quot;error&quot;</span>, <span class="string">&quot;Empty username!&quot;</span>);</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(passwd == <span class="keyword">null</span> || <span class="string">&quot;&quot;</span>.equals(passwd)){</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(loginPageUrl, <span class="string">&quot;error&quot;</span>, <span class="string">&quot;Empty password!&quot;</span>);</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(!<span class="string">&quot;fjq&quot;</span>.equals(uname) &amp;&amp; !<span class="string">&quot;123&quot;</span>.equals(passwd)){</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(loginPageUrl, <span class="string">&quot;error&quot;</span>, <span class="string">&quot;Wrong username or password!&quot;</span>);</div><div class="line">        }</div><div class="line"></div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(successPageUrl);</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<h4 id="Run"><a href="#Run" class="headerlink" title="Run"></a>Run</h4><p>&#x6700;&#x7EC8;&#x7684;&#x9879;&#x76EE;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<div align="center"><img src="/civmh7bnb000kodlnx05jp2fl/i5.png" alt=""></div>
+
+<p>&#x5728;IDEA&#x70B9;&#x51FB;Run-&gt;Edit Configuration&#xFF0C;&#x7136;&#x540E;&#x9009;&#x62E9;Tomcat Server&#x3002;Tomcat&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x914D;&#x7F6E;&#xFF0C;IDEA&#x4E5F;&#x9644;&#x5E26;&#x6709;Tomcat&#x3002;</p>
+<div align="center"><img src="/civmh7bnb000kodlnx05jp2fl/i6.png" alt=""></div>
+
+<p>&#x6700;&#x540E;&#x7684;&#x8FD0;&#x884C;&#x6548;&#x679C;</p>
+<div align="center"><img src="/civmh7bnb000kodlnx05jp2fl/r1.png" alt=""></div><br><div align="center"><img src="/civmh7bnb000kodlnx05jp2fl/r2.png" alt=""></div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/civmh7bnb000kodlnx05jp2fl/" class="archive-article-date">
+  	<time datetime="2016-11-17T14:52:27.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-17</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+  
+
+
+
+  
     <article id="post-Non-Linear SVM and Kernel Function非线性支持向量机与核函数" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -138,7 +268,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/civlnocul0005nnlnl2l2om9g/">Non-Linear SVM and Kernel Function非线性支持向量机与核函数</a>
+      <a class="article-title" href="/civmh7bm50004odlnb2opl1o5/">Non-Linear SVM and Kernel Function非线性支持向量机与核函数</a>
     </h1>
   
 
@@ -165,7 +295,7 @@
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/civlnocul0005nnlnl2l2om9g/" class="archive-article-date">
+      <a href="/civmh7bm50004odlnb2opl1o5/" class="archive-article-date">
   	<time datetime="2016-11-13T01:25:01.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-13</time>
 </a>
       
@@ -201,7 +331,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/civlnocux000fnnlnw7zx05s5/">Soft-Margin SVM 软间隔支持向量机</a>
+      <a class="article-title" href="/civmh7bn7000godlnkly9ycue/">Soft-Margin SVM 软间隔支持向量机</a>
     </h1>
   
 
@@ -237,7 +367,7 @@
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/civlnocux000fnnlnw7zx05s5/" class="archive-article-date">
+      <a href="/civmh7bn7000godlnkly9ycue/" class="archive-article-date">
   	<time datetime="2016-11-12T09:55:38.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-12</time>
 </a>
       
@@ -273,7 +403,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/civlnocut000cnnlnpn39y0tb/">Same Tree Problem</a>
+      <a class="article-title" href="/civmh7bmo0007odln56rycj95/">Same Tree Problem</a>
     </h1>
   
 
@@ -296,7 +426,7 @@
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/civlnocut000cnnlnpn39y0tb/" class="archive-article-date">
+      <a href="/civmh7bmo0007odln56rycj95/" class="archive-article-date">
   	<time datetime="2016-11-11T14:59:12.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-11</time>
 </a>
       
@@ -332,7 +462,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/civlnocun0007nnln5zy9dsw2/">SVM and Dual Problem 支持向量机与对偶问题</a>
+      <a class="article-title" href="/civmh7bn1000dodlnk9x1q9qk/">SVM and Dual Problem 支持向量机与对偶问题</a>
     </h1>
   
 
@@ -343,7 +473,7 @@
         <!-- Table of Contents -->
         
         <h3 id="Linear-Support-Vector-Machine"><a href="#Linear-Support-Vector-Machine" class="headerlink" title="Linear Support Vector Machine"></a>Linear Support Vector Machine</h3><p>&#x5728;&#x4E4B;&#x524D;&#x7684;Perceptron&#x7B97;&#x6CD5;&#x4E2D;&#xFF0C;&#x540C;&#x6837;&#x7684;&#x4E8C;&#x5206;&#x6CD5;&#xFF08;dichotomy&#xFF09;&#xFF0C;&#x53EF;&#x80FD;&#x6709;&#x65E0;&#x7A77;&#x591A;&#x6761;&#x7EBF;&#x7684;&#x89E3;&#x3002;&#x4EE5;&#x4E0B;&#x4E09;&#x5F20;&#x56FE;&#x662F;&#x540C;&#x4E2A;&#x6837;&#x672C;&#xFF08;&#x6837;&#x672C;&#x4E3A;&#x81EA;&#x884C;&#x6A21;&#x62DF;&#xFF09;&#x7684;&#x4E0D;&#x540C;&#x5206;&#x7C7B;&#xFF1A;</p>
-<div align="center"><br><img src="/civlnocun0007nnln5zy9dsw2/s1.0.png" alt=""> <img src="/civlnocun0007nnln5zy9dsw2/s1.1.png" alt=""> <img src="/civlnocun0007nnln5zy9dsw2/s1.2.png" alt=""><br></div>
+<div align="center"><br><img src="/civmh7bn1000dodlnk9x1q9qk/s1.0.png" alt=""> <img src="/civmh7bn1000dodlnk9x1q9qk/s1.1.png" alt=""> <img src="/civmh7bn1000dodlnk9x1q9qk/s1.2.png" alt=""><br></div>
 
 <p>&#x867D;&#x7136;&#x8FD9;&#x4E09;&#x6761;&#x7EBF;&#x90FD;&#x5BF9;&#x5E94;&#x540C;&#x4E00;&#x79CD;dichotomy&#xFF0C;&#x4F46;&#x7B2C;&#x4E00;&#x5F20;&#x56FE;&#x8FD9;&#x6837;&#x7684;&#x7EBF;&#x5BB9;&#x9519;&#x80FD;&#x529B;&#x5927;&#xFF0C;&#x5728;&#x7A7A;&#x95F4;&#x4E0A;&#x7684;<strong>&#x95F4;&#x9694;</strong>&#x6700;&#x5927;&#x3002;</p>
 <h5 id="geometric-margin-and-functional-margin"><a href="#geometric-margin-and-functional-margin" class="headerlink" title="geometric margin and functional margin"></a>geometric margin and functional margin</h5><p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x8981;&#x6C42;&#x7684;&#x90A3;&#x4E2A;&#x95F4;&#x9694;&#x6700;&#x5927;&#x7684;&#x5206;&#x5272;&#x5E73;&#x9762;&#x4E3A;&#xFF1A;<br>$$<br>\mathbf{w}^T \mathbf{x}+b=0<br>$$<br>&#x8FD9;&#x91CC;&#x4E0D;&#x5728;&#x8FDB;&#x884C;$w_0=b^{\ast}$&#x548C;$x_0=1$&#x7684;&#x8BBE;&#x7F6E;&#xFF0C;&#x662F;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x4E4B;&#x540E;&#x7684;&#x8BA1;&#x7B97;&#x3002;</p>
@@ -385,100 +515,13 @@
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/civlnocun0007nnln5zy9dsw2/" class="archive-article-date">
+      <a href="/civmh7bn1000dodlnk9x1q9qk/" class="archive-article-date">
   	<time datetime="2016-11-02T02:23:16.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-02</time>
 </a>
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-  
-
-
-
-  
-    <article id="post-Over-fitting-and-Regularization过拟合与正则化" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/civlnocur000annlngx02dycu/">Over-fitting and Regularization过拟合与正则化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <h4 id="&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear-Transformation&#xFF09;"><a href="#&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear-Transformation&#xFF09;" class="headerlink" title="&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear Transformation&#xFF09;"></a>&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear Transformation&#xFF09;</h4><p>&#x5047;&#x8BBE;&#x6709;&#x5982;&#x4E0B;&#x56FE;&#x7684;&#x7684;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#xFF08;&#x6570;&#x636E;&#x4E3A;&#x81EA;&#x884C;&#x6A21;&#x62DF;&#xFF09;&#xFF0C;&#x5708;&#x5708;&#x548C;&#x53C9;&#x53C9;&#x5206;&#x5E03;&#x8868;&#x793A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x4E24;&#x7C7B;&#x3002;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x6570;&#x636E;&#x96C6;&#x4E0D;&#x80FD;&#x88AB;&#x4E00;&#x6761;&#x76F4;&#x7EBF;&#x7EBF;&#x6027;&#x53EF;&#x5206;&#x3002;</p>
-<div align="center"><img src="/civlnocur000annlngx02dycu/q1.png" alt="q1"></div><br>&#x6B64;&#x65F6;&#x5982;&#x679C;&#x628A;&#x6570;&#x636E;&#x505A;&#x5982;&#x4E0B;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E00;&#x6761;&#x66F2;&#x7EBF;&#x5C06;&#x6570;&#x636E;&#x5207;&#x5206;&#x3002;<br>$$<br>\begin{eqnarray}<br>z_0&amp;=&amp;1 \nonumber \\<br>z_1&amp;=&amp;{x_1}^2 \nonumber \\<br>z_2&amp;=&amp;{x_2}^2 \nonumber<br>\end{eqnarray}<br>$$<br><br><div align="center"><img src="/civlnocur000annlngx02dycu/q2.png" alt="q2"></div><br>&#x5F97;&#x5230;&#x7684;hypothesis&#x662F;&#xFF1A;<br>$$<br>\begin{eqnarray}<br>h(\mathbf{z}) &amp;=&amp; \mathrm{sign}(w_2\cdot z_2+w_1\cdot z_1+w_0) \nonumber \\<br>&amp;=&amp; \mathrm{sign}(\mathrm{w^T Z})\nonumber<br>\end{eqnarray}<br>$$<br>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x62FF;&#x5230;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5148;&#x5BF9;&#x6570;&#x636E;&#x96C6;&#x8FDB;&#x884C;&#x8FD9;&#x6837;&#x7684;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x81F3;Z&#x7A7A;&#x95F4;&#xFF0C;&#x5728;Z&#x7A7A;&#x95F4;&#x4E0A;&#x4F7F;&#x7528;&#x7EBF;&#x6027;&#x5206;&#x7C7B;&#x5668;&#x5982;Perceptron&#x3001;Linear Regression&#x3001;Logistic Regression&#x7B49;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#x6216;&#x8005;&#x56DE;&#x5F52;&#xFF0C;&#x5C06;&#x7ED3;&#x679C;&#x5BF9;&#x5E94;&#x5230;X&#x7A7A;&#x95F4;&#x4E0A;&#x3002;<br><br>&#x66F4;&#x4E00;&#x822C;&#x5730;&#xFF0C;&#x5F53;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x5176;&#x4E2D;&#x6BCF;&#x4E2A;&#x6837;&#x672C;&#x70B9;$x_i \in \mathbf{R}^d$&#x3002;&#x5BF9;&#x5176;&#x8FDB;&#x884C;$Q$-th&#x53D8;&#x6362;&#x53EF;&#x5F97;&#x5230;<br>$$<br>\begin{eqnarray}<br>\Phi &amp;=&amp; (1, \nonumber \\<br>&amp;&amp; x_{(1)},x_{(2)},\cdots,x_{(d)}, \nonumber \\<br>&amp;&amp; x_{(1)}^2,x_{(1)}x_{(2)},\cdots,x_{(d)}^2, \nonumber \\<br>&amp;&amp; \cdots, \nonumber \\<br>&amp;&amp; x_{(1)}^Q,x_{(1)}^{Q-1}x_{(2)},\cdots,x_{(d)}^{Q}) \nonumber<br>\end{eqnarray}<br>$$<br><br>&#x4E8C;&#x7EF4;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x4EE3;&#x7801;&#xFF08;$Q=2$&#xFF09;:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__feature_transform</span><span class="params">(self, x1, x2)</span>:</span></div><div class="line">    d = self.FEAT_TRANS_DIM</div><div class="line">    res = []</div><div class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>, d + <span class="number">1</span>):</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, k + <span class="number">1</span>):</div><div class="line">            res.append((x1 ** i) * (x2 ** (k - i)))</div><div class="line">    <span class="keyword">return</span> np.array(res)</div></pre></td></tr></table></figure><br><br>&#x5728;&#x4E0A;&#x7BC7;&#x6587;&#x7AE0;<a href="https://umbrellabeach.github.io/civ0bosza00050dlnrat9tso0/" target="_blank" rel="external">Logistic Regression&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x7684;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x73B0;</a>&#x4E2D;&#x5B9E;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;LR Classifier&#xFF0C;&#x6211;&#x4EEC;&#x628A;LR&#x76F4;&#x63A5;&#x5728;&#x672C;&#x4F8B;&#x6570;&#x636E;&#x539F;&#x7EF4;&#x5EA6;&#x8DD1;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF0C;&#x51C6;&#x786E;&#x7387;&#x53EA;&#x6709;60%&#xFF1A;<br><br><div align="center"><img src="/civlnocur000annlngx02dycu/c1.png" alt="c1"></div>
-
-<p>&#x4F7F;&#x7528;&#x672C;&#x4F8B;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x4EE3;&#x7801;&#x5904;&#x7406;&#x540E;&#xFF08;$Q=2$&#xFF09;&#x518D;&#x4F7F;&#x7528;LR Classifier&#x5206;&#x7C7B;&#xFF0C;&#x51C6;&#x786E;&#x7387;&#x63D0;&#x5347;&#x81F3;<strong>96.7%</strong>&#x3002;&#x53EF;&#x89C1;&#xFF0C;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x81F3;&#x5C11;&#x5C06;$E_{in}$&#x964D;&#x5230;&#x4E86;&#x6700;&#x4F4E;&#xFF0C;&#x53EF;&#x8C13;&#x201C;&#x795E;&#x529B;&#x201D;&#x3002;</p>
-<h4 id="&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;"><a href="#&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;" class="headerlink" title="&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;"></a>&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;</h4><p>&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x589E;&#x52A0;&#x4E86;&#x6A21;&#x578B;&#x7684;&#x590D;&#x6742;&#x5EA6;&#xFF0C;&#x4ECE;VC&#x89D2;&#x5EA6;&#x6765;&#x8BF4;&#xFF1A;<br>$<br>E_{out} \leqslant E_{in} + O(\mathrm{model})<br>$<br>&#x5F53;&#x6A21;&#x578B;&#x590D;&#x6742;&#x5EA6;&#x8D8A;&#x6765;&#x8D8A;&#x5927;&#xFF0C;&#x8BAD;&#x7EC3;&#x8BEF;&#x5DEE;$E_{in}$&#x4F1A;&#x51CF;&#x5C11;&#xFF0C;&#x4F46;&#x5B9E;&#x9645;&#x8BEF;&#x5DEE;$E_{out}$&#x53CD;&#x800C;&#x4F1A;&#x4E0A;&#x5347;&#xFF0C;&#x8FD9;&#x4E2A;&#x60C5;&#x51B5;&#x79F0;&#x4E3A;<strong>Over-fitting &#x8FC7;&#x62DF;&#x5408;</strong>&#x3002;</p>
-<p>&#x6765;&#x770B;&#x53F0;&#x5927;&#x300A;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x57FA;&#x77F3;&#x300B;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p>
-<div align="center"><img src="/civlnocur000annlngx02dycu/o1.png" alt="o1"></div><br>&#x5F53;&#x6211;&#x4EEC;&#x7528;&#x66F4;&#x201C;&#x5389;&#x5BB3;&#x201D;&#x7684;&#x6A21;&#x578B;&#x53BB;&#x62DF;&#x5408;&#xFF0C;&#x5C31;&#x4F1A;&#x53D1;&#x751F;&#x53F3;&#x8FB9;&#x8FD9;&#x6837;&#x7684;&#x8FC7;&#x62DF;&#x5408;&#x60C5;&#x51B5;&#xFF0C;&#x4F46;&#x53EF;&#x80FD;&#x5B9E;&#x9645;&#x4E0A;&#x4F4E;&#x7EF4;&#x5EA6;&#x7684;&#x6A21;&#x578B;&#x66F4;&#x63A5;&#x8FD1;&#x771F;&#x5B9E;&#x7684;&#x6A21;&#x578B;&#x3002;&#x8FD9;&#x6837;&#x60F3;&#x6765;&#xFF0C;&#x8FC7;&#x62DF;&#x5408;&#x662F;<strong>&#x6A21;&#x578B;&#x590D;&#x6742;&#x5EA6;</strong>&#x6216;&#x8005;<strong>&#x566A;&#x58F0;</strong>&#x5F71;&#x54CD;&#x7684;&#x3002;<br><br><div align="center"><img src="/civlnocur000annlngx02dycu/o2.png" alt="o2"></div>
-
-<p>&#x4E0A;&#x56FE;&#x8FD9;&#x4E2A;&#x5B9E;&#x9A8C;&#x5C31;&#x663E;&#x793A;&#x8FC7;&#x62DF;&#x5408;&#x7684;&#x6781;&#x5927;&#x5371;&#x5BB3;&#x3002;</p>
-<h4 id="&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;"><a href="#&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;" class="headerlink" title="&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;"></a>&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;</h4><p>&#x7ECF;&#x8FC7;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x540E;&#xFF0C;&#x5176;&#x5B9E;&#x8FD8;&#x662F;&#x5728;&#x4E00;&#x4E2A;&#x7EBF;&#x6027;&#x95EE;&#x9898;&#x4E2D;</p>
-<p>$$<br>h(z)=w_0+w_1 z_1+w_2 z_2+\cdots+w_m z_m<br>$$</p>
-<p>&#x5728;&#x6700;&#x5C0F;&#x5316;in sample error $E_{in}(\mathbf{w})$&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x5BF9;$\mathbf{w}$&#x505A;&#x4E00;&#x4E9B;&#x9650;&#x5236;&#xFF0C;&#x8BA9;&#x67D0;&#x4E9B;&#x5F71;&#x54CD;&#x8FC7;&#x62DF;&#x5408;&#x7684;&#x9879;&#x5C3D;&#x53EF;&#x80FD;&#x5C0F;&#x3002;</p>
-<p>&#x6BD4;&#x5982;$\mathbf{w^T w}\leqslant \mathbf{C}$&#x3002;&#x6211;&#x4EEC;&#x4F7F;&#x7528;<strong>Lagrange Multiplier</strong>&#x628A;&#x5B83;&#x52A0;&#x5230;&#x7ECF;&#x9A8C;&#x516C;&#x5F0F;&#x4E2D;&#x5F97;&#x5230;&#xFF1A;<br>$$<br>\min E_{in}(\mathbf{w}) + \lambda \mathbf{w^T w}<br>$$</p>
-<p>&#x66F4;&#x4E00;&#x822C;&#x7684;&#x5F62;&#x5F0F;&#x662F;<br>$$<br>E_{aug}(w&#xFF09;= E_{in}(w) + \lambda L(w)<br>$$<br>&#x5176;&#x4E2D;&#x7684;L(f)&#x6211;&#x4EEC;&#x53EB;&#x505A;<strong>&#x6B63;&#x5219;&#x9879;</strong>&#x6216;<strong>&#x60E9;&#x7F5A;&#x9879; Regularizer</strong>&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5373;&#x662F;<strong>&#x6B63;&#x5219;&#x5316;Regularization</strong>&#x3002;</p>
-<blockquote>
-<p>&#x6B63;&#x5219;&#x5316;&#x7B26;&#x5408;&#x5965;&#x5361;&#x59C6;&#x5243;&#x5200;&#x5B9A;&#x5F8B;&#xFF08;Occam&#x2019;s razor&#xFF09;&#x539F;&#x7406;&#xFF0C;&#x5965;&#x5361;&#x59C6;&#x5243;&#x5200;&#x5B9A;&#x5F8B;&#x539F;&#x7406;&#x5E94;&#x7528;&#x4E8E;&#x6A21;&#x578B;&#x9009;&#x62E9;&#x65F6;&#x4E3A;&#x4EE5;&#x4E0B;&#x60F3;&#x6CD5;&#xFF1A;&#x5728;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x9009;&#x62E9;&#x7684;&#x6A21;&#x578B;&#x4E2D;&#xFF0C;&#x80FD;&#x591F;&#x5F88;&#x597D;&#x5730;&#x89E3;&#x91CA;&#x5DF2;&#x77E5;&#x6570;&#x636E;&#x5E76;&#x4E14;&#x5341;&#x5206;&#x7B80;&#x5355;&#x624D;&#x662F;&#x597D;&#x7684;&#x6A21;&#x578B;&#x3002;&#xFF08;&#x674E;&#x822A;&#x300A;&#x7EDF;&#x8BA1;&#x5B66;&#x65B9;&#x6CD5;&#x300B;&#xFF09;</p>
-</blockquote>
-<p>&#x6B63;&#x5219;&#x5316;&#x901A;&#x5E38;&#x6709;&#x4E09;&#x79CD;&#x65B9;&#x6CD5;&#xFF1A;</p>
-<p><strong>L2-Regularization</strong>&#x53C8;&#x79F0;<strong>Ridge Regression &#x5CAD;&#x56DE;&#x5F52;</strong></p>
-<p>$$<br>E_{aug}(w)=\frac{1}{2} \sum_{i=1}^N (y_i - y(x_i,w)^2)+\frac{\lambda}{2} \Vert w \Vert^2<br>$$</p>
-<p><strong>L1-Regularization</strong>&#x53C8;&#x79F0;<strong>Lasso Regression</strong></p>
-<p>$$<br>E_{aug}(w)=\frac{1}{2} \sum_{i=1}^N (y_i - y(x_i,w)^2)+\lambda \Vert w \Vert_1<br>$$</p>
-<p><strong>L0-Regularization</strong></p>
-<p>$$<br>E_{aug}(w)=\frac{1}{2} \sum_{i=1}^N (y_i - y(x_i,w)^2)+\lambda \sum_{i=1}^N \delta (w_i \neq 0)<br>$$</p>
-<p><a href="https://github.com/umbrellabeach/logistic_regression" target="_blank" rel="external">Github&#x5B8C;&#x6574;&#x4EE3;&#x7801;</a></p>
-<p>&#x6700;&#x540E;&#x6765;&#x8BA8;&#x8BBA;&#x4E00;&#x4E0B;&#x5728;&#x77E5;&#x4E4E;&#x4E0A;&#x770B;&#x7684;&#x4E00;&#x4E2A;&#x95EE;&#x9898;</p>
-<p><a href="https://www.zhihu.com/question/37096933?sort=created" target="_blank" rel="external">&#x77E5;&#x4E4E;-l1 &#x76F8;&#x6BD4;&#x4E8E; l2 &#x4E3A;&#x4EC0;&#x4E48;&#x5BB9;&#x6613;&#x83B7;&#x5F97;&#x7A00;&#x758F;&#x89E3;&#xFF1F;</a></p>
-<p>ESL&#x4E66;&#x91CC;&#x5C31;&#x89E3;&#x91CA;&#x7684;&#x5F88;&#x6E05;&#x695A;</p>
-<p><img src="/civlnocur000annlngx02dycu/z.png" alt="ESL"><br>&#x8BF4;&#x767D;&#x4E86;&#xFF0C;l1&#x662F;&#x6709;&#x89D2;&#x7684;&#xFF0C;l2&#x662F;&#x65E0;&#x89D2;&#x7684;&#xFF0C;&#x4F7F;&#x7528;l1&#x6700;&#x540E;&#x7684;w&#x90FD;&#x4F1A;&#x8DD1;&#x5230;corner&#x90A3;&#x8FB9;&#xFF0C;&#x800C;corner&#x90A3;&#x8FB9;&#x6B63;&#x597D;&#x662F;&#x6709;w&#x7B49;&#x4E8E;0&#x7684;&#x5730;&#x65B9;&#x3002;</p>
-<p>&#x4E5F;&#x6709;&#x76F4;&#x89C2;&#x7684;&#x89E3;&#x91CA;</p>
-<blockquote>
-<p>&#x66F4;&#x52A0;&#x76F4;&#x89C2;&#x7684;&#x6765;&#x8BF4;&#xFF0C;&#x6709;&#x4E00;&#x4E2A;&#x7403;&#x5728;&#x66F2;&#x9762;&#x4E0A;&#xFF0C;&#x6211;&#x4EEC;&#x628A;&#x7403;&#x53D7;&#x5230;&#x7684;&#x91CD;&#x529B;&#x548C;&#x66F2;&#x9762;&#x7684;&#x652F;&#x6491;&#x529B;&#x7684;&#x5408;&#x529B;&#x770B;&#x6210;&#x4E00;&#x4E2A;&#x529B;&#xFF0C;&#x65B9;&#x5411;&#x4E5F;&#x5C31;&#x662F;&#x66F2;&#x9762;&#x7684;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x3002;&#x6B64;&#x5916;&#x6211;&#x4EEC;&#x8FD8;&#x53D7;&#x5230;&#x4E00;&#x4E2A;&#x6765;&#x81EA;&#x4E8E;&#x56DB;&#x8FB9;&#x5F62;&#xFF08;&#x4E0A;&#x56FE;&#xFF09;&#x7684;&#x67B6;&#x5B50;&#x7684;&#x652F;&#x6491;&#x529B;&#xFF0C;&#x800C;&#x6700;&#x4F18;&#x89E3;&#x5904;&#x5C31;&#x662F;&#x7403;&#x80FD;&#x591F;&#x9759;&#x6B62;&#x5E73;&#x8861;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x90A3;&#x4E48;&#x5F88;&#x660E;&#x663E;&#xFF0C;&#x662F;&#x4E0D;&#x662F;&#x5728;&#x56DB;&#x4E2A;&#x9876;&#x89D2;&#x5904;&#x6700;&#x6709;&#x53EF;&#x80FD;&#x7981;&#x6B62;&#x3002;</p>
-<p>&#x5C31;&#x662F;&#x62FF;&#x8DDF;&#x7EF3;&#x5B50;&#x6302;&#x70B9;&#x91CD;&#x7269;&#xFF0C;&#x7EF3;&#x5B50;&#x5F88;&#x5BB9;&#x6613;&#x6ED1;&#x5012;&#x8FD9;&#x4E2A;&#x67B6;&#x5B50;&#x7684;&#x89D2;&#x70B9;&#x5904;&#x5427;&#x3002;&#x4E00;&#x822C;&#x6765;&#x8BF4;&#xFF0C;&#x8D8A;&#x662F;non-convex&#x7684;regularizer&#x8D8A;&#x662F;&#x5BB9;&#x6613;&#x4F7F;&#x7684;&#x6211;&#x4EEC;&#x7684;&#x6A21;&#x578B;sparse&#x3002;</p>
-</blockquote>
-<p>&#x6700;&#x540E;&#x653E;&#x4E00;&#x5F20;regularizer&#x4E0D;&#x540C;&#x8303;&#x6570;&#x7684;&#x56FE;</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/693134-c388a2981f36f146.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/civlnocur000annlngx02dycu/" class="archive-article-date">
-  	<time datetime="2016-10-03T05:25:26.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-03</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
 	</div>
 
       
@@ -593,7 +636,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/Algorithm/" style="font-size: 16.67px;">Algorithm</a> <a href="/tags/C/" style="font-size: 16.67px;">C++</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a>
+    				<a href="/tags/Algorithm/" style="font-size: 16.67px;">Algorithm</a> <a href="/tags/C/" style="font-size: 16.67px;">C++</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a>
     			</div>
     	</section>
     

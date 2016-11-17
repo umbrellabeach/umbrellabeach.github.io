@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Soft-Margin SVM 软间隔支持向量机 | 生生 | The Beacon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;#x4F7F;&amp;#x7528;SVM and Dual Problem &amp;#x652F;&amp;#x6301;&amp;#x5411;&amp;#x91CF;&amp;#x673A;&amp;#x4E0E;&amp;#x5BF9;&amp;#x5076;&amp;#x95EE;&amp;#x9898;&amp;#x4E2D;&amp;#x7684;SVM&amp;#x6A21;&amp;#x578B;&amp;#x7684;&amp;#x524D;&amp;#x63D0;&amp;#x662F;&amp;#x6570;&amp;#x636E;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Soft-Margin SVM 软间隔支持向量机">
+<meta property="og:url" content="http://yoursite.com/civmh7bn7000godlnkly9ycue/index.html">
+<meta property="og:site_name" content="生生 | The Beacon">
+<meta property="og:description" content="&amp;#x4F7F;&amp;#x7528;SVM and Dual Problem &amp;#x652F;&amp;#x6301;&amp;#x5411;&amp;#x91CF;&amp;#x673A;&amp;#x4E0E;&amp;#x5BF9;&amp;#x5076;&amp;#x95EE;&amp;#x9898;&amp;#x4E2D;&amp;#x7684;SVM&amp;#x6A21;&amp;#x578B;&amp;#x7684;&amp;#x524D;&amp;#x63D0;&amp;#x662F;&amp;#x6570;&amp;#x636E;">
+<meta property="og:updated_time" content="2016-11-13T01:59:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Soft-Margin SVM 软间隔支持向量机">
+<meta name="twitter:description" content="&amp;#x4F7F;&amp;#x7528;SVM and Dual Problem &amp;#x652F;&amp;#x6301;&amp;#x5411;&amp;#x91CF;&amp;#x673A;&amp;#x4E0E;&amp;#x5BF9;&amp;#x5076;&amp;#x95EE;&amp;#x9898;&amp;#x4E2D;&amp;#x7684;SVM&amp;#x6A21;&amp;#x578B;&amp;#x7684;&amp;#x524D;&amp;#x63D0;&amp;#x662F;&amp;#x6570;&amp;#x636E;">
+  
+    <link rel="alternative" href="/atom.xml" title="生生 | The Beacon" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://oe0136353.bkt.clouddn.com/head.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jiaqi Fu</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">home</a></li>
+	        
+				<li><a href="/archives">archives</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">archives</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">tags</a>
+    			
+    			
+            
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">aboutme</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/umbrellabeach" title="github">github</a>
+		        
+					<a class="mail" target="_blank" href="mailto:fujiaqi@zju.edu.cn" title="mail">mail</a>
+		        
+					<a class="linkedin" target="_blank" href="https://cn.linkedin.com/in/jiaqi-fu-013a27104" title="linkedin">linkedin</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jiaqi Fu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://oe0136353.bkt.clouddn.com/head.jpeg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jiaqi Fu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">home</a></li>
+		        
+					<li><a href="/archives">archives</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/umbrellabeach" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:fujiaqi@zju.edu.cn" title="mail">mail</a>
+			        
+						<a class="linkedin" target="_blank" href="https://cn.linkedin.com/in/jiaqi-fu-013a27104" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Soft-Margin-SVM-软间隔支持向量机" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Soft-Margin SVM 软间隔支持向量机
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>&#x4F7F;&#x7528;<a href="http://fujiaqi.com/civdxz2os000bn6lnhbceys39/" target="_blank" rel="external">SVM and Dual Problem &#x652F;&#x6301;&#x5411;&#x91CF;&#x673A;&#x4E0E;&#x5BF9;&#x5076;&#x95EE;&#x9898;</a>&#x4E2D;&#x7684;SVM&#x6A21;&#x578B;&#x7684;&#x524D;&#x63D0;&#x662F;&#x6570;&#x636E;&#x8981;&#x662F;<strong>&#x7EBF;&#x6027;&#x53EF;&#x5206;</strong>&#x7684;&#xFF0C;&#x4F46;&#x5B9E;&#x9645;&#x4E0A;&#x6211;&#x4EEC;&#x62FF;&#x5230;&#x7684;&#x6570;&#x636E;&#x51E0;&#x4E4E;&#x90FD;&#x4E0D;&#x53EF;&#x80FD;&#x662F;&#x7EBF;&#x6027;&#x53EF;&#x5206;&#x7684;&#x3002;&#x8FD9;&#x65F6;&#x5019;&#x60F3;&#x5230;&#x5728;<a href="http://fujiaqi.com/civdxz2on0006n6ln9vfpwt06/" target="_blank" rel="external">Over-fitting and Regularization&#x8FC7;&#x62DF;&#x5408;&#x4E0E;&#x6B63;&#x5219;&#x5316;</a>&#x63D0;&#x5230;&#x7684;<strong>&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;</strong>&#x3002;&#x4ECE;&#x8FD9;&#x4E2A;&#x601D;&#x8DEF;&#x51FA;&#x53D1;&#x7684;&#x975E;&#x7EBF;&#x6027;&#x652F;&#x6301;&#x5411;&#x91CF;&#x673A;&#xFF08;non-linear SVM&#xFF09;&#x5728;&#x4E0B;&#x7BC7;&#x6587;&#x7AE0;&#x4E2D;&#x4F1A;&#x5C06;&#x5230;&#x3002;&#x6211;&#x4EEC;&#x5148;&#x8BB2;<strong>&#x8F6F;&#x95F4;&#x9694;&#xFF08;Soft-Margin&#xFF09;</strong>&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<h3 id="Soft-Margin"><a href="#Soft-Margin" class="headerlink" title="Soft-Margin"></a>Soft-Margin</h3><p>&#x4E4B;&#x524D;&#x6211;&#x4EEC;&#x5047;&#x8BBE;&#x51FD;&#x6570;&#x95F4;&#x9694;&#x4E3A;1&#xFF0C;&#x5373;$\hat{\gamma}=1$&#xFF0C;&#x6240;&#x4EE5;&#x6709;&#x4E86;&#x6761;&#x4EF6;<br>$$<br>y_i (\mathbf{w}^T \mathbf{x}+b) \geq 1<br>$$</p>
+<p>&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x5047;&#x8BBE;&#x8FD8;&#x662F;&#x4F7F;&#x7528;&#x7EBF;&#x6027;SVM&#xFF0C;&#x4F46;&#x5141;&#x8BB8;&#x5B58;&#x5728;&#x51E0;&#x4E2A;&#x5206;&#x9519;&#x7684;&#x70B9;&#x3002;&#x6211;&#x4EEC;&#x8BBE;&#x8FD9;&#x4E9B;&#x5206;&#x9519;&#x7684;&#x70B9;&#x8FDC;&#x79BB;margin&#x7684;&#x7A0B;&#x5EA6;&#x4E3A;$\xi_i$&#xFF0C;&#x4E5F;&#x53EB;&#x505A;<strong>margin violation</strong>&#x3002;&#x5E76;&#x4E14;&#x7528;$C$&#x4E3A;&#x8868;&#x793A;&#x60E9;&#x7F5A;&#x56E0;&#x5B50;&#xFF0C;$C&gt;0$&#x3002;&#x90A3;&#x4E48;&#x8F6F;&#x95F4;&#x9694;&#x7684;&#x652F;&#x6301;&#x5411;&#x91CF;&#x673A;&#x53EF;&#x4EE5;&#x8868;&#x793A;&#x6210;&#x8FD9;&#x6837;&#x7684;&#x51F8;&#x4E8C;&#x6B21;&#x89C4;&#x5212;&#x95EE;&#x9898;&#xFF1A;<br>$$<br>\begin{eqnarray}<br>\min \limits_{\mathbf{w},b} &amp;\quad&amp; \frac{1}{2} \mathbf{w}^T \mathbf{w}+C \sum_i^N \xi_i \nonumber \\<br>s.t. &amp;\quad&amp;  y_i (\mathbf{w}^T \mathbf{x}+b) \geq 1-\xi_i \quad i=1,2,\ldots,N \nonumber \\<br>&amp;\quad&amp;  \xi_i \geqslant 0 \quad i=1,2,\ldots,N \nonumber<br>\end{eqnarray}<br>$$</p>
+<p>&#x5BF9;&#x4E8E;&#x60E9;&#x7F5A;&#x56E0;&#x5B50;$C$&#x7684;&#x9009;&#x62E9;&#xFF0C;&#x6709;&#x4E24;&#x79CD;&#x60C5;&#x5F62;&#xFF1A;</p>
+<ol>
+<li>&#x5927;&#x7684;$C$&#x3002;&#x5BF9;&#x9519;&#x5206;&#x7684;&#x5BB9;&#x5FCD;&#x5EA6;&#x5F88;&#x5C0F;&#xFF0C;&#x72AF;&#x9519;&#x8D8A;&#x5927;&#x60E9;&#x7F5A;&#x8D8A;&#x5927;&#xFF0C;&#x6240;&#x4EE5;&#x6B64;&#x65F6;&#x5F97;&#x5230;&#x7684;&#x662F;&#x7EC6;&#x7684;&#x95F4;&#x9694;&#xFF1B;</li>
+<li>&#x5C0F;&#x7684;$C$&#x3002;&#x5BF9;&#x72AF;&#x9519;&#x5BB9;&#x5FCD;&#x8F83;&#x5C0F;&#xFF0C;&#x5F97;&#x5230;&#x7684;&#x662F;&#x5BBD;&#x7684;&#x95F4;&#x9694;&#x3002;</li>
+</ol>
+<p>&#x6B64;&#x95EE;&#x9898;&#x662F;&#x8F6F;&#x95F4;&#x9694;SVM&#x7684;<strong>&#x539F;&#x59CB;&#x95EE;&#x9898;</strong>&#xFF0C;&#x4F7F;&#x7528;&#x4E8C;&#x6B21;&#x89C4;&#x5212;&#xFF08;QP&#xFF09;&#x63A5;&#x8FD9;&#x4E2A;&#x539F;&#x59CB;&#x95EE;&#x9898;&#x9700;&#x8981;&#x89E3;$d+1$&#x4E2A;&#x53D8;&#x91CF;&#xFF08;$w$&#x548C;$b$&#xFF09;&#xFF0C;$2N$&#x4E2A;&#x7EA6;&#x675F;&#x6761;&#x4EF6;&#x3002;&#x5F53;&#x7EF4;&#x5EA6;&#x5F88;&#x5927;&#x65F6;&#xFF0C;&#x4F1A;&#x53D8;&#x5F97;&#x5F88;&#x56F0;&#x96BE;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5176;&#x5BF9;&#x5076;&#x5F62;&#x5F0F;&#x3002;</p>
+<h3 id="Dual-Soft-Margin-SVM"><a href="#Dual-Soft-Margin-SVM" class="headerlink" title="Dual Soft-Margin SVM"></a>Dual Soft-Margin SVM</h3><p>&#x5728;<a href="http://fujiaqi.com/civdxz2os000bn6lnhbceys39/" target="_blank" rel="external">SVM and Dual Problem &#x652F;&#x6301;&#x5411;&#x91CF;&#x673A;&#x4E0E;&#x5BF9;&#x5076;&#x95EE;&#x9898;</a>&#x4E2D;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x8BE6;&#x7EC6;&#x63A8;&#x5BFC;&#x8FC7;&#x62C9;&#x683C;&#x6717;&#x65E5;&#x5BF9;&#x5076;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x62C9;&#x683C;&#x6717;&#x65E5;&#x539F;&#x59CB;&#x95EE;&#x9898;&#x7684;&#x4E00;&#x822C;&#x5F62;&#x5F0F;&#x662F;&#x8FD9;&#x6837;&#xFF1A;<br>$$<br>\begin{eqnarray}<br>\min \limits_{\mathbf{w}} &amp;\quad&amp; f(w) \nonumber \\<br>s.t. &amp;\quad&amp;  g_i(w)\leqslant0,\quad,i=1,2,\ldots,k \nonumber \\<br>&amp;\quad&amp;  h_i(w)=0,\quad,i=1,2,\ldots,l \nonumber \\<br>\end{eqnarray}<br>$$ </p>
+<p>&#x5728;&#x4E4B;&#x524D;&#x7684;&#x786C;&#x95F4;&#x9694;SVM&#x4E2D;&#xFF0C;&#x53EA;&#x6709;$g_i(w)\leqslant0$&#x8FD9;&#x4E00;&#x4E2A;&#x7EA6;&#x675F;&#x6761;&#x4EF6;&#xFF0C;&#x5728;&#x8F6F;&#x95F4;&#x9694;&#x4E2D;&#xFF0C;&#x6709;&#x4E24;&#x4E2A;&#x7EA6;&#x675F;&#x6761;&#x4EF6;&#x3002;&#x503C;&#x5F97;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x7EA6;&#x675F;&#x6761;&#x4EF6;&#x662F;$\xi_i \geqslant 0$&#xFF0C;&#x800C;&#x62C9;&#x683C;&#x6717;&#x65E5;&#x516C;&#x5F0F;&#x4F7F;&#x7528;&#x7684;&#x662F;$h_i(w)=0$&#xFF0C;&#x6211;&#x95EE;&#x8FC7;&#x540C;&#x5B66;&#xFF0C;&#x8BA8;&#x8BBA;&#x7684;&#x7ED3;&#x679C;&#x662F;$h_i(w) \leqslant 0$&#x4E5F;&#x662F;&#x9002;&#x7528;&#x7684;&#xFF0C;&#x548C;$g_i(w)\leqslant0$&#x80FD;&#x4F7F;&#x7528;&#x7684;&#x539F;&#x7406;&#x4E00;&#x6837;&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5F97;&#x5230;&#x7684;&#x62C9;&#x683C;&#x6717;&#x65E5;&#x51FD;&#x6570;&#x662F;:<br>$$<br>\begin{equation}<br>L(\mathbf{w},b,\xi,\alpha,\beta) = \frac{1}{2} \mathbf{w}^T \mathbf{w}+C \sum_i^N \xi_i + \sum_i^N \alpha_i (1-\xi_i-y_i(\mathbf{w}^T \mathbf{x}))+\sum_i^N \beta_i (-\xi_i)<br>\end{equation}<br>$$<br>&#x5176;&#x4E2D;&#xFF0C;$\alpha_i \geqslant 0$&#xFF0C;$\beta_i \geqslant 0$&#x3002;</p>
+<p>&#x5728;&#x6EE1;&#x8DB3;<strong>KKT&#x6761;&#x4EF6;</strong>&#x4E0B;&#xFF0C;&#x6211;&#x4EEC;&#x671F;&#x671B;&#x5F97;&#x5230;&#x6700;&#x4F18;&#x89E3;&#xFF0C;&#x5373;&#x68AF;&#x5EA6;&#x4E3A;0:</p>
+<p>$$<br>\begin{eqnarray}<br>\frac{\partial L}{\partial w} = w-\sum_{i=1}^N \alpha_i y_i x_i &amp;=&amp; 0 \\<br>\frac{\partial L}{\partial b} = \sum_{i=1}^N \alpha_i y_i &amp;=&amp; 0  \\<br>\frac{\partial L}{\partial \xi_i} = C-\alpha_i-\beta_i=0<br>\end{eqnarray}<br>$$</p>
+<p>&#x628A;&#x8FD9;&#x4E9B;&#x5E26;&#x5165;&#x5230;&#x516C;&#x5F0F;(1)&#x4E2D;&#x53EF;&#x4EE5;&#x6D88;&#x53BB;&#x5305;&#x542B;$\xi_i$&#x7684;&#x9879;&#xFF0C;&#x800C;$\beta_i=C-\alpha_i$&#x4E14;$\beta_i \geqslant 0$&#xFF0C;&#x53EF;&#x5F97;$\alpha_i \leqslant C$&#x3002;&#x6240;&#x4EE5;<strong>&#x8F6F;&#x95F4;&#x9694;SVM</strong>target&#x7684;<strong>&#x5BF9;&#x5076;&#x5F62;&#x5F0F;</strong>&#x53EF;&#x4EE5;&#x5199;&#x6210;<br>$$<br>\begin{eqnarray}<br> \min \limits_{\alpha} &amp;\quad&amp;\frac{1}{2} \sum_{i=1}^N \sum_{j=1}^N \alpha_i \alpha_j y_i y_j(\mathbf{x_i}\cdot\mathbf{x_j})-\sum_{i=1}^N \alpha_i \nonumber \\<br>s.t.&amp;\quad&amp; \sum_{i}^N \alpha_i y_i=0 \nonumber \\<br>&amp;\quad&amp; 0 \leqslant \alpha_i \leqslant C,\quad,1,2,\ldots,N\nonumber<br>\end{eqnarray}<br>$$</p>
+<p>&#x5BF9;&#x6BD4;&#x786C;&#x95F4;&#x9694;SVM&#x5BF9;&#x5076;&#x95EE;&#x9898;&#xFF0C;&#x5176;&#x5B9E;&#x53EA;&#x662F;&#x591A;&#x4E86;$\leqslant C$&#x7684;&#x6761;&#x4EF6;&#x3002;</p>
+<p>&#x6700;&#x540E;&#x8D70;&#x4E00;&#x6CE2;KKT&#x6761;&#x4EF6;:<br>$$<br>\begin{eqnarray}<br>\frac{\partial L(\mathbf{w},b,\xi,\alpha,\beta)}{\partial w} &amp;=&amp; 0 \\<br>\frac{\partial L(\mathbf{w},b,\xi,\alpha,\beta)}{\partial b} &amp;=&amp; 0  \\<br>\frac{\partial L(\mathbf{w},b,\xi,\alpha,\beta)}{\partial \xi} &amp;=&amp; 0  \\<br>\alpha_i(1-\xi_i-y_i(w^Tx_i+b)) &amp;=&amp; 0 \quad i=1,2,\ldots,N\\<br>\beta_i \xi_i &amp;=&amp; 0 \quad i=1,2,\ldots,N\\<br>\xi_i+y_i(w^T x_i+b)-1 &amp;\geqslant&amp;0\quad i=1,2,\ldots,N\\<br>\xi_i &amp;\geqslant&amp;0\quad i=1,2,\ldots,N\\<br>\alpha_i &amp;\geqslant&amp;0 \quad i=1,2,\ldots,N \\<br>\xi_i &amp;\geqslant&amp;0 \quad i=1,2,\ldots,N<br>\end{eqnarray}<br>$$</p>
+<h3 id="hinge-loss-function"><a href="#hinge-loss-function" class="headerlink" title="hinge loss function"></a>hinge loss function</h3><p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x628A;&#x539F;&#x59CB;&#x95EE;&#x9898;&#x770B;&#x6210;&#x8FD9;&#x6837;&#x7684;&#x5F62;&#x5F0F;:<br>$$<br>\sum_i^N [1-y_i(w^T x_i+b)]_+ +\lambda w^T w<br>$$</p>
+<p>&#x8FD9;&#x4E2A;&#x4E4B;&#x524D;&#x90A3;&#x4E9B;&#x5E26;Regularization&#x7684;<strong>&#x7EBF;&#x6027;&#x56DE;&#x5F52;</strong>&#x548C;<strong>&#x903B;&#x8F91;&#x56DE;&#x5F52;</strong>&#x7684;&#x635F;&#x5931;&#x51FD;&#x6570;&#x5F88;&#x50CF;&#x3002;&#x516C;&#x5F0F;&#x4E4B;&#x4E2D;&#x7684;$[\ldots]_+$&#x4E3A;<strong>hinge error function</strong>&#xFF0C;&#x53EF;&#x4EE5;&#x8868;&#x793A;&#x4E3A;&#xFF1A;<br>$$<br>[z]_+=\max (z,0)<br>$$<br>&#x5728;SVM&#x4E2D;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#xFF0C;&#x5F53;$y_i(w^T x_i+b)&gt;1$&#x5373;&#x4E3A;&#x5206;&#x5BF9;&#x7684;&#x70B9;&#xFF0C;&#x4ED6;&#x4EEC;&#x7684;error&#x4E3A;0&#xFF0C;&#x5206;&#x9519;&#x7684;&#x5E97;error&#x4E3A;&#x8FD9;&#x4E2A;&#x5DEE;&#x3002;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x628A;<strong>hinge error</strong>&#x4F5C;&#x4E3A;Soft-Margin SVM&#x7684;&#x635F;&#x5931;&#x51FD;&#x6570;&#x3002;&#x5C31;&#x50CF;linear regression&#x4F7F;&#x7528;<strong>squared error</strong>&#xFF0C;logistic regression&#x4F7F;&#x7528;<strong>log error</strong></p>
+<p>&#x540C;&#x65F6;&#xFF0C;&#x5BF9;hinge loss&#xFF0C;&#x53C8;&#x53EF;&#x4EE5;&#x7EC6;&#x5206;&#x51FA;hinge loss&#xFF08;&#x6216;&#x7B80;&#x79F0;L1 loss&#xFF09;&#x548C;squared hinge loss&#xFF08;&#x6216;&#x7B80;&#x79F0;L2 loss&#xFF09;&#x3002;&#x56FD;&#x7ACB;&#x53F0;&#x6E7E;&#x5927;&#x5B66;&#x7684;Chih-Jen Lin&#x8001;&#x5E08;&#x53D1;&#x5E03;&#x7684;Liblinear&#x5C31;&#x5B9E;&#x73B0;&#x4E86;&#x8FD9;2&#x79CD;hinge loss&#x3002;L1 loss&#x548C;L2 loss&#x4E0E;&#x4E0B;&#x9762;&#x7684;regularization&#x662F;&#x4E0D;&#x540C;&#x7684;&#xFF0C;&#x6CE8;&#x610F;&#x533A;&#x5206;&#x5F00;&#x3002;&#xFF08;&#x6458;&#x81EA;<a href="http://blog.csdn.net/yhdzw/article/details/39291493" target="_blank" rel="external">CSDN-yhdzw&#x7684;&#x535A;&#x5BA2;</a>&#xFF09;</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/civmh7bn7000godlnkly9ycue/" class="archive-article-date">
+  	<time datetime="2016-11-12T09:55:38.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-12</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/civmh7bm50004odlnb2opl1o5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Non-Linear SVM and Kernel Function非线性支持向量机与核函数
+        
+      </div>
+    </a>
+  
+  
+    <a href="/civmh7bmo0007odln56rycj95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Same Tree Problem</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+  
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-Soft-Margin-SVM-软间隔支持向量机" data-title="Soft-Margin SVM 软间隔支持向量机" data-url="http://yoursite.com/civmh7bn7000godlnkly9ycue/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'umbrellabeach'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
+
+
+
+      </div>
+      <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Jiaqi Fu
+    	</div>
+      <span id="busuanzi_container_site_pv">
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span id="busuanzi_container_site_uv">
+        本站访客数<span id="busuanzi_value_site_uv"></span>人次
+      </span>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Algorithm/" style="font-size: 16.67px;">Algorithm</a> <a href="/tags/C/" style="font-size: 16.67px;">C++</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
