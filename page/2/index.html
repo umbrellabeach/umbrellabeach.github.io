@@ -128,6 +128,95 @@
       <div class="body-wrap">
         
   
+    <article id="post-SVM and Dual Problem 支持向量机与对偶问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/cj14wmfdc000dj1lnzeq20wqo/">SVM and Dual Problem 支持向量机与对偶问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="Linear-Support-Vector-Machine"><a href="#Linear-Support-Vector-Machine" class="headerlink" title="Linear Support Vector Machine"></a>Linear Support Vector Machine</h3><p>&#x5728;&#x4E4B;&#x524D;&#x7684;Perceptron&#x7B97;&#x6CD5;&#x4E2D;&#xFF0C;&#x540C;&#x6837;&#x7684;&#x4E8C;&#x5206;&#x6CD5;&#xFF08;dichotomy&#xFF09;&#xFF0C;&#x53EF;&#x80FD;&#x6709;&#x65E0;&#x7A77;&#x591A;&#x6761;&#x7EBF;&#x7684;&#x89E3;&#x3002;&#x4EE5;&#x4E0B;&#x4E09;&#x5F20;&#x56FE;&#x662F;&#x540C;&#x4E2A;&#x6837;&#x672C;&#xFF08;&#x6837;&#x672C;&#x4E3A;&#x81EA;&#x884C;&#x6A21;&#x62DF;&#xFF09;&#x7684;&#x4E0D;&#x540C;&#x5206;&#x7C7B;&#xFF1A;</p>
+<div align="center"><br><img src="/cj14wmfdc000dj1lnzeq20wqo/s1.0.png" alt=""> <img src="/cj14wmfdc000dj1lnzeq20wqo/s1.1.png" alt=""> <img src="/cj14wmfdc000dj1lnzeq20wqo/s1.2.png" alt=""><br></div>
+
+<p>&#x867D;&#x7136;&#x8FD9;&#x4E09;&#x6761;&#x7EBF;&#x90FD;&#x5BF9;&#x5E94;&#x540C;&#x4E00;&#x79CD;dichotomy&#xFF0C;&#x4F46;&#x7B2C;&#x4E00;&#x5F20;&#x56FE;&#x8FD9;&#x6837;&#x7684;&#x7EBF;&#x5BB9;&#x9519;&#x80FD;&#x529B;&#x5927;&#xFF0C;&#x5728;&#x7A7A;&#x95F4;&#x4E0A;&#x7684;<strong>&#x95F4;&#x9694;</strong>&#x6700;&#x5927;&#x3002;</p>
+<h5 id="geometric-margin-and-functional-margin"><a href="#geometric-margin-and-functional-margin" class="headerlink" title="geometric margin and functional margin"></a>geometric margin and functional margin</h5><p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x8981;&#x6C42;&#x7684;&#x90A3;&#x4E2A;&#x95F4;&#x9694;&#x6700;&#x5927;&#x7684;&#x5206;&#x5272;&#x5E73;&#x9762;&#x4E3A;&#xFF1A;<br>$$<br>\mathbf{w}^T \mathbf{x}+b=0<br>$$<br>&#x8FD9;&#x91CC;&#x4E0D;&#x5728;&#x8FDB;&#x884C;$w_0=b^{\ast}$&#x548C;$x_0=1$&#x7684;&#x8BBE;&#x7F6E;&#xFF0C;&#x662F;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x4E4B;&#x540E;&#x7684;&#x8BA1;&#x7B97;&#x3002;</p>
+<p>&#x901A;&#x8FC7;&#x8DDD;&#x79BB;&#x516C;&#x5F0F;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x8FD9;&#x4E2A;&#x7A7A;&#x95F4;&#x4E0A;&#x7684;&#x4EFB;&#x610F;&#x4E00;&#x70B9;$x^{\ast}$&#x5230;&#x8FD9;&#x4E2A;&#x5E73;&#x9762;&#x7684;&#x8DDD;&#x79BB;&#x4E3A;<br>$$<br>\frac{\vert \mathbf{w}^T \mathbf{x^{\ast}}+b\vert}{\Vert \mathbf{w} \Vert}<br>$$</p>
+<p>&#x5176;&#x4E2D;&#xFF0C;&#x901A;&#x8FC7;&#x4E0E;$y \in \{+1,-1\}$&#x7684;&#x76F8;&#x4E58;&#x53EF;&#x4EE5;&#x628A;&#x7EDD;&#x5BF9;&#x503C;&#x7B26;&#x53F7;&#x53BB;&#x6389;&#x3002;&#x5B9A;&#x4E49;&#x5728;&#x7ED9;&#x5B9A;&#x6570;&#x636E;&#x96C6;$D$&#x4E2D;&#x7684;&#x70B9;$(x_i,y_i)$&#x5BF9;&#x4E8E;&#x8D85;&#x5E73;&#x9762;$(\mathbf{w},b)$&#x7684;<strong>&#x51E0;&#x4F55;&#x95F4;&#x9694;&#xFF08;geometric margin&#xFF09;</strong>&#x4E3A;&#xFF1A;<br>$$<br>\gamma = \frac{1}{\Vert \mathbf{w} \Vert} y_i (\mathbf{w}^T \mathbf{x}^{\ast}+b)<br>$$</p>
+<p><strong>&#x51FD;&#x6570;&#x95F4;&#x9694;&#xFF08;functional margin&#xFF09;</strong>&#x4E3A;:<br>$$<br>\hat{\gamma} = y_i (\mathbf{w}^T \mathbf{x^{\ast}}+b)<br>$$<br>&#x540C;&#x65F6;&#xFF0C;&#x6570;&#x636E;&#x96C6;$D$&#x5BF9;&#x4E8E;&#x8D85;&#x5E73;&#x9762;$(\mathbf{w},b)$&#x7684;&#x51E0;&#x4F55;&#x95F4;&#x9694;&#x4E3A;</p>
+<p>$$<br>\hat{\gamma_i} = \min \limits_{i=1,\cdots,N} \gamma_i<br>$$</p>
+<p>&#x51FD;&#x6570;&#x95F4;&#x9694;&#x4E3A;</p>
+<p>$$<br>\hat{\gamma_i} = \min \limits_{i=1,\cdots,N} \hat{\gamma_i}<br>$$</p>
+<h5 id="margin-maximization"><a href="#margin-maximization" class="headerlink" title="margin maximization"></a>margin maximization</h5><p>&#x6211;&#x4EEC;&#x8981;&#x6C42;&#x7684;&#x6700;&#x4F18;&#x5316;&#x95EE;&#x9898;&#x662F;&#x8BA9;&#x51E0;&#x4F55;&#x95F4;&#x9694;&#x5C3D;&#x53EF;&#x80FD;&#x5730;&#x5927;&#xFF1A;<br>$$<br>\begin{eqnarray}<br>\max  \limits_{\mathbf{w},b} &amp;\quad&amp; \gamma \nonumber \\<br>s.t. &amp;\quad&amp; \frac{1}{\Vert \mathbf{w} \Vert} y_i (\mathbf{w}^T \mathbf{x}^{\ast}+b) \geq \gamma ,\quad i=1,2,\ldots,N \nonumber<br>\end{eqnarray}<br>$$<br>&#x5229;&#x7528;&#x51FD;&#x6570;&#x95F4;&#x9694;&#x548C;&#x51E0;&#x4F55;&#x95F4;&#x9694;&#x7684;&#x8F6C;&#x6362;&#x5173;&#x7CFB;</p>
+<p>$$<br>\begin{eqnarray}<br>\max  \limits_{\mathbf{w},b} &amp;\quad&amp; \frac{\hat{\gamma}}{\Vert \mathbf{w} \Vert} \nonumber \\<br>s.t. &amp;\quad&amp;  y_i (\mathbf{w}^T \mathbf{x}+b) \geq \hat{\gamma} ,\quad i=1,2,\ldots,N \nonumber<br>\end{eqnarray}<br>$$ </p>
+<p>&#x4E0D;&#x59A8;&#x8BBE;$\hat{\gamma}=1$&#xFF0C;&#x540C;&#x65F6;&#x6211;&#x4EEC;&#x628A;target&#x4E2D;&#x7684;&#x6700;&#x5927;&#x5316;max&#x8F6C;&#x4E3A;&#x6700;&#x5C0F;&#x5316;min&#x3002;&#x90A3;&#x4E48;&#x6700;&#x4F18;&#x5316;&#x7684;target&#x53D8;&#x4E3A;&#xFF1A;<br>$$<br>\begin{eqnarray}<br>\min \limits_{\mathbf{w},b} &amp;\quad&amp; \frac{1}{2} \mathbf{w}^T \mathbf{w} \nonumber \\<br>s.t. &amp;\quad&amp;  y_i (\mathbf{w}^T \mathbf{x}+b) \geq 1 \quad i=1,2,\ldots,N \nonumber<br>\end{eqnarray}<br>$$ </p>
+<p>&#x8FD9;&#x4E2A;target&#x95EE;&#x9898;&#x53EF;&#x4EE5;&#x7528;<strong>&#x51F8;&#x4E8C;&#x6B21;&#x89C4;&#x5212;&#xFF08;convex quadratic programming&#xFF09;</strong>&#x89E3;&#x51B3;&#x3002;</p>
+<p>&#x51F8;&#x4F18;&#x5316;&#x95EE;&#x9898;&#x662F;&#x6307;&#x7EA6;&#x675F;&#x6700;&#x4F18;&#x5316;&#x95EE;&#x9898;&#xFF0C;&#x4EE5;&#x4E0B;&#x4E5F;&#x88AB;&#x79F0;&#x4E3A;<strong>&#x539F;&#x59CB;&#x95EE;&#x9898;</strong></p>
+<p>$$<br>\begin{eqnarray}<br>\min \limits_{\mathbf{w}} &amp;\quad&amp; f(w) \nonumber \\<br>s.t. &amp;\quad&amp;  g_i(w)\leqslant0,\quad,i=1,2,\ldots,k \nonumber \\<br>&amp;\quad&amp;  h_i(w)=0,\quad,i=1,2,\ldots,l \nonumber \\<br>\end{eqnarray}<br>$$<br>&#x5176;&#x4E2D;&#xFF1A;</p>
+<ol>
+<li>&#x76EE;&#x6807;&#x51FD;&#x6570;$f(w)$&#x548C;&#x7EA6;&#x675F;&#x51FD;&#x6570;$g_i(w)$&#x4E3A;$\mathbf{R}^d$&#x4E0A;&#x7684;<strong>&#x8FDE;&#x7EED;&#x53EF;&#x5FAE;&#x51F8;&#x51FD;&#x6570;</strong>&#x3002;&#xFF08;&#x4EC0;&#x4E48;&#x53EB;&#x51F8;&#xFF1F;&#x51F8;&#x96C6;&#x662F;&#x6307;&#x6709;&#x8FD9;&#x4E48;&#x4E00;&#x4E2A;&#x70B9;&#x7684;&#x96C6;&#x5408;&#xFF0C;&#x5176;&#x4E2D;&#x4EFB;&#x53D6;&#x4E24;&#x4E2A;&#x70B9;&#x8FDE;&#x4E00;&#x6761;&#x76F4;&#x7EBF;&#xFF0C;&#x8FD9;&#x6761;&#x7EBF;&#x4E0A;&#x7684;&#x70B9;&#x4ECD;&#x7136;&#x5728;&#x8FD9;&#x4E2A;&#x96C6;&#x5408;&#x5185;&#x90E8;&#xFF0C;&#x56E0;&#x6B64;&#x8BF4;&#x201C;&#x51F8;&#x201D;&#x662F;&#x5F88;&#x5F62;&#x8C61;&#x7684;&#x3002;<a href="http://blog.csdn.net/zouxy09/article/details/17291543/" target="_blank" rel="external">zouxy09</a>&#xFF09;</li>
+<li>&#x51F8;&#x4E8C;&#x6B21;&#x89C4;&#x5212;&#x95EE;&#x9898;&#x5373;&#x5F53;&#x76EE;&#x6807;&#x51FD;&#x6570;$f(w)$&#x4E3A;&#x4E8C;&#x6B21;&#x51FD;&#x6570;&#x4E14;&#x7EA6;&#x675F;&#x51FD;&#x6570;$g_i(w)$&#x662F;<strong>&#x4EFF;&#x5C04;&#x51FD;&#x6570;</strong>&#x3002;</li>
+</ol>
+<h3 id="Dual-Support-Vector-Machine"><a href="#Dual-Support-Vector-Machine" class="headerlink" title="Dual Support Vector Machine"></a>Dual Support Vector Machine</h3><p>&#x4E0A;&#x8FF0;&#x4E3A;&#x539F;&#x59CB;&#x95EE;&#x9898;&#xFF08;Primal Problem&#xFF09;&#xFF0C;&#x73B0;&#x5728;&#x5C06;&#x5176;&#x8F6C;&#x4E3A;&#x5BF9;&#x5076;&#x95EE;&#x9898;&#xFF08;Dual Problem&#xFF09;&#x3002;&#x539F;&#x59CB;&#x95EE;&#x9898;&#x548C;&#x5BF9;&#x5076;&#x95EE;&#x9898;&#x662F;&#x7B49;&#x4EF7;&#x7684;&#x3002;&#x8F6C;&#x5316;&#x4E3A;&#x5BF9;&#x5076;&#x95EE;&#x9898;&#x5F80;&#x5F80;&#x4F1A;&#x66F4;&#x5229;&#x4E8E;&#x6C42;&#x89E3;&#xFF0C;&#x540C;&#x65F6;&#x53EF;&#x4EE5;&#x5F15;&#x5165;&#x4E4B;&#x540E;&#x7684;&#x6838;&#x51FD;&#x6570;&#x3002;</p>
+<h5 id="Lagrange-Duality"><a href="#Lagrange-Duality" class="headerlink" title="Lagrange Duality"></a>Lagrange Duality</h5><p>&#x5148;&#x5F15;&#x5165;&#x5E7F;&#x4E49;&#x62C9;&#x683C;&#x6717;&#x65E5;&#x51FD;&#x6570;&#xFF08;Generalized Lagrange Function&#xFF09;&#xFF1A;<br>$$<br>L(x,\alpha,\beta)=f(x)+\sum_{i=1}^k \alpha_i c_i(x)+\sum_{j=1}^l \beta_j h_i(x)<br>$$</p>
+<p>&#x5176;&#x4E2D;&#xFF0C;$\alpha_i \geqslant 0$</p>
+<p>&#x90A3;&#x4E48;&#xFF0C;<strong>&#x539F;&#x59CB;&#x95EE;&#x9898;</strong>&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x4EE5;&#x4E0B;&#x5F62;&#x5F0F;&#xFF1A;<br>$$<br>\begin{eqnarray}<br>\min \limits_{x} \max \limits_{\alpha,\beta:\alpha_i \geqslant0} &amp;\quad&amp; L(x,\alpha,\beta) \nonumber \\<br>s.t.&amp;\quad&amp;\alpha_i \geqslant 0,\quad i=1,2,\ldots,k \nonumber<br>\end{eqnarray}<br>$$ </p>
+<p>&#x4E3A;&#x4EC0;&#x4E48;&#x662F;&#x8FD9;&#x4E2A;&#x5F0F;&#x5B50;&#x5462;&#xFF0C;&#x6211;&#x4EEC;&#x6765;&#x770B;&#x5176;&#x4E2D;max&#x90A3;&#x9879;<br>$$<br>\max \limits_{\alpha,\beta:\alpha_i \geqslant 0}[f(x)+\sum_{i=1}^k \alpha_i c_i(x)+\sum_{j=1}^l \beta_j h_i(x)]<br>$$</p>
+<p>&#x5047;&#x8BBE;&#x6709;&#x5B58;&#x5728;&#x4E00;&#x4E2A;$x$&#x8FDD;&#x53CD;&#x4E86;&#x7EA6;&#x675F;&#x6761;&#x4EF6;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;$c_i(x)&gt;0$&#x6216;&#x8005;$h_j(x) \neq 0$&#x3002;<br>&#x90A3;&#x4E48;&#x8981;&#x6700;&#x5927;&#x5316;&#x8FD9;&#x9879;&#xFF0C;$\alpha$&#x6216;$\beta$&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x53D6;$+\infty$&#xFF0C;&#x56E0;&#x6B64;<br>$$<br>\max [\ldots] = +\infty<br>$$<br>&#x5F53;&#x6EE1;&#x8DB3;&#x7EA6;&#x675F;&#x6761;&#x4EF6;&#x65F6;&#xFF0C;$c(x)\leqslant 0$&#xFF0C;$\alpha=0$&#xFF0C;&#x56E0;&#x6B64;<br>$$<br>\max [\ldots] = f(x)<br>$$<br>&#x53D6;&#x6240;&#x6709;&#x6700;&#x5927;&#x503C;&#x4E2D;&#x7684;&#x6700;&#x5C0F;&#x503C;&#xFF0C;&#x5373;&#x4E3A;&#x5F97;&#x5230;&#x539F;&#x95EE;&#x9898;&#x7684;&#x89E3;&#xFF0C;&#x6240;&#x4EE5;&#x8BE5;&#x7B49;&#x5F0F;&#x4E0E;&#x539F;&#x95EE;&#x9898;&#x662F;&#x7B49;&#x4EF7;&#x7684;&#x3002;</p>
+<p>&#x73B0;&#x5728;&#xFF0C;&#x6211;&#x4EEC;&#x5C1D;&#x8BD5;&#x628A;&#x6781;&#x5C0F;&#x6781;&#x5927;&#x95EE;&#x9898;&#x8F6C;&#x6362;&#x6781;&#x5927;&#x6781;&#x5C0F;&#x95EE;&#x9898;&#x3002;&#x5373;&#x662F;&#x539F;&#x59CB;&#x95EE;&#x9898;&#x7684;<strong>&#x5BF9;&#x5076;&#x95EE;&#x9898;</strong>&#xFF1A;<br>$$<br>\begin{eqnarray}<br> \max \limits_{\alpha,\beta:\alpha_i \geqslant0} \min \limits_{x} &amp;\quad&amp;L(x,\alpha,\beta) \nonumber \\<br>s.t.&amp;\quad&amp;\alpha_i \geqslant 0,\quad i=1,2,\ldots,k \nonumber<br>\end{eqnarray}<br>$$</p>
+<p>&#x5982;&#x679C;&#x80FD;&#x591F;&#x8BC1;&#x660E;&#x539F;&#x59CB;&#x95EE;&#x9898;&#x548C;&#x5BF9;&#x5076;&#x95EE;&#x9898;&#x5F97;&#x5230;&#x7684;&#x6700;&#x4F18;&#x89E3;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x90A3;&#x4E48;&#x6C42;&#x89E3;&#x539F;&#x59CB;&#x95EE;&#x9898;&#x65F6;&#x53EF;&#x4EE5;&#x6C42;&#x5176;&#x5BF9;&#x5076;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x9996;&#x5148;&#xFF0C;&#x5BF9;&#x4E8E;&#x7ED9;&#x5B9A;&#x7684;$x^{\ast},\alpha^{\ast},\beta^{\ast}$&#x5B58;&#x5728;&#x4EE5;&#x4E0B;&#x5173;&#x7CFB;&#xFF1A;<br>$$<br>\min \limits_{x} L(x,\alpha^{\ast},\beta^{\ast}) \leqslant L(x^{\ast},\alpha^{\ast},\beta^{\ast}) \leqslant \max \limits_{\alpha,\beta:\alpha_i \geqslant0} L(x^{\ast},\alpha,\beta)<br>$$</p>
+<p>&#x6240;&#x4EE5;<br>$$<br> \max \limits_{\alpha,\beta:\alpha_i \geqslant0} \min \limits_{x} L(x,\alpha,\beta) \leqslant \min \limits_{x} \max \limits_{\alpha,\beta:\alpha_i \geqslant0} L(x,\alpha,\beta)<br>$$<br>&#x5F53;&#x6EE1;&#x8DB3;<strong>KKT(Karush-Kuhn-Tucker)&#x6761;&#x4EF6;</strong>&#x65F6;&#xFF0C;&#x539F;&#x59CB;&#x95EE;&#x9898;&#x7B49;&#x4E8E;&#x5BF9;&#x5076;&#x95EE;&#x9898;&#xFF0C;&#x5373;&#x4E0A;&#x5F0F;&#x53D6;&#x7B49;&#x53F7;&#xFF1A;<br>$$<br>\begin{eqnarray}<br>\frac{\partial L(x,\alpha,\beta)}{\partial x} &amp;=&amp;0 \\<br>\alpha_i c_i(x)=0,&amp;\quad&amp; i=1,2,\ldots,k \\<br>c_i(x) \leqslant0,&amp;\quad&amp; i=1,2,\ldots,k \\<br>\alpha_i \geqslant 0,&amp;\quad&amp; i=1,2,\ldots,k \\<br>h_j(x)=0,&amp;\quad&amp; j=1,2,\ldots,l<br>\end{eqnarray}<br>$$</p>
+<h5 id="SVM-Duality"><a href="#SVM-Duality" class="headerlink" title="SVM Duality"></a>SVM Duality</h5><p>&#x628A;SVM&#x539F;&#x95EE;&#x9898;&#x4EE3;&#x5165;Lagrange Function&#x5F97;&#xFF1A;<br>$$<br>L(w,b,\alpha)=\frac{1}{2} w^Tw +\sum_{i=1}^N \alpha_i(1-y_i(w^Tx_i+b)) \\<br>=\frac{1}{2} w^Tw-\sum_i^N \alpha_i y_i(w^Tx_i+b)+\sum_i^N \alpha_i<br>$$<br>&#x6211;&#x4EEC;&#x5C1D;&#x8BD5;&#x6C42;&#x5176;&#x5BF9;&#x5076;&#x95EE;&#x9898;&#xFF1A;<br>$$<br> \max \limits_{\alpha:\alpha_i \geqslant0} \min \limits_{w,b} \quad L(w,b,\alpha)<br>$$<br>&#x9996;&#x5148;&#xFF0C;&#x5229;&#x7528;KKT&#x6761;&#x4EF6;&#xFF0C;&#x53D6;w&#x548C;b&#x7684;&#x504F;&#x5BFC;&#x4E3A;0&#xFF1A;<br>$$<br>\frac{\partial L(w,b,\alpha)}{\partial w} = w-\sum_{i}^N \alpha_i y_i x_i = 0 \\<br>\sum_{i}^N \alpha_i y_i=0<br>$$</p>
+<p>&#x5F97;&#x5230;<br>$$<br>w=\sum_{i}^N \alpha_i y_i x_i\\<br>\sum_{i}^N \alpha_i y_i=0<br>$$</p>
+<p>&#x628A;&#x8FD9;&#x4E2A;&#x5F0F;&#x5B50;&#x5E26;&#x5165;&#x5BF9;&#x5076;&#x95EE;&#x9898;<br>$$<br>L(w,b,\alpha)=\frac{1}{2} (\sum_{i=1}^N \alpha_i y_i x_i)^2 - ( \sum_{i=1}^N \alpha_i y_i (\sum_{j=1}^N \alpha_j y_j x_j)x_i+b)+\sum_{i=1}^N \alpha_i \\<br>=-\frac{1}{2} \sum_{i=1}^N \sum_{j=1}^N \alpha_i \alpha_j y_i y_j(\mathbf{x_i}\cdot\mathbf{x_j})+\sum_{i=1}^N \alpha_i<br>$$</p>
+<p>&#x5BF9;&#x5076;&#x95EE;&#x9898;&#x5373;&#x4E3A;&#x8BE5;&#x7B49;&#x5F0F;&#xFF0C;&#x6211;&#x4EEC;&#x7528;&#x52A0;&#x8D1F;&#x53F7;&#x7684;&#x65B9;&#x5F0F;&#x628A;max&#x8F6C;&#x4E3A;min&#xFF0C;&#x5F97;&#x5230;&#x5BF9;&#x5076;&#x95EE;&#x9898;&#x7684;target&#x4E3A;&#xFF1A;<br>$$<br>\begin{eqnarray}<br> \min \limits_{\alpha} &amp;\quad&amp;\frac{1}{2} \sum_{i=1}^N \sum_{j=1}^N \alpha_i \alpha_j y_i y_j(\mathbf{x_i}\cdot\mathbf{x_j})-\sum_{i=1}^N \alpha_i \nonumber \\<br>s.t.&amp;\quad&amp; \sum_{i}^N \alpha_i y_i=0 \nonumber \\<br>&amp;\quad&amp; \alpha_i \geqslant 0,\quad,1,2,\ldots,N\nonumber<br>\end{eqnarray}<br>$$</p>
+<p>KKT&#x6761;&#x4EF6;&#x6210;&#x7ACB;&#x5F97;&#x5230;&#xFF1A;</p>
+<p>$$<br>\begin{eqnarray}<br>\frac{\partial L(w,b,\alpha)}{\partial w} = w-\sum_{i=1}^N \alpha_i y_i x_i &amp;=&amp; 0 \\<br>\frac{\partial L(w,b,\alpha)}{\partial b} = \sum_{i=1}^N \alpha_i y_i &amp;=&amp; 0  \\<br>\alpha_i(1-y_i(w^Tx_i+b)) &amp;=&amp; 0 \quad i=1,2,\ldots,N\\<br>1-y_i(w^T x_i+b) &amp;\leqslant&amp;0\quad i=1,2,\ldots,N\\<br>\alpha_i &amp;\geqslant&amp;0 \quad i=1,2,\ldots,N<br>\end{eqnarray}<br>$$</p>
+<p>&#x4EE3;&#x5165;SVM Lagrange Function&#x5F97;&#x5230;&#xFF1A;<br>$$<br>w^{\ast}=\sum_{i=1}^N \alpha_i y_i x_i<br>$$<br>&#x627E;&#x4E00;&#x4E2A;&#x70B9;$\alpha_j&gt;0$&#xFF0C;&#x56E0;&#x6B64;<br>$$<br>y_j({w^{\ast}}^T x_j +b^{\ast})=1=(y_j)^2 \\<br>b^{\ast}=y_j-{w^{\ast}}^T x_j<br>$$</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/cj14wmfdc000dj1lnzeq20wqo/" class="archive-article-date">
+  	<time datetime="2016-11-02T02:23:16.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-02</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+  
+
+
+
+  
     <article id="post-Over-fitting-and-Regularization过拟合与正则化" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -138,7 +227,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/civmhfrpz0007qbln7cqx6fx6/">Over-fitting and Regularization过拟合与正则化</a>
+      <a class="article-title" href="/cj14wmfd00008j1lnwfr9yh64/">Over-fitting and Regularization过拟合与正则化</a>
     </h1>
   
 
@@ -149,12 +238,12 @@
         <!-- Table of Contents -->
         
         <h4 id="&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear-Transformation&#xFF09;"><a href="#&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear-Transformation&#xFF09;" class="headerlink" title="&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear Transformation&#xFF09;"></a>&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF08;Non-linear Transformation&#xFF09;</h4><p>&#x5047;&#x8BBE;&#x6709;&#x5982;&#x4E0B;&#x56FE;&#x7684;&#x7684;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#xFF08;&#x6570;&#x636E;&#x4E3A;&#x81EA;&#x884C;&#x6A21;&#x62DF;&#xFF09;&#xFF0C;&#x5708;&#x5708;&#x548C;&#x53C9;&#x53C9;&#x5206;&#x5E03;&#x8868;&#x793A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x4E24;&#x7C7B;&#x3002;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x6570;&#x636E;&#x96C6;&#x4E0D;&#x80FD;&#x88AB;&#x4E00;&#x6761;&#x76F4;&#x7EBF;&#x7EBF;&#x6027;&#x53EF;&#x5206;&#x3002;</p>
-<div align="center"><img src="/civmhfrpz0007qbln7cqx6fx6/q1.png" alt="q1"></div><br>&#x6B64;&#x65F6;&#x5982;&#x679C;&#x628A;&#x6570;&#x636E;&#x505A;&#x5982;&#x4E0B;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E00;&#x6761;&#x66F2;&#x7EBF;&#x5C06;&#x6570;&#x636E;&#x5207;&#x5206;&#x3002;<br>$$<br>\begin{eqnarray}<br>z_0&amp;=&amp;1 \nonumber \\<br>z_1&amp;=&amp;{x_1}^2 \nonumber \\<br>z_2&amp;=&amp;{x_2}^2 \nonumber<br>\end{eqnarray}<br>$$<br><br><div align="center"><img src="/civmhfrpz0007qbln7cqx6fx6/q2.png" alt="q2"></div><br>&#x5F97;&#x5230;&#x7684;hypothesis&#x662F;&#xFF1A;<br>$$<br>\begin{eqnarray}<br>h(\mathbf{z}) &amp;=&amp; \mathrm{sign}(w_2\cdot z_2+w_1\cdot z_1+w_0) \nonumber \\<br>&amp;=&amp; \mathrm{sign}(\mathrm{w^T Z})\nonumber<br>\end{eqnarray}<br>$$<br>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x62FF;&#x5230;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5148;&#x5BF9;&#x6570;&#x636E;&#x96C6;&#x8FDB;&#x884C;&#x8FD9;&#x6837;&#x7684;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x81F3;Z&#x7A7A;&#x95F4;&#xFF0C;&#x5728;Z&#x7A7A;&#x95F4;&#x4E0A;&#x4F7F;&#x7528;&#x7EBF;&#x6027;&#x5206;&#x7C7B;&#x5668;&#x5982;Perceptron&#x3001;Linear Regression&#x3001;Logistic Regression&#x7B49;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#x6216;&#x8005;&#x56DE;&#x5F52;&#xFF0C;&#x5C06;&#x7ED3;&#x679C;&#x5BF9;&#x5E94;&#x5230;X&#x7A7A;&#x95F4;&#x4E0A;&#x3002;<br><br>&#x66F4;&#x4E00;&#x822C;&#x5730;&#xFF0C;&#x5F53;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x5176;&#x4E2D;&#x6BCF;&#x4E2A;&#x6837;&#x672C;&#x70B9;$x_i \in \mathbf{R}^d$&#x3002;&#x5BF9;&#x5176;&#x8FDB;&#x884C;$Q$-th&#x53D8;&#x6362;&#x53EF;&#x5F97;&#x5230;<br>$$<br>\begin{eqnarray}<br>\Phi &amp;=&amp; (1, \nonumber \\<br>&amp;&amp; x_{(1)},x_{(2)},\cdots,x_{(d)}, \nonumber \\<br>&amp;&amp; x_{(1)}^2,x_{(1)}x_{(2)},\cdots,x_{(d)}^2, \nonumber \\<br>&amp;&amp; \cdots, \nonumber \\<br>&amp;&amp; x_{(1)}^Q,x_{(1)}^{Q-1}x_{(2)},\cdots,x_{(d)}^{Q}) \nonumber<br>\end{eqnarray}<br>$$<br><br>&#x4E8C;&#x7EF4;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x4EE3;&#x7801;&#xFF08;$Q=2$&#xFF09;:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__feature_transform</span><span class="params">(self, x1, x2)</span>:</span></div><div class="line">    d = self.FEAT_TRANS_DIM</div><div class="line">    res = []</div><div class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>, d + <span class="number">1</span>):</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, k + <span class="number">1</span>):</div><div class="line">            res.append((x1 ** i) * (x2 ** (k - i)))</div><div class="line">    <span class="keyword">return</span> np.array(res)</div></pre></td></tr></table></figure><br><br>&#x5728;&#x4E0A;&#x7BC7;&#x6587;&#x7AE0;<a href="https://umbrellabeach.github.io/civ0bosza00050dlnrat9tso0/" target="_blank" rel="external">Logistic Regression&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x7684;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x73B0;</a>&#x4E2D;&#x5B9E;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;LR Classifier&#xFF0C;&#x6211;&#x4EEC;&#x628A;LR&#x76F4;&#x63A5;&#x5728;&#x672C;&#x4F8B;&#x6570;&#x636E;&#x539F;&#x7EF4;&#x5EA6;&#x8DD1;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF0C;&#x51C6;&#x786E;&#x7387;&#x53EA;&#x6709;60%&#xFF1A;<br><br><div align="center"><img src="/civmhfrpz0007qbln7cqx6fx6/c1.png" alt="c1"></div>
+<div align="center"><img src="/cj14wmfd00008j1lnwfr9yh64/q1.png" alt="q1"></div><br>&#x6B64;&#x65F6;&#x5982;&#x679C;&#x628A;&#x6570;&#x636E;&#x505A;&#x5982;&#x4E0B;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E00;&#x6761;&#x66F2;&#x7EBF;&#x5C06;&#x6570;&#x636E;&#x5207;&#x5206;&#x3002;<br>$$<br>\begin{eqnarray}<br>z_0&amp;=&amp;1 \nonumber \\<br>z_1&amp;=&amp;{x_1}^2 \nonumber \\<br>z_2&amp;=&amp;{x_2}^2 \nonumber<br>\end{eqnarray}<br>$$<br><br><div align="center"><img src="/cj14wmfd00008j1lnwfr9yh64/q2.png" alt="q2"></div><br>&#x5F97;&#x5230;&#x7684;hypothesis&#x662F;&#xFF1A;<br>$$<br>\begin{eqnarray}<br>h(\mathbf{z}) &amp;=&amp; \mathrm{sign}(w_2\cdot z_2+w_1\cdot z_1+w_0) \nonumber \\<br>&amp;=&amp; \mathrm{sign}(\mathrm{w^T Z})\nonumber<br>\end{eqnarray}<br>$$<br>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x62FF;&#x5230;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5148;&#x5BF9;&#x6570;&#x636E;&#x96C6;&#x8FDB;&#x884C;&#x8FD9;&#x6837;&#x7684;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x81F3;Z&#x7A7A;&#x95F4;&#xFF0C;&#x5728;Z&#x7A7A;&#x95F4;&#x4E0A;&#x4F7F;&#x7528;&#x7EBF;&#x6027;&#x5206;&#x7C7B;&#x5668;&#x5982;Perceptron&#x3001;Linear Regression&#x3001;Logistic Regression&#x7B49;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#x6216;&#x8005;&#x56DE;&#x5F52;&#xFF0C;&#x5C06;&#x7ED3;&#x679C;&#x5BF9;&#x5E94;&#x5230;X&#x7A7A;&#x95F4;&#x4E0A;&#x3002;<br><br>&#x66F4;&#x4E00;&#x822C;&#x5730;&#xFF0C;&#x5F53;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x5176;&#x4E2D;&#x6BCF;&#x4E2A;&#x6837;&#x672C;&#x70B9;$x_i \in \mathbf{R}^d$&#x3002;&#x5BF9;&#x5176;&#x8FDB;&#x884C;$Q$-th&#x53D8;&#x6362;&#x53EF;&#x5F97;&#x5230;<br>$$<br>\begin{eqnarray}<br>\Phi &amp;=&amp; (1, \nonumber \\<br>&amp;&amp; x_{(1)},x_{(2)},\cdots,x_{(d)}, \nonumber \\<br>&amp;&amp; x_{(1)}^2,x_{(1)}x_{(2)},\cdots,x_{(d)}^2, \nonumber \\<br>&amp;&amp; \cdots, \nonumber \\<br>&amp;&amp; x_{(1)}^Q,x_{(1)}^{Q-1}x_{(2)},\cdots,x_{(d)}^{Q}) \nonumber<br>\end{eqnarray}<br>$$<br><br>&#x4E8C;&#x7EF4;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x4EE3;&#x7801;&#xFF08;$Q=2$&#xFF09;:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__feature_transform</span><span class="params">(self, x1, x2)</span>:</span></div><div class="line">    d = self.FEAT_TRANS_DIM</div><div class="line">    res = []</div><div class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>, d + <span class="number">1</span>):</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, k + <span class="number">1</span>):</div><div class="line">            res.append((x1 ** i) * (x2 ** (k - i)))</div><div class="line">    <span class="keyword">return</span> np.array(res)</div></pre></td></tr></table></figure><br><br>&#x5728;&#x4E0A;&#x7BC7;&#x6587;&#x7AE0;<a href="https://umbrellabeach.github.io/civ0bosza00050dlnrat9tso0/" target="_blank" rel="external">Logistic Regression&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x7684;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x73B0;</a>&#x4E2D;&#x5B9E;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;LR Classifier&#xFF0C;&#x6211;&#x4EEC;&#x628A;LR&#x76F4;&#x63A5;&#x5728;&#x672C;&#x4F8B;&#x6570;&#x636E;&#x539F;&#x7EF4;&#x5EA6;&#x8DD1;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF0C;&#x51C6;&#x786E;&#x7387;&#x53EA;&#x6709;60%&#xFF1A;<br><br><div align="center"><img src="/cj14wmfd00008j1lnwfr9yh64/c1.png" alt="c1"></div>
 
 <p>&#x4F7F;&#x7528;&#x672C;&#x4F8B;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x4EE3;&#x7801;&#x5904;&#x7406;&#x540E;&#xFF08;$Q=2$&#xFF09;&#x518D;&#x4F7F;&#x7528;LR Classifier&#x5206;&#x7C7B;&#xFF0C;&#x51C6;&#x786E;&#x7387;&#x63D0;&#x5347;&#x81F3;<strong>96.7%</strong>&#x3002;&#x53EF;&#x89C1;&#xFF0C;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x81F3;&#x5C11;&#x5C06;$E_{in}$&#x964D;&#x5230;&#x4E86;&#x6700;&#x4F4E;&#xFF0C;&#x53EF;&#x8C13;&#x201C;&#x795E;&#x529B;&#x201D;&#x3002;</p>
 <h4 id="&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;"><a href="#&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;" class="headerlink" title="&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;"></a>&#x8FC7;&#x62DF;&#x5408;&#xFF08;Over-fitting&#xFF09;</h4><p>&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x589E;&#x52A0;&#x4E86;&#x6A21;&#x578B;&#x7684;&#x590D;&#x6742;&#x5EA6;&#xFF0C;&#x4ECE;VC&#x89D2;&#x5EA6;&#x6765;&#x8BF4;&#xFF1A;<br>$<br>E_{out} \leqslant E_{in} + O(\mathrm{model})<br>$<br>&#x5F53;&#x6A21;&#x578B;&#x590D;&#x6742;&#x5EA6;&#x8D8A;&#x6765;&#x8D8A;&#x5927;&#xFF0C;&#x8BAD;&#x7EC3;&#x8BEF;&#x5DEE;$E_{in}$&#x4F1A;&#x51CF;&#x5C11;&#xFF0C;&#x4F46;&#x5B9E;&#x9645;&#x8BEF;&#x5DEE;$E_{out}$&#x53CD;&#x800C;&#x4F1A;&#x4E0A;&#x5347;&#xFF0C;&#x8FD9;&#x4E2A;&#x60C5;&#x51B5;&#x79F0;&#x4E3A;<strong>Over-fitting &#x8FC7;&#x62DF;&#x5408;</strong>&#x3002;</p>
 <p>&#x6765;&#x770B;&#x53F0;&#x5927;&#x300A;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x57FA;&#x77F3;&#x300B;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p>
-<div align="center"><img src="/civmhfrpz0007qbln7cqx6fx6/o1.png" alt="o1"></div><br>&#x5F53;&#x6211;&#x4EEC;&#x7528;&#x66F4;&#x201C;&#x5389;&#x5BB3;&#x201D;&#x7684;&#x6A21;&#x578B;&#x53BB;&#x62DF;&#x5408;&#xFF0C;&#x5C31;&#x4F1A;&#x53D1;&#x751F;&#x53F3;&#x8FB9;&#x8FD9;&#x6837;&#x7684;&#x8FC7;&#x62DF;&#x5408;&#x60C5;&#x51B5;&#xFF0C;&#x4F46;&#x53EF;&#x80FD;&#x5B9E;&#x9645;&#x4E0A;&#x4F4E;&#x7EF4;&#x5EA6;&#x7684;&#x6A21;&#x578B;&#x66F4;&#x63A5;&#x8FD1;&#x771F;&#x5B9E;&#x7684;&#x6A21;&#x578B;&#x3002;&#x8FD9;&#x6837;&#x60F3;&#x6765;&#xFF0C;&#x8FC7;&#x62DF;&#x5408;&#x662F;<strong>&#x6A21;&#x578B;&#x590D;&#x6742;&#x5EA6;</strong>&#x6216;&#x8005;<strong>&#x566A;&#x58F0;</strong>&#x5F71;&#x54CD;&#x7684;&#x3002;<br><br><div align="center"><img src="/civmhfrpz0007qbln7cqx6fx6/o2.png" alt="o2"></div>
+<div align="center"><img src="/cj14wmfd00008j1lnwfr9yh64/o1.png" alt="o1"></div><br>&#x5F53;&#x6211;&#x4EEC;&#x7528;&#x66F4;&#x201C;&#x5389;&#x5BB3;&#x201D;&#x7684;&#x6A21;&#x578B;&#x53BB;&#x62DF;&#x5408;&#xFF0C;&#x5C31;&#x4F1A;&#x53D1;&#x751F;&#x53F3;&#x8FB9;&#x8FD9;&#x6837;&#x7684;&#x8FC7;&#x62DF;&#x5408;&#x60C5;&#x51B5;&#xFF0C;&#x4F46;&#x53EF;&#x80FD;&#x5B9E;&#x9645;&#x4E0A;&#x4F4E;&#x7EF4;&#x5EA6;&#x7684;&#x6A21;&#x578B;&#x66F4;&#x63A5;&#x8FD1;&#x771F;&#x5B9E;&#x7684;&#x6A21;&#x578B;&#x3002;&#x8FD9;&#x6837;&#x60F3;&#x6765;&#xFF0C;&#x8FC7;&#x62DF;&#x5408;&#x662F;<strong>&#x6A21;&#x578B;&#x590D;&#x6742;&#x5EA6;</strong>&#x6216;&#x8005;<strong>&#x566A;&#x58F0;</strong>&#x5F71;&#x54CD;&#x7684;&#x3002;<br><br><div align="center"><img src="/cj14wmfd00008j1lnwfr9yh64/o2.png" alt="o2"></div>
 
 <p>&#x4E0A;&#x56FE;&#x8FD9;&#x4E2A;&#x5B9E;&#x9A8C;&#x5C31;&#x663E;&#x793A;&#x8FC7;&#x62DF;&#x5408;&#x7684;&#x6781;&#x5927;&#x5371;&#x5BB3;&#x3002;</p>
 <h4 id="&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;"><a href="#&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;" class="headerlink" title="&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;"></a>&#x6B63;&#x5219;&#x5316;&#xFF08;Regularization&#xFF09;</h4><p>&#x7ECF;&#x8FC7;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x540E;&#xFF0C;&#x5176;&#x5B9E;&#x8FD8;&#x662F;&#x5728;&#x4E00;&#x4E2A;&#x7EBF;&#x6027;&#x95EE;&#x9898;&#x4E2D;</p>
@@ -176,7 +265,7 @@
 <p>&#x6700;&#x540E;&#x6765;&#x8BA8;&#x8BBA;&#x4E00;&#x4E0B;&#x5728;&#x77E5;&#x4E4E;&#x4E0A;&#x770B;&#x7684;&#x4E00;&#x4E2A;&#x95EE;&#x9898;</p>
 <p><a href="https://www.zhihu.com/question/37096933?sort=created" target="_blank" rel="external">&#x77E5;&#x4E4E;-l1 &#x76F8;&#x6BD4;&#x4E8E; l2 &#x4E3A;&#x4EC0;&#x4E48;&#x5BB9;&#x6613;&#x83B7;&#x5F97;&#x7A00;&#x758F;&#x89E3;&#xFF1F;</a></p>
 <p>ESL&#x4E66;&#x91CC;&#x5C31;&#x89E3;&#x91CA;&#x7684;&#x5F88;&#x6E05;&#x695A;</p>
-<p><img src="/civmhfrpz0007qbln7cqx6fx6/z.png" alt="ESL"><br>&#x8BF4;&#x767D;&#x4E86;&#xFF0C;l1&#x662F;&#x6709;&#x89D2;&#x7684;&#xFF0C;l2&#x662F;&#x65E0;&#x89D2;&#x7684;&#xFF0C;&#x4F7F;&#x7528;l1&#x6700;&#x540E;&#x7684;w&#x90FD;&#x4F1A;&#x8DD1;&#x5230;corner&#x90A3;&#x8FB9;&#xFF0C;&#x800C;corner&#x90A3;&#x8FB9;&#x6B63;&#x597D;&#x662F;&#x6709;w&#x7B49;&#x4E8E;0&#x7684;&#x5730;&#x65B9;&#x3002;</p>
+<p><img src="/cj14wmfd00008j1lnwfr9yh64/z.png" alt="ESL"><br>&#x8BF4;&#x767D;&#x4E86;&#xFF0C;l1&#x662F;&#x6709;&#x89D2;&#x7684;&#xFF0C;l2&#x662F;&#x65E0;&#x89D2;&#x7684;&#xFF0C;&#x4F7F;&#x7528;l1&#x6700;&#x540E;&#x7684;w&#x90FD;&#x4F1A;&#x8DD1;&#x5230;corner&#x90A3;&#x8FB9;&#xFF0C;&#x800C;corner&#x90A3;&#x8FB9;&#x6B63;&#x597D;&#x662F;&#x6709;w&#x7B49;&#x4E8E;0&#x7684;&#x5730;&#x65B9;&#x3002;</p>
 <p>&#x4E5F;&#x6709;&#x76F4;&#x89C2;&#x7684;&#x89E3;&#x91CA;</p>
 <blockquote>
 <p>&#x66F4;&#x52A0;&#x76F4;&#x89C2;&#x7684;&#x6765;&#x8BF4;&#xFF0C;&#x6709;&#x4E00;&#x4E2A;&#x7403;&#x5728;&#x66F2;&#x9762;&#x4E0A;&#xFF0C;&#x6211;&#x4EEC;&#x628A;&#x7403;&#x53D7;&#x5230;&#x7684;&#x91CD;&#x529B;&#x548C;&#x66F2;&#x9762;&#x7684;&#x652F;&#x6491;&#x529B;&#x7684;&#x5408;&#x529B;&#x770B;&#x6210;&#x4E00;&#x4E2A;&#x529B;&#xFF0C;&#x65B9;&#x5411;&#x4E5F;&#x5C31;&#x662F;&#x66F2;&#x9762;&#x7684;&#x68AF;&#x5EA6;&#x65B9;&#x5411;&#x3002;&#x6B64;&#x5916;&#x6211;&#x4EEC;&#x8FD8;&#x53D7;&#x5230;&#x4E00;&#x4E2A;&#x6765;&#x81EA;&#x4E8E;&#x56DB;&#x8FB9;&#x5F62;&#xFF08;&#x4E0A;&#x56FE;&#xFF09;&#x7684;&#x67B6;&#x5B50;&#x7684;&#x652F;&#x6491;&#x529B;&#xFF0C;&#x800C;&#x6700;&#x4F18;&#x89E3;&#x5904;&#x5C31;&#x662F;&#x7403;&#x80FD;&#x591F;&#x9759;&#x6B62;&#x5E73;&#x8861;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x90A3;&#x4E48;&#x5F88;&#x660E;&#x663E;&#xFF0C;&#x662F;&#x4E0D;&#x662F;&#x5728;&#x56DB;&#x4E2A;&#x9876;&#x89D2;&#x5904;&#x6700;&#x6709;&#x53EF;&#x80FD;&#x7981;&#x6B62;&#x3002;</p>
@@ -189,7 +278,7 @@
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/civmhfrpz0007qbln7cqx6fx6/" class="archive-article-date">
+      <a href="/cj14wmfd00008j1lnwfr9yh64/" class="archive-article-date">
   	<time datetime="2016-10-03T05:25:26.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-03</time>
 </a>
       
@@ -225,7 +314,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/civmhfrpx0005qblnt3yz7zkm/">Logistic Regression逻辑回归的原理及实现</a>
+      <a class="article-title" href="/cj14wmfcs0005j1ln4gqldjor/">Logistic Regression逻辑回归的原理及实现</a>
     </h1>
   
 
@@ -281,16 +370,16 @@
 <p><a href="https://github.com/umbrellabeach/logistic_regression" target="_blank" rel="external">&#x5B8C;&#x6574;Github&#x4EE3;&#x7801;</a></p>
 <h4 id="&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;&#xFF08;Results&#xFF09;"><a href="#&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;&#xFF08;Results&#xFF09;" class="headerlink" title="&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;&#xFF08;Results&#xFF09;"></a>&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;&#xFF08;Results&#xFF09;</h4><p>&#x6570;&#x636E;&#x6765;&#x81EA;<a href="http://blog.csdn.net/zouxy09/article/details/20319673" target="_blank" rel="external">zouxy09</a></p>
 <p>&#x539F;&#x59CB;&#x6570;&#x636E;VIS</p>
-<div align="center"><img src="/civmhfrpx0005qblnt3yz7zkm/f1.png" alt="f1"></div>
+<div align="center"><img src="/cj14wmfcs0005j1ln4gqldjor/f1.png" alt="f1"></div>
 
 <p>&#x5728;SGD&#x68AF;&#x5EA6;&#x4E0B;&#x964D;1000&#x6B21;&#x8FED;&#x4EE3;&#x540E;&#xFF0C;&#x8F93;&#x51FA;&#x7ED3;&#x679C;VIS&#xFF0C;&#x51C6;&#x786E;&#x7387;&#x4E3A;86.7%</p>
-<div align="center"><img src="/civmhfrpx0005qblnt3yz7zkm/f2.png" alt="f2"></div>
+<div align="center"><img src="/cj14wmfcs0005j1ln4gqldjor/f2.png" alt="f2"></div>
 
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/civmhfrpx0005qblnt3yz7zkm/" class="archive-article-date">
+      <a href="/cj14wmfcs0005j1ln4gqldjor/" class="archive-article-date">
   	<time datetime="2016-09-09T01:26:23.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-09</time>
 </a>
       
@@ -326,7 +415,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/civmhfrpo0003qblndltym8hh/">Linear Regression原理及实现</a>
+      <a class="article-title" href="/cj14wmfch0004j1ln5klxul03/">Linear Regression原理及实现</a>
     </h1>
   
 
@@ -414,7 +503,7 @@
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/civmhfrpo0003qblndltym8hh/" class="archive-article-date">
+      <a href="/cj14wmfch0004j1ln5klxul03/" class="archive-article-date">
   	<time datetime="2016-08-13T02:40:58.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-08-13</time>
 </a>
       
@@ -450,7 +539,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/civmhfrpg0001qblnt24rmz5v/">Leetcode 4: Median of Two Sorted Arrays</a>
+      <a class="article-title" href="/cj14wmfc80003j1lnkr4z9koe/">Leetcode 4: Median of Two Sorted Arrays</a>
     </h1>
   
 
@@ -495,95 +584,8 @@
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/civmhfrpg0001qblnt24rmz5v/" class="archive-article-date">
+      <a href="/cj14wmfc80003j1lnkr4z9koe/" class="archive-article-date">
   	<time datetime="2016-07-04T05:01:57.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-07-04</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-  
-
-
-
-  
-    <article id="post-Index-of-Leetcode-Solution" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/civmhfrpa0000qbln4aj60gya/">Index of Leetcode Solution</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <h3 id="LeetCode-Solution"><a href="#LeetCode-Solution" class="headerlink" title="LeetCode Solution"></a>LeetCode Solution</h3><table>
-<thead>
-<tr>
-<th>#</th>
-<th>Title</th>
-<th>Solution</th>
-<th>Method</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td><a href="https://leetcode.com/problems/two-sum/" target="_blank" rel="external">Two Sum</a></td>
-<td><a href="https://github.com/umbrellabeach/leetcode/blob/master/algorithms/1_Two_Sum/two_sum.cpp" target="_blank" rel="external">C++</a></td>
-<td></td>
-</tr>
-<tr>
-<td>2</td>
-<td><a href="https://leetcode.com/problems/add-two-numbers/" target="_blank" rel="external">Add Two Numbers</a></td>
-<td><a href="https://github.com/umbrellabeach/leetcode/blob/master/algorithms/2_Add_Two_Numbers/add_two_numbers.cpp" target="_blank" rel="external">C++</a></td>
-<td></td>
-</tr>
-<tr>
-<td>3</td>
-<td><a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/" target="_blank" rel="external">Longest Substring Without Repeating Characters</a></td>
-<td><a href="https://github.com/umbrellabeach/leetcode/blob/master/algorithms/3_Longest_Substring_Without_Repeating_Characters/longest_substr.cpp" target="_blank" rel="external">C++</a></td>
-<td></td>
-</tr>
-<tr>
-<td>4</td>
-<td><a href="https://leetcode.com/problems/median-of-two-sorted-arrays/" target="_blank" rel="external">Median of Two Sorted Arrays</a></td>
-<td><a href="https://github.com/umbrellabeach/leetcode/blob/master/algorithms/4_Median_of_Two_Sorted_Arrays/median_of_two_sorted_arr.cpp" target="_blank" rel="external">C++</a></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/civmhfrpa0000qbln4aj60gya/" class="archive-article-date">
-  	<time datetime="2016-07-03T02:31:10.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-07-03</time>
 </a>
       
 	<div class="article-tag tagcloud">
@@ -623,7 +625,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 Jiaqi Fu
+    		&copy; 2017 Jiaqi Fu
     	</div>
       <span id="busuanzi_container_site_pv">
           本站总访问量<span id="busuanzi_value_site_pv"></span>次
@@ -703,7 +705,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/Algorithm/" style="font-size: 16.67px;">Algorithm</a> <a href="/tags/C/" style="font-size: 16.67px;">C++</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a>
+    				<a href="/tags/Algorithm/" style="font-size: 16.67px;">Algorithm</a> <a href="/tags/C/" style="font-size: 16.67px;">C++</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/GAN/" style="font-size: 10px;">GAN</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a>
     			</div>
     	</section>
     
