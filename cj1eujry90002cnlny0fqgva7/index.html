@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>GAN (1):Generative Model and Discrimination Model | 生生 - Jiaqi Fu's Blog</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">GAN (1):Generative Model and Discrimination Model</h1><a id="logo" href="/.">生生 - Jiaqi Fu's Blog</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">GAN (1):Generative Model and Discrimination Model</h1><div class="post-meta">Apr 5, 2017</div><div class="clear"><div id="toc" class="toc-article"><div class="toc-title">Contents</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Discrimination-Model"><span class="toc-number">1.</span> <span class="toc-text">Discrimination Model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generative-Model"><span class="toc-number">2.</span> <span class="toc-text">Generative Model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Example"><span class="toc-number">3.</span> <span class="toc-text">Example</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Comparison"><span class="toc-number">4.</span> <span class="toc-text">Comparison</span></a></li></ol></div></div><div class="post-content"><p>GAN (Generative Adversarial Network) is namely the combination of <strong>Generative Model</strong> and <strong>Discrimination Model</strong>. Therefore, the first step to learn GAN is to understand these two models. </p>
+<p>A generative model learns the <strong>joint probability distribution ${\rm P}(X,C)$</strong> and a discriminative model learns the <strong>conditional probability distribution ${\rm P}(C|X)$</strong>. In this article, the reduction of these two model is briefly introduced which help identify the differences between the two models.</p>
+<h2 id="Discrimination-Model"><a href="#Discrimination-Model" class="headerlink" title="Discrimination Model"></a>Discrimination Model</h2><p>Assume train set $(C,X)$ is consist of labels $ C=\{ c_1,c_2,\cdots,c_n \} $ and features $ X=\{ x_1,x_2,\cdots,x_n \} $. Given a sample $(c^{*},x^{*})$, the discrimination model learns the conditional probability ${\rm P}(c^{*}|x^{*})$. </p>
+<p>Hence, discrimination model learns ${\rm P}(c^{*}|x^{*},C,X)$ which are the labels on the conditional distribution of features and train data. Then, suppose parameter $\theta$ functions in ${\rm P}(c^{*}|x^{*},C,X)$. And we have this formula<br>$$<br>\begin{eqnarray}<br>{\rm P}(c^{*}|x^{*})<br>= {\rm P}(c^{*}|x^{*},C,X)<br>= \int {\rm P}(c^{*},\theta |x^{*},C,X) d\theta<br>= \int {\rm P}(c^{*}|x^{*},\theta)  {\rm P}(\theta | C,X) d\theta<br>\end{eqnarray}<br>$$</p>
+<p>In formula 1, the problem could be solved after the <strong>posterior probability</strong> on \theta of train data ${\rm P}(\theta | C,X)$ is computed. </p>
+<p>According to the <strong>Bayesian Formula</strong>, this could be inferred:<br>$$<br>\begin{eqnarray}<br>{\rm P}(\theta | C,X)<br>= \frac{ {\rm P}(C | X,\theta) {\rm P}(\theta) } { {\rm P}(C | X) }<br>\end{eqnarray}<br>$$</p>
+<p>In formula 2, ${\rm P}(C|X,\theta)$ could be computed by maximum likelihood estimation as :<br>$$<br>\begin{eqnarray}<br>{\rm P}(C | X,\theta) = \prod_{i=1}^n {\rm P}(c_i|x_i,\theta)<br>\end{eqnarray}<br>$$</p>
+<p>Then, this could also be infferd:<br>$$<br>\begin{eqnarray}<br>{\rm P}(C | X)<br>= \int {\rm P}(C,\theta | X) d\theta<br>= \int {\rm P}(C | X,\theta) {\rm P}(\theta) d\theta<br>\end{eqnarray}<br>$$</p>
+<p>The posterior probability is as followed:<br>$$<br>\begin{eqnarray}<br>{\rm P}(c^{*}|x^{*})<br>= \int {\rm P}(c^{*}|x^{*},\theta) d\theta \frac{ {\rm P}(C | X,\theta) {\rm P}(\theta) }{ \int {\rm P}(C | X,\theta) {\rm P}(\theta) d\theta }<br>\end{eqnarray}<br>$$</p>
+<p>The formula 5 is not hard to solve, and <a href="https://www.zhihu.com/question/20446337" target="_blank" rel="external">here</a> gives the solution.</p>
+<h2 id="Generative-Model"><a href="#Generative-Model" class="headerlink" title="Generative Model"></a>Generative Model</h2><p>Given a sample $(c^{*},x^{*})$, the discrimination model learns the joint probability ${\rm P}(x^{*},c^{*})$. </p>
+<p>This could be solved by Bayesian model:<br>$$<br>\begin{eqnarray}<br>{\rm P}(x^{*},c^{*}) = {\rm P}(x^{*}|c^{*}) {\rm P}(c^{*})<br>\end{eqnarray}<br>$$</p>
+<p><a href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier" target="_blank" rel="external">Naive Bayes Classifier</a> assumes that the features are independently distributed, and it&#x2019;s straightforward to compute.</p>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>Here&#x2019;s a really simple example. Suppose you have the following data in the form (x,c):</p>
+<center> (1,0), (1,0), (2,0), (2, 1) </center>
+
+<p>${\rm P}(x,c)$ is</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th>c=0</th>
+<th>c=1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">x=1</td>
+<td>1/2</td>
+<td>0</td>
+</tr>
+<tr>
+<td style="text-align:left">x=2</td>
+<td>1/4</td>
+<td>1/4</td>
+</tr>
+</tbody>
+</table>
+<p>${\rm P}(c | x)$ is</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th>c=0</th>
+<th>c=1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">x=1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td style="text-align:left">x=2</td>
+<td>1/2</td>
+<td>1/2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Comparison"><a href="#Comparison" class="headerlink" title="Comparison"></a>Comparison</h2><p>The <strong><font color="blue">advantages</font></strong> of <strong>Generative Model</strong></p>
+<ul>
+<li>it outputs the joint probability distribution, therefore it could provide <strong>more information</strong> about data such as <strong>Outliner Detection</strong></li>
+<li>it&#x2019;s <strong>faster</strong> than Discrimination Model in <strong>convergence</strong></li>
+<li>the model gets <strong>closer</strong> to the ground truth when feeding more samples</li>
+<li>it could be used in condition of hidden variable while Discrimination Model couldn&#x2019;t.</li>
+</ul>
+<p>The <strong><font color="red">disadvantages</font></strong> of <strong>Generative Model</strong></p>
+<ul>
+<li>it need more samples to compute</li>
+<li>its actual result is worse than Discrimination Model</li>
+</ul>
+<p>The <strong><font color="blue">advantages</font></strong> of <strong>Discrimination Model</strong></p>
+<ul>
+<li>it need <strong>less</strong> samples than the Generative Model</li>
+<li>it gets higher <strong>accuracy</strong> than the Generative Model</li>
+<li>it has the ability of <strong>feature abstraction</strong> (dimensionality reduction, transition,&#x2026;) in that it computes ${\rm P}(C|X)$.</li>
+</ul>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://fujiaqi.com/cj1eujry90002cnlny0fqgva7/" data-id="cj1eujry90002cnlny0fqgva7" class="article-share-link">Share</a><div class="tags"><a href="/tags/Machine-Learning/">Machine Learning</a><a href="/tags/GAN/">GAN</a></div><div class="post-nav"><a href="/cj1eujry10000cnln2eskhczt/" class="pre">GAN (2):Introduction via the Original Paper</a><a href="/cj1eujs06000qcnln6t4zd7l7/" class="next">Spring MVC Login Demo</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://fujiaqi.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/tags/GAN/" style="font-size: 15px;">GAN</a> <a href="/tags/Algorithm/" style="font-size: 15px;">Algorithm</a> <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/Deep-Learning/" style="font-size: 15px;">Deep Learning</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/cj1eujrzq000bcnlnnvtal9za/">Note:Introduction and Applications of GANs(PPT)</a></li><li class="post-list-item"><a class="post-list-link" href="/cj1eujry10000cnln2eskhczt/">GAN (2):Introduction via the Original Paper</a></li><li class="post-list-item"><a class="post-list-link" href="/cj1eujry90002cnlny0fqgva7/">GAN (1):Generative Model and Discrimination Model</a></li><li class="post-list-item"><a class="post-list-link" href="/cj1eujs06000qcnln6t4zd7l7/">Spring MVC Login Demo</a></li><li class="post-list-item"><a class="post-list-link" href="/cj1eujrze0009cnlnqzwl834w/">Non-Linear SVM and Kernel Function非线性支持向量机与核函数</a></li><li class="post-list-item"><a class="post-list-link" href="/cj1eujs04000ncnlnbhudd5yq/">Soft-Margin SVM 软间隔支持向量机</a></li><li class="post-list-item"><a class="post-list-link" href="/cj1eujs02000lcnln9d2g53e6/">Same Tree Problem</a></li><li class="post-list-item"><a class="post-list-link" href="/cj1eujs00000icnln5vtwyda4/">SVM and Dual Problem 支持向量机与对偶问题</a></li><li class="post-list-item"><a class="post-list-link" href="/cj1eujrzu000dcnln613hd7j0/">Over-fitting and Regularization过拟合与正则化</a></li><li class="post-list-item"><a class="post-list-link" href="/cj1eujrz80008cnlnam2md461/">Logistic Regression逻辑回归的原理及实现</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="http://keefe.wang/" title="keefe's Blog" target="_blank">keefe's Blog</a><ul></ul><a href="https://github.com/umbrellabeach" title="Jiaqi Fu's Github" target="_blank">Jiaqi Fu's Github</a><ul></ul><a href="http://mypage.zju.edu.cn/en/zhangkejun" title="Kejun Zhang's Page" target="_blank">Kejun Zhang's Page</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">生生 - Jiaqi Fu's Blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.css"><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
